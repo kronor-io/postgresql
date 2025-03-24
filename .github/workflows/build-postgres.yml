@@ -26,14 +26,13 @@ jobs:
         run: |
           echo "MIRRORSITE=http://archive.ubuntu.com/ubuntu" > /etc/pbuilderrc
           apt-get update
-          apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian
-          apt-get install -y clang-18 llvm-18 lld-18
-          apt-get install -y postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev
-          apt-get install -y libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext
-        
-          apt-get install -y bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev 
-          apt-get install -y libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev llvm-dev
-          apt-get install -y lz4 pkgconf postgresql-common-dev systemtap-sdt-dev uuid-dev xsltproc
+          apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
+                             clang-18 llvm-18 lld-18 \
+                             postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
+                             libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
+                             bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev \
+                             libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev llvm-dev \
+                             lz4 pkgconf systemtap-sdt-dev uuid-dev xsltproc
           
           # Handle tzdata dependency (tzdata-legacy or tzdata < 2023c-8)
           if apt-cache show tzdata-legacy &>/dev/null; then
