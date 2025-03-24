@@ -54,7 +54,7 @@ jobs:
           # Download the PostgreSQL source
           curl -O https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/postgresql-${POSTGRES_VERSION}.tar.bz2
           # Update version in changelog
-          dch -v ${POSTGRES_VERSION}-1custom "Custom build of PostgreSQL ${POSTGRES_VERSION} with clang-18 for Ubuntu 24.04"
+          dch -v ${POSTGRES_VERSION}-3custom "Custom build of PostgreSQL ${POSTGRES_VERSION} with clang-18 for Ubuntu 24.04"
           
       - name: Set up CC and CXX environment variables
         run: |
