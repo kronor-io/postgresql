@@ -36,7 +36,7 @@ jobs:
           
           # Install postgresql-common-dev from Plucky (backported to Noble)
           curl -O http://archive.ubuntu.com/ubuntu/pool/main/p/postgresql-common/postgresql-common-dev_274_all.deb
-          apt-get install -y ./postgresql-common-dev_261ubuntu1_all.deb
+          apt-get install -y ./postgresql-common-dev_274_all.deb
           
           # Handle tzdata dependency (tzdata-legacy or tzdata < 2023c-8)
           if apt-cache show tzdata-legacy &>/dev/null; then
