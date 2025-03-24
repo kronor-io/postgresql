@@ -1,0 +1,98 @@
+name: Build PostgreSQL 17 Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      postgres_version:
+        description: 'PostgreSQL version'
+        required: true
+        default: '17.0'
+  schedule:
+    # Check for new PostgreSQL releases monthly
+    - cron: '0 0 1 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:24.04
+      options: --privileged
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up environment
+        run: |
+          apt-get update
+          apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian
+          apt-get install -y clang-18 llvm-18 lld-18
+          apt-get install -y postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev
+          apt-get install -y libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext
+          
+      - name: Get latest PostgreSQL 17 version
+        run: |
+          if [ "${{ github.event.inputs.postgres_version }}" != "" ]; then
+            POSTGRES_VERSION="${{ github.event.inputs.postgres_version }}"
+          else
+            # Get latest PostgreSQL 17 version from the PostgreSQL website
+            POSTGRES_VERSION=$(curl -s https://www.postgresql.org/ftp/source/ | grep -oP 'v17\.\d+' | sort -V | tail -n 1 | sed 's/v//')
+          fi
+          echo "POSTGRES_VERSION=$POSTGRES_VERSION" >> $GITHUB_ENV
+          
+      - name: Clone PostgreSQL Debian packaging
+        run: |
+          git clone https://salsa.debian.org/postgresql/postgresql.git
+          cd postgresql
+          # Ensure we're on a branch that supports PostgreSQL 17
+          git checkout 17
+          
+      - name: Download PostgreSQL source
+        run: |
+          cd postgresql
+          # Download the PostgreSQL source
+          curl -O https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/postgresql-${POSTGRES_VERSION}.tar.bz2
+          # Update version in debian/changelog
+          dch -v ${POSTGRES_VERSION}-1custom "Custom build of PostgreSQL ${POSTGRES_VERSION} with clang-18 for Ubuntu 24.04"
+          
+      - name: Set up CC and CXX environment variables
+        run: |
+          echo "CC=clang-18" >> $GITHUB_ENV
+          echo "CXX=clang++-18" >> $GITHUB_ENV
+          echo "CFLAGS=-O2 -flto=thin" >> $GITHUB_ENV
+          echo "LDFLAGS=-fuse-ld=lld-18" >> $GITHUB_ENV
+          
+      - name: Build PostgreSQL packages
+        run: |
+          cd postgresql
+          # Extract the PostgreSQL source
+          tar -xf postgresql-${POSTGRES_VERSION}.tar.bz2
+          # Copy files to create orig tarball
+          cp -r postgresql-${POSTGRES_VERSION}/* .
+          # Remove the extracted directory
+          rm -rf postgresql-${POSTGRES_VERSION}
+          # Build Debian packages with custom compiler
+          dpkg-buildpackage -us -uc -b
+
+      - name: Gather packages
+        run: |
+          mkdir -p dist/deb
+          cp ../*.deb dist/deb/
+          cp ../*.changes dist/deb/
+    
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: postgresql-packages
+          path: dist/deb/          
+
+
+      - name: Update PPA repository
+        run: |
+          bash ./scripts/update-ppa.sh "${POSTGRES_VERSION}"
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
+          branch: gh-pages
