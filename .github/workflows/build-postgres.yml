@@ -86,7 +86,7 @@ jobs:
           cp ../*.changes dist/deb/
     
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: postgresql-packages
           path: dist/deb/          
