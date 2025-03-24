@@ -15,13 +15,13 @@ This repository contains GitHub Actions workflows for building custom PostgreSQL
 ### Add the Repository
 
 ```bash
-sudo sh -c 'echo "deb https://[YOUR-GITHUB-USERNAME].github.io/postgres noble main" > /etc/apt/sources.list.d/postgres-custom-ppa.list'
+sudo sh -c 'echo "deb https://kronor-io.github.io/postgresql noble main" > /etc/apt/sources.list.d/postgres-custom-ppa.list'
 ```
 
 ### Add the Repository Key
 
 ```bash
-wget -qO- https://[YOUR-GITHUB-USERNAME].github.io/postgres/KEY.gpg | sudo apt-key add -
+wget -qO- https://kronor-io.github.io/postgresql/KEY.gpg | sudo apt-key add -
 ```
 
 ### Update and Install

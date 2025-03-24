@@ -6,7 +6,7 @@ set -e
 
 POSTGRES_VERSION=$1
 CODENAME="noble"  # Ubuntu 24.04 codename
-ARCH="amd64"      # Architecture for the packages
+ARCH="arm64"      # Architecture for the packages
 REPO_ROOT="dist"  # Where the repository will be created
 KEY_NAME="postgres-custom-ppa"
 
@@ -27,8 +27,8 @@ if [ ! -f "private-key.gpg" ]; then
 EOF
     gpg --batch --gen-key key-config
     rm key-config
-    gpg --export --armor postgres-custom@example.com > ${REPO_ROOT}/KEY.gpg
-    gpg --export-secret-keys --armor postgres-custom@example.com > private-key.gpg
+    gpg --export --armor postgres-custom@kronor.io > ${REPO_ROOT}/KEY.gpg
+    gpg --export-secret-keys --armor postgres-custom@kronor.io > private-key.gpg
 fi
 
 # Import the key if we're in CI

@@ -13,10 +13,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: ubuntu:24.04
-      options: --privileged
+    runs-on: ubuntu-24.04-arm
+    #container:
+    #  image: ubuntu:24.04
+    #  options: --privileged
 
     steps:
       - name: Checkout repository
