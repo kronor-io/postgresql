@@ -14,9 +14,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04-arm
-    #container:
-    #  image: ubuntu:24.04
-    #  options: --privileged
+    container:
+      image: ubuntu:24.04
+      options: --privileged
 
     steps:
       - name: Checkout repository
