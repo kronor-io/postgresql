@@ -1,0 +1,1 @@
+deb [signed-by=/etc/apt/trusted.gpg.d/kronor_postgresql.gpg] https://kronor-io.github.io/postgresql ./

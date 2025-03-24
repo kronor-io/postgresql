@@ -1,0 +1,113 @@
+Format: 1.8
+Date: Mon, 24 Mar 2025 18:29:42 +0000
+Source: postgresql-17
+Binary: libecpg-compat3 libecpg-dev libecpg6 libpgtypes3 libpq-dev libpq5 postgresql-17 postgresql-client-17 postgresql-doc-17 postgresql-plperl-17 postgresql-plpython3-17 postgresql-pltcl-17 postgresql-server-dev-17
+Built-For-Profiles: noudeb
+Architecture: arm64 all
+Version: 17.4-3custom
+Distribution: UNRELEASED
+Urgency: medium
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Changed-By: root <root@04146546f54d>
+Description:
+ libecpg-compat3 - older version of run-time library for ECPG programs
+ libecpg-dev - development files for ECPG (Embedded PostgreSQL for C)
+ libecpg6   - run-time library for ECPG programs
+ libpgtypes3 - shared library libpgtypes for PostgreSQL 17
+ libpq-dev  - header files for libpq5 (PostgreSQL library)
+ libpq5     - PostgreSQL C client library
+ postgresql-17 - The World's Most Advanced Open Source Relational Database
+ postgresql-client-17 - front-end programs for PostgreSQL 17
+ postgresql-doc-17 - documentation for the PostgreSQL database management system
+ postgresql-plperl-17 - PL/Perl procedural language for PostgreSQL 17
+ postgresql-plpython3-17 - PL/Python 3 procedural language for PostgreSQL 17
+ postgresql-pltcl-17 - PL/Tcl procedural language for PostgreSQL 17
+ postgresql-server-dev-17 - development files for PostgreSQL 17 server-side programming
+Changes:
+ postgresql-17 (17.4-3custom) UNRELEASED; urgency=medium
+ .
+   [ Christoph Berg ]
+   * libpq5: Recommend ca-certificates to support SSL certificate validation
+     using the sslrootcert=system connection option.
+   * Revert "Test-depend only our server packages".
+ .
+   [ root ]
+   * Custom build of PostgreSQL 17.4 with clang-18 for Ubuntu 24.04
+Checksums-Sha1:
+ ad95b32df9a3d3690d3b0a7a246b6c9485724dca 17716 libecpg-compat3-dbgsym_17.4-3custom_arm64.ddeb
+ f1bd6cc2aeb12daf25a375cf38a3bddd359f8524 16108 libecpg-compat3_17.4-3custom_arm64.deb
+ 26aa4ad2748a9d119c63acb8cf7e6e79dab503fa 260374 libecpg-dev-dbgsym_17.4-3custom_arm64.ddeb
+ 0eb4bdfe4db28acfaead0ef6167d8d867074d784 322568 libecpg-dev_17.4-3custom_arm64.deb
+ 07b7d3fafdb2b2c9ea319ba97f98560ad5dfbe10 121828 libecpg6-dbgsym_17.4-3custom_arm64.ddeb
+ 01990b135a0f45663c3545ff3e2f87e39d8e4027 61866 libecpg6_17.4-3custom_arm64.deb
+ 1f939b36fc37b8219253d32ad636f2c0f95bb6a6 89394 libpgtypes3-dbgsym_17.4-3custom_arm64.ddeb
+ 9979cf1bbce34726baf6d0cee718993895822f0d 43828 libpgtypes3_17.4-3custom_arm64.deb
+ 3c1c2c0650af6bfad43fd7e07664692bf19ee7bc 161632 libpq-dev_17.4-3custom_arm64.deb
+ ebf42c3b2049732d7b16cf76f914224aac3fa022 325370 libpq5-dbgsym_17.4-3custom_arm64.ddeb
+ 8dcf4a8290e0e39ef867a6783fceb47570c08786 254618 libpq5_17.4-3custom_arm64.deb
+ c0cbbe1e611ac2e5e12f89ca9823623ba71ecb0b 20897178 postgresql-17-dbgsym_17.4-3custom_arm64.ddeb
+ 5b481a765032fbea54b02fdfe5a28707595c12bc 18307 postgresql-17_17.4-3custom_arm64.buildinfo
+ 169105147e7f16ea30da855a6670e591636e298c 18041338 postgresql-17_17.4-3custom_arm64.deb
+ a188c62113e308502f909aedf35877553c8ea4af 2376678 postgresql-client-17-dbgsym_17.4-3custom_arm64.ddeb
+ 4cb9986b43ee89a550e1e8cb4921ad3132f61daf 2145148 postgresql-client-17_17.4-3custom_arm64.deb
+ 80ad4017d7608da49391e3d46d9594eb86a02ba3 2138406 postgresql-doc-17_17.4-3custom_all.deb
+ f31d2af0af5cfdfc325de1f53da178bb240a6682 196880 postgresql-plperl-17-dbgsym_17.4-3custom_arm64.ddeb
+ 5eca7934435a5ced058cc25f9e8c1cd81a4faff0 90422 postgresql-plperl-17_17.4-3custom_arm64.deb
+ 989d13c32667ea1e09119489774a639cf4b48388 177888 postgresql-plpython3-17-dbgsym_17.4-3custom_arm64.ddeb
+ 82df2e14c5c349697a50f47380dcc13deb3e6906 115770 postgresql-plpython3-17_17.4-3custom_arm64.deb
+ dab3353043c7aafea7a65c9d90647c4097ded9f2 85052 postgresql-pltcl-17-dbgsym_17.4-3custom_arm64.ddeb
+ 378bdbe5923285a58d3a9e6c7513ad92a8586282 43850 postgresql-pltcl-17_17.4-3custom_arm64.deb
+ 336748ff95d4a899fee4a4c5fe42c1ef9998f473 55528 postgresql-server-dev-17-dbgsym_17.4-3custom_arm64.ddeb
+ f1387806a47af9aca11847bea55f2f30612fac53 1397758 postgresql-server-dev-17_17.4-3custom_arm64.deb
+Checksums-Sha256:
+ aac5880fb6e8bc48e78ebebcf4bad6422803d371811eb444352f15bba09182a5 17716 libecpg-compat3-dbgsym_17.4-3custom_arm64.ddeb
+ 72a83d6c5ba25d1339b076c4b5dec35db4be18b9a97309b9f1fecd918f859154 16108 libecpg-compat3_17.4-3custom_arm64.deb
+ 4e9b806f3e9d9ee08690343616a8dd84aec47e7d97ec15f2a3c3caeb4767aaf3 260374 libecpg-dev-dbgsym_17.4-3custom_arm64.ddeb
+ 4785db3b9d80fa9ea058ceea6d1d39728d40e3e165c916e78546453051874653 322568 libecpg-dev_17.4-3custom_arm64.deb
+ 68cd15d69c7e4ccc8fd701eb2c6a3bd407e70865d03ca039d03e97a423de6454 121828 libecpg6-dbgsym_17.4-3custom_arm64.ddeb
+ 55587ffd04800a1e780712ab8138071233e6390bdfa43bdd500646fd36e3ce9e 61866 libecpg6_17.4-3custom_arm64.deb
+ b80edbd8fb724e7be85be58d1d53fb182fde6e165994aa2964bc2bb0d087c872 89394 libpgtypes3-dbgsym_17.4-3custom_arm64.ddeb
+ c2b9b00113809db9cba75e8208013c00911881cae79235200b8247cf6e1ca7a2 43828 libpgtypes3_17.4-3custom_arm64.deb
+ 3b2cc7f2c4fcd74f539afd9f258d621bdbab72bb118c540195a07c6bb4ebe2b0 161632 libpq-dev_17.4-3custom_arm64.deb
+ 8c94d4b71731cdd041e164d402b82219bc5e60500c3fedc431e9b7757f818c0c 325370 libpq5-dbgsym_17.4-3custom_arm64.ddeb
+ e936695a7a68eb9e75971b8a31ad3bc82eb7441aea6a96098f01dca73ce46a53 254618 libpq5_17.4-3custom_arm64.deb
+ a167713c6d66145d9a828df2620c2fcac53f121a0173ebf8892fabe231a27300 20897178 postgresql-17-dbgsym_17.4-3custom_arm64.ddeb
+ 03f5a726683895d331502215d56cc64726ade31c72489b66320d3dda90d9d265 18307 postgresql-17_17.4-3custom_arm64.buildinfo
+ 442c7709a2d43e63acc1bd4a037930d5e54f4569cac33d9512d959072fc90c02 18041338 postgresql-17_17.4-3custom_arm64.deb
+ 51b214d67f77c78915fd9a26aeac9342bf734739ad9791f8863ecce6f3d36599 2376678 postgresql-client-17-dbgsym_17.4-3custom_arm64.ddeb
+ e19c5d251ce404d30bc437388029b48c49d6827be165c3ded4b5d4d9ace19521 2145148 postgresql-client-17_17.4-3custom_arm64.deb
+ 02e6ddb96b0a96665a2270214c4fa83e486ef08cf405aa912e268f13412a817d 2138406 postgresql-doc-17_17.4-3custom_all.deb
+ cd6c25091c1f3f9ca4be2b17f4f351d0181484d4bff22812c8932b02d483e0ac 196880 postgresql-plperl-17-dbgsym_17.4-3custom_arm64.ddeb
+ 1e59fa14fa6bf9257aea61fa8e37fb46c36b8e55622de9b2c82347d3fdad7bcd 90422 postgresql-plperl-17_17.4-3custom_arm64.deb
+ 84054c22039a79833beecbf516fe6ffa5a6677fd68607a1c5b4a83d02bb7a2c0 177888 postgresql-plpython3-17-dbgsym_17.4-3custom_arm64.ddeb
+ 66ea04ca22fcdf61c0639417a228f1e1302baea83e41fc57cf8b051d31ecbad8 115770 postgresql-plpython3-17_17.4-3custom_arm64.deb
+ 3576de73726e55dbf2c0a6697ba96f8c5431c2b3b96cc5cb17bf8caf5c3d1204 85052 postgresql-pltcl-17-dbgsym_17.4-3custom_arm64.ddeb
+ 37a779f85634c43a14119c4582fda80ebea3bf16afcaf3eb9675bfac02ec63a7 43850 postgresql-pltcl-17_17.4-3custom_arm64.deb
+ 0d7e91cc34b1a58b12cdc8cf9b54165d2e935eddb8b06b6cc3253d3dab6ba4bd 55528 postgresql-server-dev-17-dbgsym_17.4-3custom_arm64.ddeb
+ f681c336d3f3f176a9ffbb557ecb24d8f0d70a20980879f001e9d5696770f03c 1397758 postgresql-server-dev-17_17.4-3custom_arm64.deb
+Files:
+ 5efa77902593761bd2a07c77beb1b96d 17716 debug optional libecpg-compat3-dbgsym_17.4-3custom_arm64.ddeb
+ 93197fc2b06e1720814d7a66b340060e 16108 libs optional libecpg-compat3_17.4-3custom_arm64.deb
+ e98e217d0bef445dfccf8ff6f38a549c 260374 debug optional libecpg-dev-dbgsym_17.4-3custom_arm64.ddeb
+ 3af437507cc454c44e82fc833c27b9de 322568 libdevel optional libecpg-dev_17.4-3custom_arm64.deb
+ b862c45365a244dcad9616f935d44c6a 121828 debug optional libecpg6-dbgsym_17.4-3custom_arm64.ddeb
+ af19b51346bfc13809a737885fb904bf 61866 libs optional libecpg6_17.4-3custom_arm64.deb
+ be1f864836dc9120709dab8ef8f8e835 89394 debug optional libpgtypes3-dbgsym_17.4-3custom_arm64.ddeb
+ 08cfbada677a0addcc5922689b4a5de2 43828 libs optional libpgtypes3_17.4-3custom_arm64.deb
+ 84639938037970ba9d3b79e13554690a 161632 libdevel optional libpq-dev_17.4-3custom_arm64.deb
+ a47eab4b1d97819bfcd9b2fd17920eab 325370 debug optional libpq5-dbgsym_17.4-3custom_arm64.ddeb
+ 1bf647c6dde67475683bae64ba9c5fbc 254618 libs optional libpq5_17.4-3custom_arm64.deb
+ af6f1386437afd46c7dae6be83562714 20897178 debug optional postgresql-17-dbgsym_17.4-3custom_arm64.ddeb
+ 473f457336e07f5af8efed525cd9c258 18307 database optional postgresql-17_17.4-3custom_arm64.buildinfo
+ 157fd98173713b96997013c2fc51a709 18041338 database optional postgresql-17_17.4-3custom_arm64.deb
+ eb357d8b7bf2ee5ca5b869d440844315 2376678 debug optional postgresql-client-17-dbgsym_17.4-3custom_arm64.ddeb
+ fedb927542f4f8fe9ad7ef19e28a5b03 2145148 database optional postgresql-client-17_17.4-3custom_arm64.deb
+ 6360d4fd7935ec89d8f70243e670904b 2138406 doc optional postgresql-doc-17_17.4-3custom_all.deb
+ c1dad144e2d21f1677ccbe6609868865 196880 debug optional postgresql-plperl-17-dbgsym_17.4-3custom_arm64.ddeb
+ 6713d7f8fa7c686aa3594ea2533defdd 90422 database optional postgresql-plperl-17_17.4-3custom_arm64.deb
+ a310e7d0af15e120f7345e6dc5b0f431 177888 debug optional postgresql-plpython3-17-dbgsym_17.4-3custom_arm64.ddeb
+ da94b60d20d59050dcee75be000a023a 115770 database optional postgresql-plpython3-17_17.4-3custom_arm64.deb
+ 209befb0428c2ca970191599827de510 85052 debug optional postgresql-pltcl-17-dbgsym_17.4-3custom_arm64.ddeb
+ 1ba8a27eeacabcbeea3d1e0d35dcace6 43850 database optional postgresql-pltcl-17_17.4-3custom_arm64.deb
+ 41d5d44b5a3e92aae1359691b7fb1e53 55528 debug optional postgresql-server-dev-17-dbgsym_17.4-3custom_arm64.ddeb
+ bea009b3304fb531a801df49cb5abb05 1397758 libdevel optional postgresql-server-dev-17_17.4-3custom_arm64.deb
