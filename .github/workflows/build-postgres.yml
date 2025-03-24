@@ -109,8 +109,9 @@ jobs:
       - name: Gather packages
         run: |
           mkdir -p dist/deb
-          cp ../*.deb dist/deb/
-          cp ../*.changes dist/deb/
+          ls -l
+          find . -name "*.deb" -exec cp {} dist/deb/ \;
+          find . -name "*.changes" -exec cp {} dist/deb/ \;
     
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
