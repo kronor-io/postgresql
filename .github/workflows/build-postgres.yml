@@ -94,7 +94,7 @@ jobs:
             cp "$PGCOMMON_MK" "${PGCOMMON_MK}.bak"
             
             # Append our custom flags to CONFIGURE_FLAGS
-            sed -i '/^CONFIGURE_FLAGS = \\/ s/$/ \\\n  --with-blocksize=16 \\\n  --with-wal-blocksize=16/' "$PGCOMMON_MK"
+            sed -i '/^CONFIGURE_FLAGS = \\/ s/$/ \\\n  --with-blocksize=16 \\\n  --with-wal-blocksize=16 \\\n/' "$PGCOMMON_MK"
             cat "$PGCOMMON_MK"
             
             echo "Added custom block size flags to postgresql.mk"
