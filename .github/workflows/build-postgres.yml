@@ -88,8 +88,9 @@ jobs:
           rm -rf postgresql-${POSTGRES_VERSION}
           
           # Create postgresql.configure file with custom flags
-          echo "--with-blocksize=16" >> postgresql-17.configure
-          echo "--with-wal-blocksize=16" >> postgresql-17.configure
+          mkdir debian
+          echo "--with-blocksize=16" >> debian/postgresql-17.configure
+          echo "--with-wal-blocksize=16" >> debian/postgresql-17.configure
           
           # Build Debian packages with custom compiler and flags
           DEB_BUILD_OPTIONS="nocheck" dpkg-buildpackage -us -uc -b
