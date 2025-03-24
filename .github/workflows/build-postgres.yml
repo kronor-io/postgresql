@@ -74,7 +74,7 @@ jobs:
         run: |
           echo "CC=clang-18" >> $GITHUB_ENV
           echo "CXX=clang++-18" >> $GITHUB_ENV
-          echo "CFLAGS=-O2 -flto=thin" >> $GITHUB_ENV
+          echo "CFLAGS=-O2 -flto=thin -gdwarf-4" >> $GITHUB_ENV
           echo "LDFLAGS=-fuse-ld=lld-18" >> $GITHUB_ENV
           
       - name: Build PostgreSQL packages
@@ -87,9 +87,20 @@ jobs:
           # Remove the extracted directory
           rm -rf postgresql-${POSTGRES_VERSION}
           
-          # Create postgresql.configure file with custom flags
-          echo "--with-blocksize=16" >> debian/postgresql-17.configure
-          echo "--with-wal-blocksize=16" >> debian/postgresql-17.configure
+          # Create a custom copy of postgresql.mk with our additional block size flags
+          PGCOMMON_MK="/usr/share/postgresql-common/server/postgresql.mk"
+          if [ -f "$PGCOMMON_MK" ]; then
+            # Create a backup of the original file
+            cp "$PGCOMMON_MK" "${PGCOMMON_MK}.bak"
+            
+            # Append our custom flags to CONFIGURE_FLAGS
+            sed -i '/^CONFIGURE_FLAGS =/ s/$/ \\\n  --with-blocksize=16 \\\n  --with-wal-blocksize=16/' "$PGCOMMON_MK"
+            
+            echo "Added custom block size flags to postgresql.mk"
+          else
+            echo "Warning: Could not find postgresql.mk at $PGCOMMON_MK"
+            exit 1
+          fi
           
           # Build Debian packages with custom compiler and flags
           DEB_BUILD_OPTIONS="nocheck" dpkg-buildpackage -us -uc -b
