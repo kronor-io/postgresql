@@ -14,9 +14,6 @@ on:
 jobs:
   publish-ppa:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:24.04
-    
     steps:
       - name: Set up environment
         run: |
