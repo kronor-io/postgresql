@@ -17,8 +17,8 @@ jobs:
     steps:
       - name: Set up environment
         run: |
-          apt-get update
-          apt-get install -y gnupg git dpkg-dev apt-utils gzip git
+          sudo apt-get update
+          sudo apt-get install -y gnupg git dpkg-dev apt-utils gzip git
 
       - name: Checkout repository
         uses: actions/checkout@v3
