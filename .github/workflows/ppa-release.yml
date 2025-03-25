@@ -57,10 +57,10 @@ jobs:
           apt-ftparchive release . > Release
           
           # Sign Release file
-          echo "${{ secrets.PPA_PASSWORD }}" | gpg --batch --passphrase-fd 0 --default-key "$PPA_EMAIL" -abs -o - Release > Release.gpg
+          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" -abs -o - Release > Release.gpg
           
           # Create InRelease file (clearsigned Release)
-          echo "${{ secrets.PPA_PASSWORD }}" | gpg --batch --passphrase-fd 0 --default-key "$PPA_EMAIL" --clearsign -o - Release > InRelease
+          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" --clearsign -o - Release > InRelease
 
       - name: Configure Git
         run: |
