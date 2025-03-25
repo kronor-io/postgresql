@@ -18,17 +18,17 @@ jobs:
       image: ubuntu:24.04
     
     steps:
+      - name: Set up environment
+        run: |
+          apt-get update
+          apt-get install -y gnupg git dpkg-dev apt-utils gzip git
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           ref: ppa
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-
-      - name: Set up environment
-        run: |
-          apt-get update
-          apt-get install -y gnupg git dpkg-dev apt-utils gzip
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
