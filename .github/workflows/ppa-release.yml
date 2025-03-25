@@ -27,7 +27,7 @@ jobs:
       - name: Set up environment
         run: |
           apt-get update
-          apt-get install -y gnupg git dpkg-dev apt-utils gzip apt-ftparchive
+          apt-get install -y gnupg git dpkg-dev apt-utils gzip
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
