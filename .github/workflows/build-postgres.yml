@@ -6,7 +6,7 @@ on:
       postgres_version:
         description: 'PostgreSQL version'
         required: true
-        default: '17.0'
+        default: '17.4'
   schedule:
     # Check for new PostgreSQL releases monthly
     - cron: '0 0 1 * *'
@@ -70,13 +70,6 @@ jobs:
           # Update version in changelog
           dch -v ${POSTGRES_VERSION}-3custom "Custom build of PostgreSQL ${POSTGRES_VERSION} with clang-18 for Ubuntu 24.04"
           
-      # - name: Set up CC and CXX environment variables
-      #   run: |
-      #     echo "CC=clang-18" >> $GITHUB_ENV
-      #     echo "CXX=clang++-18" >> $GITHUB_ENV
-      #     echo "CFLAGS=-O2 -flto=thin -gdwarf-4" >> $GITHUB_ENV
-      #     echo "LDFLAGS=-fuse-ld=lld-18" >> $GITHUB_ENV
-          
       - name: Build PostgreSQL packages
         run: |
           cd postgresql
@@ -119,13 +112,74 @@ jobs:
           name: postgresql-packages
           path: dist/deb/          
 
-
-      - name: Update PPA repository
-        run: |
-          bash ./scripts/update-ppa.sh "${POSTGRES_VERSION}"
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+  publish-ppa:
+    needs: build
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:24.04
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
-          folder: dist
-          branch: gh-pages
+          ref: ppa
+          fetch-depth: 0
+
+      - name: Set up environment
+        run: |
+          apt-get update
+          apt-get install -y gnupg git dpkg-dev apt-utils gzip apt-ftparchive
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: postgresql-packages
+          path: ./packages
+
+      - name: Import GPG key
+        env:
+          PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+          PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+        run: |
+          echo "$PPA_PRIVATE_KEY" | gpg --batch --import
+          # Trust the key
+          echo -e "trust\n5\ny\n" | gpg --batch --command-fd 0 --edit-key ${{ secrets.PPA_EMAIL }}
+
+      - name: Create repository files
+        env:
+          PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
+        run: |
+          cp -r packages/* .
+          rm -rf packages
+
+          # Generate Packages file
+          dpkg-scanpackages --multiversion . > Packages
+          gzip -k -f Packages
+          
+          # Generate Release file
+          apt-ftparchive release . > Release
+          
+          # Sign Release file
+          cat Release | gpg --default-key "$PPA_EMAIL" --passphrase "${{ secrets.PPA_PASSWORD }}" -abs -o Release.gpg
+          
+          # Create InRelease file (clearsigned Release)
+          cat Release | gpg --default-key "$PPA_EMAIL" --passphrase "${{ secrets.PPA_PASSWORD }}" --clearsign -o InRelease
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Commit and push changes
+        run: |
+          # Add all new files
+          git add ppa/*
+          
+          # Get current PostgreSQL version
+          POSTGRES_VERSION=${{ github.event.inputs.postgres_version || env.POSTGRES_VERSION }}
+          
+          # Commit changes
+          git commit -m "Update PPA with PostgreSQL ${POSTGRES_VERSION} packages"
+          
+          # Push to ppa branch
+          git push origin ppa

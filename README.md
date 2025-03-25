@@ -17,7 +17,8 @@ This repository contains GitHub Actions workflows for building custom PostgreSQL
 ```bash
 sudo sh -c 'echo "deb https://kronor-io.github.io/postgresql noble main" > /etc/apt/sources.list.d/postgres-custom-ppa.list'
 ```
-
+curl -s --compressed "https://kronor-io.github.io/postgresql/KEY.gpg" | gpg --dearmor | tee /etc/apt/trusted.gpg.d/kronor_postgresql.gpg >/dev/null
+curl -s --compressed -o /etc/apt/sources.list.d/kronor_postgresql.list "https://kronor-io.github.io/postgresql/kronor_postgresql.list"
 ### Add the Repository Key
 
 ```bash
