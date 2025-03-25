@@ -33,8 +33,6 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           run-id: ${{ github.event.inputs.workflow_run_id }}
-          name: postgresql-packages
-          path: ./packages
 
       - name: Import GPG key
         env:
@@ -49,8 +47,8 @@ jobs:
         env:
           PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
         run: |
-          cp -r packages/* .
-          rm -rf packages
+          cp -r postgresql-packages/* .
+          rm -rf postgresql-packages
 
           # Generate Packages file
           dpkg-scanpackages --multiversion . > Packages
