@@ -142,8 +142,6 @@ jobs:
           PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
         run: |
           echo "$PPA_PRIVATE_KEY" | gpg --batch --import
-          # Trust the key
-          echo -e "trust\n5\ny\n" | gpg --batch --command-fd 0 --edit-key ${{ secrets.PPA_EMAIL }}
 
       - name: Create repository files
         env:
@@ -160,10 +158,10 @@ jobs:
           apt-ftparchive release . > Release
           
           # Sign Release file
-          cat Release | gpg --default-key "$PPA_EMAIL" --passphrase "${{ secrets.PPA_PASSWORD }}" -abs -o Release.gpg
+          cat Release | gpg --no-tty --default-key "$PPA_EMAIL" --passphrase "${{ secrets.PPA_PASSWORD }}" -abs -o Release.gpg
           
           # Create InRelease file (clearsigned Release)
-          cat Release | gpg --default-key "$PPA_EMAIL" --passphrase "${{ secrets.PPA_PASSWORD }}" --clearsign -o InRelease
+          cat Release | gpg --no-tty --default-key "$PPA_EMAIL" --passphrase "${{ secrets.PPA_PASSWORD }}" --clearsign -o InRelease
 
       - name: Configure Git
         run: |
