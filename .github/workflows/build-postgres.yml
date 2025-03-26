@@ -113,28 +113,22 @@ jobs:
           path: dist/deb/          
 
   publish-ppa:
-    needs: build
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:24.04
-    
     steps:
+      - name: Set up environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg git dpkg-dev apt-utils gzip git
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           ref: ppa
-          fetch-depth: 0
-
-      - name: Set up environment
-        run: |
-          apt-get update
-          apt-get install -y gnupg git dpkg-dev apt-utils gzip
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
       - name: Download build artifacts
         uses: actions/download-artifact@v4
-        with:
-          name: postgresql-packages
-          path: ./packages
 
       - name: Import GPG key
         env:
@@ -147,8 +141,8 @@ jobs:
         env:
           PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
         run: |
-          cp -r packages/* .
-          rm -rf packages
+          cp -r postgresql-packages/* .
+          rm -rf postgresql-packages
 
           # Generate Packages file
           dpkg-scanpackages --multiversion . > Packages
@@ -156,29 +150,24 @@ jobs:
           
           # Generate Release file
           apt-ftparchive release . > Release
-
-          # Sign Release file
+          
           # Sign Release file
           gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" -abs -o - Release > Release.gpg
           
           # Create InRelease file (clearsigned Release)
           gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" --clearsign -o - Release > InRelease
 
-      - name: Configure Git
+      - name: Commit files
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
 
-      - name: Commit and push changes
-        run: |
-          # Add all new files
-          git add ppa/*
-          
           # Get current PostgreSQL version
-          POSTGRES_VERSION=${{ github.event.inputs.postgres_version || env.POSTGRES_VERSION }}
-          
-          # Commit changes
-          git commit -m "Update PPA with PostgreSQL ${POSTGRES_VERSION} packages"
-          
-          # Push to ppa branch
-          git push origin ppa
+          POSTGRES_VERSION=${{ github.event.inputs.postgres_version }}
+          git commit -a -m "Update PPA with PostgreSQL ${POSTGRES_VERSION} packages"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ppa
