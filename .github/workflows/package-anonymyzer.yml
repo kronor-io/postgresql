@@ -89,6 +89,7 @@ jobs:
           branch: ppa
 
   call-ppa-workflow:
+    needs: build-anonymizer
     uses: ./.github/workflows/ppa-release.yml
     secrets:
       PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}

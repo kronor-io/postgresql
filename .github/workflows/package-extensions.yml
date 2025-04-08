@@ -71,6 +71,7 @@ jobs:
           branch: ppa
 
   call-ppa-workflow:
+    needs: download-extensions
     uses: ./.github/workflows/ppa-release.yml
     secrets:
       PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}

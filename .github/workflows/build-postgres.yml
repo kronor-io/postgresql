@@ -119,6 +119,7 @@ jobs:
           branch: ppa
 
   call-ppa-workflow:
+    needs: build
     uses: ./.github/workflows/ppa-release.yml
     secrets:
       PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
