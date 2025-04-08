@@ -400,20 +400,3 @@ Homepage: https://labs.dalibo.com/postgresql_anonymizer
 Description: Anonymization & Data Masking for PostgreSQL 17
 License: PostgreSQL
 
-Package: postgresql_anonymizer_17
-Version: 2.1.0
-Architecture: arm64
-Maintainer: DALIBO
-Installed-Size: 10482
-Depends: postgresql-17
-Filename: ./postgresql_anonymizer/target/release/anon-pg17/postgresql_anonymizer_17_2.1.0_arm64.deb
-Size: 3904942
-MD5sum: 13c603d465d0f780e6997eeafab55316
-SHA1: aa794d36f749a667559b2f899f9a20557a1978f2
-SHA256: 785f67103b934dbeccba557cde5988ce9788943fa0ad5264c09288891aa97774
-Section: default
-Priority: extra
-Homepage: https://labs.dalibo.com/postgresql_anonymizer
-Description: Anonymization & Data Masking for PostgreSQL 17
-License: PostgreSQL
-
