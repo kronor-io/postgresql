@@ -141,6 +141,28 @@ Description: PostgreSQL C client library
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: pg-graphql
+Version: 1.5.11
+Architecture: arm64
+Maintainer: supabase
+Filename: ./pg_graphql-v1.5.11-pg17-arm64-linux-gnu.deb
+Size: 649952
+MD5sum: e619130161437c79eb1a885571b48928
+SHA1: 7205deb63801c5c24e9ee90f41e3354e20b5f739
+SHA256: 58f9abb8bc9ebc285a1d41804bdb35a73b685f3421fc36677482034d43b3f20b
+Description: A PostgreSQL extension
+
+Package: pg-jsonschema
+Version: 0.3.3
+Architecture: arm64
+Maintainer: supabase
+Filename: ./pg_jsonschema-v0.3.3-pg17-arm64-linux-gnu.deb
+Size: 949128
+MD5sum: e90d1c2adfe870037645f8278b44341e
+SHA1: c4c1325a8c819dd0fa6325a8ad0fa2bad91f7210
+SHA256: 1a0327cbd406970acb824a514933a34367ab8014b3d968170f7fab015e349910
+Description: A PostgreSQL extension
+
 Package: postgresql-17
 Version: 17.4-3custom
 Architecture: arm64
@@ -169,6 +191,20 @@ Description: The World's Most Advanced Open Source Relational Database
  .
  This package provides the database server for PostgreSQL 17.
 Postgresql-Catversion: 202406281-1700
+
+Package: postgresql-17-pg-search
+Version: 0.15.14
+Architecture: arm64
+Maintainer: ParadeDB <support@paradedb.com>
+Depends: postgresql-17
+Filename: ./postgresql-17-pg-search_0.15.14-1PARADEDB-noble_arm64.deb
+Size: 43202812
+MD5sum: 4aa35617dcadfab7c76da213aacd817c
+SHA1: ab10008d4d59a0fded5e60cb8a3219f18073e3fb
+SHA256: c9eab469322a2b0e1c0f25dcc8d9f625ba405e979f30be3440790e29622a3165
+Section: database
+Priority: optional
+Description: Postgres for Search and Analytics
 
 Package: postgresql-client-17
 Source: postgresql-17
