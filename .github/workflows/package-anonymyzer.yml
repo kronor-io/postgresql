@@ -23,6 +23,8 @@ jobs:
       - name: Set up environment
         run: |
           echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+          echo "deb http://apt.postgresql.org/pub/repos/apt noblre-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
           sudo apt-get update
           sudo apt-get install -y build-essential postgresql-server-dev-17 libpq-dev gnupg git dpkg-dev apt-utils gzip gettext-base nfpm
 
