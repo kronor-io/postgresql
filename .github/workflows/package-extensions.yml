@@ -6,7 +6,7 @@ on:
       pg_search_version:
         description: 'pg_search version'
         required: true
-        default: '0.15.13'
+        default: '0.15.14'
       pg_graphql_version:
         description: 'pg_graphql version'
         required: true
@@ -38,7 +38,7 @@ jobs:
 
       - name: Download pg_search package
         run: |
-          PG_SEARCH_VERSION=${{ github.event.inputs.pg_search_version || '0.15.13' }}
+          PG_SEARCH_VERSION=${{ github.event.inputs.pg_search_version || '0.15.14' }}
           curl -L -o postgresql-17-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb \
             https://github.com/paradedb/paradedb/releases/download/v${PG_SEARCH_VERSION}/postgresql-17-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb
 
