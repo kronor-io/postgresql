@@ -71,7 +71,7 @@ jobs:
 
           make deb PGVER=pg17 PG_MAJOR_VERSION=17
           # Copy the resulting .deb file to the repository root
-          cp *.deb ..
+          cp target/release/anon-pg17/*.deb ..
         env:
           PG_CONFIG: /usr/lib/postgresql/17/bin/pg_config
           PGVER: pg17
