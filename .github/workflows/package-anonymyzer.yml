@@ -17,7 +17,7 @@ on:
 
 jobs:
   build-anonymizer:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     
     steps:
       - name: Set up environment
@@ -63,6 +63,10 @@ jobs:
       - name: Build Debian package
         run: |
           cd postgresql_anonymizer
+
+          # Update architecture in nfpm.yaml
+          sed -i 's/arch: "amd64"/arch: "arm64"/' nfpm.template.yaml
+
           make deb PGVER=pg17 PG_MAJOR_VERSION=17
           # Copy the resulting .deb file to the repository root
           cp *.deb ..
