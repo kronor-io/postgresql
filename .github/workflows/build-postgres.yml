@@ -110,7 +110,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           git add *.deb
-          git commit --allow-empty-commit -m "Update postgres [skip ci]"
+          git commit --allow-empty -m "Update postgres [skip ci]"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
