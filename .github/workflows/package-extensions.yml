@@ -1,0 +1,89 @@
+name: Download PostgreSQL Extension Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      pg_search_version:
+        description: 'pg_search version'
+        required: true
+        default: '0.15.13'
+      pg_graphql_version:
+        description: 'pg_graphql version'
+        required: true
+        default: '1.5.11'
+      pg_jsonschema_version:
+        description: 'pg_jsonschema version'
+        required: true
+        default: '0.3.3'
+  schedule:
+    # Check for new extensions monthly
+    - cron: '0 0 15 * *'
+
+jobs:
+  download-extensions:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Set up environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gnupg git dpkg-dev apt-utils gzip git
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ppa
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Download pg_search package
+        run: |
+          PG_SEARCH_VERSION=${{ github.event.inputs.pg_search_version || '0.15.13' }}
+          curl -L -o postgresql-17-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb \
+            https://github.com/paradedb/paradedb/releases/download/v${PG_SEARCH_VERSION}/postgresql-17-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb
+
+      - name: Download pg_graphql package
+        run: |
+          PG_GRAPHQL_VERSION=${{ github.event.inputs.pg_graphql_version || '1.5.11' }}
+          curl -L -o pg_graphql-v${PG_GRAPHQL_VERSION}-pg17-arm64-linux-gnu.deb \
+            https://github.com/supabase/pg_graphql/releases/download/v${PG_GRAPHQL_VERSION}/pg_graphql-v${PG_GRAPHQL_VERSION}-pg17-arm64-linux-gnu.deb
+
+      - name: Download pg_jsonschema package
+        run: |
+          PG_JSONSCHEMA_VERSION=${{ github.event.inputs.pg_jsonschema_version || '0.3.3' }}
+          curl -L -o pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg17-arm64-linux-gnu.deb \
+            https://github.com/supabase/pg_jsonschema/releases/download/v${PG_JSONSCHEMA_VERSION}/pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg17-arm64-linux-gnu.deb
+
+      - name: List downloaded packages
+        run: git status
+
+      - name: Create PPA release
+        env:
+          PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
+        run: |
+          # Generate Packages file
+          dpkg-scanpackages --multiversion . > Packages
+          gzip -k -f Packages
+          
+          # Generate Release file
+          apt-ftparchive release . > Release
+          
+          # Sign Release file
+          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "${{ secrets.PPA_EMAIL }}" -abs -o - Release > Release.gpg
+          
+          # Create InRelease file (clearsigned Release)
+          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" --clearsign -o - Release > InRelease
+
+      - name: Commit and push packages
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          git add *.deb Packages Release Release.gpg InRelease
+          git commit -m "Add new extension packages"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ppa
