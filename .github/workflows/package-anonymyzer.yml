@@ -3,18 +3,10 @@ name: Build PostgreSQL Anonymizer Package
 on:
   workflow_dispatch:
     inputs:
-      anon_version:
-        description: 'postgresql_anonymizer version'
-        required: true
-        default: '2.0.0'
       pgrx_version:
         description: 'cargo-pgrx version'
         required: false
         default: '0.12.9'
-  schedule:
-    # Check for new version monthly
-    - cron: '0 0 20 * *'
-
 jobs:
   build-anonymizer:
     runs-on: ubuntu-24.04-arm
@@ -46,17 +38,15 @@ jobs:
           echo "$HOME/.cargo/bin" >> $GITHUB_PATH
           source "$HOME/.cargo/env"
 
+      - name: Clone postgresql_anonymizer repository
+        run: |
+          git clone https://gitlab.com/dalibo/postgresql_anonymizer.git
+
       - name: Install Cargo Pgrx
         run: |
           source "$HOME/.cargo/env"
           cargo install cargo-pgrx --version ${{ github.event.inputs.pgrx_version || '0.12.9' }} --locked
           cargo pgrx init --pg17 /usr/lib/postgresql/17/bin/pg_config
-
-      - name: Clone postgresql_anonymizer repository
-        run: |
-          git clone https://gitlab.com/dalibo/postgresql_anonymizer.git
-          cd postgresql_anonymizer
-          git checkout v${{ github.event.inputs.anon_version || '2.0.0' }}
 
       - name: Build postgresql_anonymizer extension
         run: |
