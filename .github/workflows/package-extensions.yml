@@ -57,40 +57,22 @@ jobs:
       - name: List downloaded packages
         run: git status
 
-      - name: Import GPG key
-        env:
-          PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
-          PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
-        run: |
-          echo "$PPA_PRIVATE_KEY" | gpg --batch --import
-
-      - name: Create PPA release
-        env:
-          PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
-        run: |
-          # Generate Packages file
-          dpkg-scanpackages --multiversion . > Packages
-          gzip -k -f Packages
-          
-          # Generate Release file
-          apt-ftparchive release . > Release
-          
-          # Sign Release file
-          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "${{ secrets.PPA_EMAIL }}" -abs -o - Release > Release.gpg
-          
-          # Create InRelease file (clearsigned Release)
-          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" --clearsign -o - Release > InRelease
-
-      - name: Commit and push packages
+      - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          git add *.deb Packages Release Release.gpg InRelease
-          git commit -m "Add new extension packages"
-          
+
+          git commit -a --allow-empty-commit -m "Update extensions [skip ci]"
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ppa
+
+  call-ppa-workflow:
+    uses: ./.github/workflows/ppa-release.yml
+    secrets:
+      PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+      PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+      PPA_EMAIL: ${{ secrets.PPA_EMAIL }}

@@ -2,6 +2,17 @@ name: Publish PPA
 
 on:
   workflow_dispatch:
+  workflow_call:
+    secrets:
+      PPA_PRIVATE_KEY:
+        required: true
+        description: "GPG private key for signing the PPA"
+      PPA_PASSWORD:
+        required: true
+        description: "Password for the GPG key"
+      PPA_EMAIL:
+        required: true
+        description: "Email associated with the GPG key"
 
 jobs:
   publish-ppa:

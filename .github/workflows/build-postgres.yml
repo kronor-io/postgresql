@@ -101,73 +101,26 @@ jobs:
 
       - name: Gather packages
         run: |
-          mkdir -p dist/deb
-          ls -l
-          find . -name "*.deb" -exec cp {} dist/deb/ \;
-          find . -name "*.changes" -exec cp {} dist/deb/ \;
-    
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: postgresql-packages
-          path: dist/deb/          
-
-  publish-ppa:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set up environment
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y gnupg git dpkg-dev apt-utils gzip git
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: ppa
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-
-      - name: Import GPG key
-        env:
-          PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
-          PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
-        run: |
-          echo "$PPA_PRIVATE_KEY" | gpg --batch --import
-
-      - name: Create repository files
-        env:
-          PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
-        run: |
-          cp -r postgresql-packages/* .
-          rm -rf postgresql-packages
-
-          # Generate Packages file
-          dpkg-scanpackages --multiversion . > Packages
-          gzip -k -f Packages
-          
-          # Generate Release file
-          apt-ftparchive release . > Release
-          
-          # Sign Release file
-          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" -abs -o - Release > Release.gpg
-          
-          # Create InRelease file (clearsigned Release)
-          gpg --batch --pinentry-mode loopback --passphrase "${{ secrets.PPA_PASSWORD }}" --default-key "$PPA_EMAIL" --clearsign -o - Release > InRelease
-
+          find . -name "*.deb" -exec cp {} . \;
+          find . -name "*.changes" -exec cp {} . \;
+  
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Get current PostgreSQL version
-          POSTGRES_VERSION=${{ github.event.inputs.postgres_version }}
-          git commit -a -m "Update PPA with PostgreSQL ${POSTGRES_VERSION} packages"
+          git add *.deb
+          git commit --allow-empty-commit -m "Update postgres [skip ci]"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ppa
+
+  call-ppa-workflow:
+    uses: ./.github/workflows/ppa-release.yml
+    secrets:
+      PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+      PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+      PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
