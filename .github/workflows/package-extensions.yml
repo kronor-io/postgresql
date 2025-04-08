@@ -57,6 +57,13 @@ jobs:
       - name: List downloaded packages
         run: git status
 
+      - name: Import GPG key
+        env:
+          PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+          PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+        run: |
+          echo "$PPA_PRIVATE_KEY" | gpg --batch --import
+
       - name: Create PPA release
         env:
           PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
