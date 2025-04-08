@@ -22,11 +22,15 @@ jobs:
     steps:
       - name: Set up environment
         run: |
+          sudo apt update
+          apt install -y gpg curl
+
           echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
-          wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-          echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-          sudo apt-get update
-          sudo apt-get install -y build-essential postgresql-server-dev-17 libpq-dev gnupg git dpkg-dev apt-utils gzip gettext-base nfpm
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+
+          sudo apt update
+          sudo apt install -y build-essential postgresql-17 postgresql-server-dev-17 libpq-dev gnupg git dpkg-dev apt-utils gzip gettext-base nfpm
           /usr/lib/postgresql/17/bin/initdb --help
 
       - name: Checkout repository
