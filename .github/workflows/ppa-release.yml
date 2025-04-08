@@ -2,10 +2,6 @@ name: Publish PPA
 
 on:
   workflow_dispatch:
-    inputs:
-      workflow_run_id:
-        description: 'Workflow run ID'
-        required: true
 
 jobs:
   publish-ppa:
