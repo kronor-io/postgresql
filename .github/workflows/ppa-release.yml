@@ -3,10 +3,6 @@ name: Publish PPA
 on:
   workflow_dispatch:
     inputs:
-      postgres_version:
-        description: 'PostgreSQL version'
-        required: true
-        default: '17.4'
       workflow_run_id:
         description: 'Workflow run ID'
         required: true
@@ -27,12 +23,6 @@ jobs:
           persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          github-token: ${{ github.token }}
-          run-id: ${{ github.event.inputs.workflow_run_id }}
-
       - name: Import GPG key
         env:
           PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
@@ -44,9 +34,6 @@ jobs:
         env:
           PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
         run: |
-          cp -r postgresql-packages/* .
-          rm -rf postgresql-packages
-
           # Generate Packages file
           dpkg-scanpackages --multiversion . > Packages
           gzip -k -f Packages
@@ -65,9 +52,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Get current PostgreSQL version
-          POSTGRES_VERSION=${{ github.event.inputs.postgres_version || env.POSTGRES_VERSION }}
-          git commit -a -m "Update PPA with PostgreSQL ${POSTGRES_VERSION} packages"
+          git commit -a -m "Update PPA"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
