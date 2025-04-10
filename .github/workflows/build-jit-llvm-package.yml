@@ -1,0 +1,64 @@
+name: Build PostgreSQL 17 JIT LLVM Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-jit-llvm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ppa
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Install dependencies
+        run: |
+          apt-get update
+          apt-get install -y equivs git
+
+      - name: Create dummy package
+        run: |
+          # Create package control file
+          cat > postgresql-17-jit-llvm.control << EOF
+          Section: database
+          Priority: optional
+          Standards-Version: 3.9.2
+
+          Package: postgresql-17-jit-llvm
+          Version: 500.0.0
+          Maintainer: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
+          Depends: postgresql-17
+          Architecture: all
+          Description: Dummy package for postgresql-17-jit-llvm
+           This is a dummy package that provides postgresql-17-jit-llvm
+          EOF
+          
+          # Build the package
+          equivs-build postgresql-17-jit-llvm.control
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Copy the package to the repository root
+          git add *.deb
+          git commit --allow-empty -m "Add postgresql-17-jit-llvm dummy package [skip ci]"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ppa
+
+  call-ppa-workflow:
+    needs: build-jit-llvm
+    uses: ./.github/workflows/ppa-release.yml
+    secrets:
+      PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+      PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+      PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
