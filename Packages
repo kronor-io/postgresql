@@ -192,6 +192,23 @@ Description: The World's Most Advanced Open Source Relational Database
  This package provides the database server for PostgreSQL 17.
 Postgresql-Catversion: 202406281-1700
 
+Package: postgresql-17-jit-llvm
+Version: 500.0.0
+Architecture: all
+Maintainer: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
+Installed-Size: 9
+Depends: postgresql-17
+Filename: ./postgresql-17-jit-llvm_500.0.0_all.deb
+Size: 2102
+MD5sum: 14ea6c9c531f40cbd3bc327b3789c948
+SHA1: f75eb6b167182b8dbdf864da9bd51d27c8045180
+SHA256: d36882186d8295221313888ac1a2ea1abb8646d4167bfb928e4224cc571737d5
+Section: database
+Priority: optional
+Multi-Arch: foreign
+Description: Dummy package for postgresql-17-jit-llvm
+ This is a dummy package that provides postgresql-17-jit-llvm
+
 Package: postgresql-17-pg-search
 Version: 0.15.14
 Architecture: arm64
