@@ -17,8 +17,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          apt-get update
-          apt-get install -y equivs git
+          sudo apt-get update
+          sudo apt-get install -y equivs git
 
       - name: Create dummy package
         run: |
