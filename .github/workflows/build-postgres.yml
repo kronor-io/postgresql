@@ -14,10 +14,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04-arm
-    container:
-      image: ubuntu:24.04
-      options: --privileged
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -29,8 +25,8 @@ jobs:
       - name: Set up environment
         run: |
           echo "MIRRORSITE=http://archive.ubuntu.com/ubuntu" > /etc/pbuilderrc
-          apt-get update
-          apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
+          sudo apt-get update
+          sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
                              clang-18 llvm-18 lld-18 \
                              postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
                              libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
@@ -40,13 +36,14 @@ jobs:
           
           # Install postgresql-common-dev from Plucky (backported to Noble)
           curl -O http://archive.ubuntu.com/ubuntu/pool/main/p/postgresql-common/postgresql-common-dev_274_all.deb
-          apt-get install -y ./postgresql-common-dev_274_all.deb
+          sudo apt-get install -y ./postgresql-common-dev_274_all.deb
+          rm postgresql-common-dev_274_all.deb
           
           # Handle tzdata dependency (tzdata-legacy or tzdata < 2023c-8)
           if apt-cache show tzdata-legacy &>/dev/null; then
-            apt-get install -y tzdata-legacy
+           sudo  apt-get install -y tzdata-legacy
           else
-            apt-get install -y tzdata
+            sudo apt-get install -y tzdata
           fi
           
       - name: Get latest PostgreSQL 17 version
