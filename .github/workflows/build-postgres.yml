@@ -24,7 +24,6 @@ jobs:
 
       - name: Set up environment
         run: |
-          sudo echo "MIRRORSITE=http://archive.ubuntu.com/ubuntu" > /etc/pbuilderrc
           sudo apt-get update
           sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
                              clang-18 llvm-18 lld-18 \
