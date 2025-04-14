@@ -20,6 +20,28 @@ Description: older version of run-time library for ECPG programs
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libecpg-compat3
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 97
+Depends: libc6 (>= 2.17), libecpg6 (>= 9.0~), libpgtypes3
+Filename: ./libecpg-compat3_17.4-4-custom-32k_arm64.deb
+Size: 16160
+MD5sum: 6daaee0687a9ff05df67f360caae15ed
+SHA1: f757b5af586deaa5410665d59afccd3d4f77468d
+SHA256: 34789ec50dd3d038d9be1267ad3cbb4babf30f1a8098df208b6e9873628646c4
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: older version of run-time library for ECPG programs
+ The libecpg_compat shared library is used by programs built with ecpg.
+ (Embedded PostgreSQL for C).
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libecpg-dev
 Source: postgresql-17
 Version: 17.4-3custom
@@ -32,6 +54,31 @@ Size: 322568
 MD5sum: 3af437507cc454c44e82fc833c27b9de
 SHA1: 0eb4bdfe4db28acfaead0ef6167d8d867074d784
 SHA256: 4785db3b9d80fa9ea058ceea6d1d39728d40e3e165c916e78546453051874653
+Section: libdevel
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: development files for ECPG (Embedded PostgreSQL for C)
+ This package contains the necessary files to build ECPG (Embedded
+ PostgreSQL for C) programs.  It includes the development libraries
+ and the preprocessor program ecpg.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+ .
+ Install this package if you want to write C programs with SQL statements
+ embedded in them (rather than run by an external process).
+
+Package: libecpg-dev
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1698
+Depends: libecpg-compat3 (= 17.4-4-custom-32k), libecpg6 (= 17.4-4-custom-32k), libpgtypes3 (= 17.4-4-custom-32k), libpq-dev, libc6 (>= 2.38)
+Filename: ./libecpg-dev_17.4-4-custom-32k_arm64.deb
+Size: 322638
+MD5sum: e6193b1a9e44ca848d63fabe6f66634e
+SHA1: 4c37ffee6e56794a526fd81327969042ff5bcf90
+SHA256: bc5bce8e1a269dd0eb8becf158c92b3cc08a907cc8a7ec4fe57b9ec20c3314b3
 Section: libdevel
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -67,6 +114,28 @@ Description: run-time library for ECPG programs
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libecpg6
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 276
+Depends: libc6 (>= 2.38), libpgtypes3, libpq5 (>= 9.0~)
+Filename: ./libecpg6_17.4-4-custom-32k_arm64.deb
+Size: 61922
+MD5sum: 66a8ca5eb15fe8ccdeedaaf565932d51
+SHA1: ec268ffd45fee96ee42d3741827fab075648dd9d
+SHA256: 33c25e5960080ee4ffd1d5820688a4f758985e5786c6a298a00a5e7ff20338fb
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: run-time library for ECPG programs
+ The libecpg shared library is used by programs built with ECPG
+ (Embedded PostgreSQL for C).
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libpgtypes3
 Source: postgresql-17
 Version: 17.4-3custom
@@ -79,6 +148,28 @@ Size: 43828
 MD5sum: 08cfbada677a0addcc5922689b4a5de2
 SHA1: 9979cf1bbce34726baf6d0cee718993895822f0d
 SHA256: c2b9b00113809db9cba75e8208013c00911881cae79235200b8247cf6e1ca7a2
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: shared library libpgtypes for PostgreSQL 17
+ The libpgtypes shared library is used by programs built with ecpg.
+ (Embedded PostgreSQL for C).
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
+Package: libpgtypes3
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 162
+Depends: libc6 (>= 2.38)
+Filename: ./libpgtypes3_17.4-4-custom-32k_arm64.deb
+Size: 43902
+MD5sum: 3450b10dddfec02fe93f4aa224496087
+SHA1: 3941fade010f9b80abca072c4b0bea14fde0c768
+SHA256: 75c91a1b493a7887e2280891b721acd871d1e29c62251314c40c247d01e0d9fb
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -112,6 +203,29 @@ Description: header files for libpq5 (PostgreSQL library)
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libpq-dev
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 611
+Depends: libpq5 (= 17.4-4-custom-32k), libssl-dev
+Suggests: postgresql-doc-17
+Filename: ./libpq-dev_17.4-4-custom-32k_arm64.deb
+Size: 161628
+MD5sum: 3d63ac7c985ecbf6f71cc438471484b8
+SHA1: 66b27ef2c4f37afa0afef45ef2f3bb55dbfe536f
+SHA256: 88eb7b207a332ec615d03e5a0b05916604bbc559c3659f026a96a6edee00ba9d
+Section: libdevel
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: header files for libpq5 (PostgreSQL library)
+ Header files and static library for compiling C programs to link
+ with the libpq library in order to communicate with a PostgreSQL
+ database backend.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libpq5
 Source: postgresql-17
 Version: 17.4-3custom
@@ -125,6 +239,35 @@ Size: 254618
 MD5sum: 1bf647c6dde67475683bae64ba9c5fbc
 SHA1: 8dcf4a8290e0e39ef867a6783fceb47570c08786
 SHA256: e936695a7a68eb9e75971b8a31ad3bc82eb7441aea6a96098f01dca73ce46a53
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: PostgreSQL C client library
+ libpq is a C library that enables user programs to communicate with
+ the PostgreSQL database server.  The server can be on another machine
+ and accessed through TCP/IP.  This version of libpq is compatible
+ with servers from PostgreSQL 8.2 or later.
+ .
+ This package contains the run-time library, needed by packages using
+ libpq. SSL certificate validation (the sslrootcert=system connection
+ option) requires the ca-certificates package.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
+Package: libpq5
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1108
+Depends: libc6 (>= 2.38), libgssapi-krb5-2 (>= 1.17), libldap2 (>= 2.6.2), libssl3t64 (>= 3.0.0)
+Recommends: ca-certificates
+Filename: ./libpq5_17.4-4-custom-32k_arm64.deb
+Size: 254678
+MD5sum: 410fff2a54cdb5edfbe31b441b2d6e14
+SHA1: e60eeb9c2f69b9df22ced26ac1a299496aa1fcf1
+SHA256: 890185ad4e076a2a42dfabafeaa1d43ac0dda10213771890eb15c411e830cca5
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -177,6 +320,35 @@ Size: 18041338
 MD5sum: 157fd98173713b96997013c2fc51a709
 SHA1: 169105147e7f16ea30da855a6670e591636e298c
 SHA256: 442c7709a2d43e63acc1bd4a037930d5e54f4569cac33d9512d959072fc90c02
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: The World's Most Advanced Open Source Relational Database
+ PostgreSQL, also known as Postgres, is a free and open-source relational
+ database management system (RDBMS) emphasizing extensibility and SQL
+ compliance. It features transactions with Atomicity, Consistency, Isolation,
+ Durability (ACID) properties, automatically updatable views, materialized
+ views, triggers, foreign keys, and stored procedures. It is designed to handle
+ a range of workloads, from single machines to data warehouses or Web services
+ with many concurrent users.
+ .
+ This package provides the database server for PostgreSQL 17.
+Postgresql-Catversion: 202406281-1700
+
+Package: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 61605
+Depends: locales | locales-all, postgresql-client-17, postgresql-common (>= 252~), ssl-cert, tzdata, debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.38), libgcc-s1 (>= 3.3.1), libgssapi-krb5-2 (>= 1.14+dfsg), libicu74 (>= 74.1-1~), libldap2 (>= 2.6.2), libllvm18, liblz4-1 (>= 0.0~r130), libpam0g (>= 0.99.7.1), libpq5 (>= 17~~), libselinux1 (>= 3.1~), libssl3t64 (>= 3.0.0), libstdc++6 (>= 5.2), libsystemd0, libuuid1 (>= 2.16), libxml2 (>= 2.7.4), libxslt1.1 (>= 1.1.25), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)
+Recommends: sysstat
+Breaks: dbconfig-common (<< 2.0.22~)
+Provides: postgresql-17-jit-llvm (= 18), postgresql-contrib-17
+Filename: ./postgresql-17_17.4-4-custom-32k_arm64.deb
+Size: 18045728
+MD5sum: 6b654e25518c57fcdbc949757955cc28
+SHA1: d3b840b47a204a7d1680c9461c1c243647dffef4
+SHA256: b556f0d43bbe9fc51b5b15dadb48fcce4281d5ce0c0ab696a45dca9a4083f492
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -254,6 +426,37 @@ Description: front-end programs for PostgreSQL 17
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-client-17
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 10329
+Depends: libpq5 (>= 17.4-4-custom), postgresql-client-common (>= 182~), sensible-utils, libc6 (>= 2.38), liblz4-1 (>= 0.0~r127), libreadline8t64 (>= 6.0), libssl3t64 (>= 3.0.0), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)
+Suggests: postgresql-17, postgresql-doc-17
+Provides: postgresql-client
+Filename: ./postgresql-client-17_17.4-4-custom-32k_arm64.deb
+Size: 2143816
+MD5sum: d088bda586c610b9dbc58879daceec5e
+SHA1: 9854a3b44edc517ac039172fee3accb1fe63a122
+SHA256: 49afc407905c2e7a641f0cebfb75716ddf29b8e9f5dd42f52a34971ed9953e84
+Section: database
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://www.postgresql.org/
+Description: front-end programs for PostgreSQL 17
+ This package contains client and administrative programs for
+ PostgreSQL: these are the interactive terminal client psql and
+ programs for creating and removing users and databases.
+ .
+ This is the client package for PostgreSQL 17. If you install
+ PostgreSQL 17 on a standalone machine, you need the server package
+ postgresql-17, too. On a network, you can install this package on
+ many client machines, while the server package may be installed on
+ only one machine.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-common-dev
 Source: postgresql-common
 Version: 274
@@ -306,6 +509,27 @@ Description: documentation for the PostgreSQL database management system
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-doc-17
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: all
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 16917
+Filename: ./postgresql-doc-17_17.4-4-custom-32k_all.deb
+Size: 2137630
+MD5sum: a9e2562ecc70c47b0b660db8ec5a4bb1
+SHA1: 15f9d9a4b42166b410eaadbe25a64a42438abe84
+SHA256: 981c212d896488636e93f24b0ca8c72d5faaa9a2d136cd258db27265549913bb
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://www.postgresql.org/
+Description: documentation for the PostgreSQL database management system
+ This package contains all README files, user manual, and examples for
+ PostgreSQL 17. The manual is in HTML format.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-plperl-17
 Source: postgresql-17
 Version: 17.4-3custom
@@ -319,6 +543,29 @@ Size: 90422
 MD5sum: 6713d7f8fa7c686aa3594ea2533defdd
 SHA1: 5eca7934435a5ced058cc25f9e8c1cd81a4faff0
 SHA256: 1e59fa14fa6bf9257aea61fa8e37fb46c36b8e55622de9b2c82347d3fdad7bcd
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: PL/Perl procedural language for PostgreSQL 17
+ PL/Perl enables an SQL developer to write procedural language functions
+ for PostgreSQL 17 in Perl.  You need this package if you have any
+ PostgreSQL 17 functions that use the languages plperl or plperlu.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
+Package: postgresql-plperl-17
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 576
+Depends: perl, postgresql-17 (= 17.4-4-custom-32k), libc6 (>= 2.34), libperl5.38t64 (>= 5.38.2)
+Provides: postgresql-plperl
+Filename: ./postgresql-plperl-17_17.4-4-custom-32k_arm64.deb
+Size: 90260
+MD5sum: 0d2e44ee3b4cd411747047d7a19fa9e8
+SHA1: ad2f91178cee82dd5259a406edecbf21e91b9d6c
+SHA256: afc09a0cd3e3ea8ac171322b2fee0f9eb562f62b5ac5764a0292fc21b3439c11
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -352,6 +599,29 @@ Description: PL/Python 3 procedural language for PostgreSQL 17
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-plpython3-17
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 678
+Depends: postgresql-17 (= 17.4-4-custom-32k), libc6 (>= 2.17), libpython3.12t64 (>= 3.12.1)
+Provides: postgresql-plpython3
+Filename: ./postgresql-plpython3-17_17.4-4-custom-32k_arm64.deb
+Size: 115848
+MD5sum: 8a5630520069fd9a9dfe6eb1ffbc9c5f
+SHA1: b3082b70986a6f9677090297f55f29b053d36ac7
+SHA256: 9e32c4d3a271e38a9818864bf9176241a0cf44490e90dd14c443146329e39675
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: PL/Python 3 procedural language for PostgreSQL 17
+ PL/Python 3 enables an SQL developer to write procedural language functions
+ for PostgreSQL 17 in Python 3.  You need this package if you have any
+ PostgreSQL 17 functions that use the languages plpython3 or plpython3u.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-pltcl-17
 Source: postgresql-17
 Version: 17.4-3custom
@@ -375,6 +645,29 @@ Description: PL/Tcl procedural language for PostgreSQL 17
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-pltcl-17
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 204
+Depends: postgresql-17 (= 17.4-4-custom-32k), libc6 (>= 2.17), libtcl8.6 (>= 8.6.0)
+Provides: postgresql-pltcl
+Filename: ./postgresql-pltcl-17_17.4-4-custom-32k_arm64.deb
+Size: 43878
+MD5sum: a2a5d61a1d01fe298d34755e763b9e90
+SHA1: 92221d60ae751b4ee626c15308dc8165d2c619fd
+SHA256: fb7b6f25c6f07859ff26288944737d0899e584bbfaf3790295d0d76765bb7161
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: PL/Tcl procedural language for PostgreSQL 17
+ PL/Tcl enables an SQL developer to write procedural language functions
+ for PostgreSQL 17 in Tcl.  You need this package if you have any
+ PostgreSQL 17 functions that use the languages pltcl or pltclu.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-server-dev-17
 Source: postgresql-17
 Version: 17.4-3custom
@@ -387,6 +680,31 @@ Size: 1397758
 MD5sum: bea009b3304fb531a801df49cb5abb05
 SHA1: f1387806a47af9aca11847bea55f2f30612fac53
 SHA256: f681c336d3f3f176a9ffbb557ecb24d8f0d70a20980879f001e9d5696770f03c
+Section: libdevel
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: development files for PostgreSQL 17 server-side programming
+ Header files for compiling SSI code to link into PostgreSQL's backend; for
+ example, for C functions to be called from SQL.
+ .
+ This package also contains the Makefiles necessary for building add-on
+ modules of PostgreSQL, which would otherwise have to be built in the
+ PostgreSQL source-code tree.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
+Package: postgresql-server-dev-17
+Source: postgresql-17
+Version: 17.4-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8273
+Depends: clang-18, libpq-dev (>= 17~~), llvm-18-dev, postgresql-client-17, postgresql-common (>= 142~), libc6 (>= 2.38)
+Filename: ./postgresql-server-dev-17_17.4-4-custom-32k_arm64.deb
+Size: 1397564
+MD5sum: 25145fe60dc7a04c559a6cba412cc1a8
+SHA1: d38a1eee6a5b97fa2315009c2297897ab8a11a46
+SHA256: 18873aefb6e9b55978c2444a32bfb62630d6dcf16b5a38257a5e82d92cec23b4
 Section: libdevel
 Priority: optional
 Homepage: http://www.postgresql.org/
