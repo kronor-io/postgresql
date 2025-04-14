@@ -4,8 +4,8 @@ This repository contains GitHub Actions workflows for building custom PostgreSQL
 
 ## Features
 
-- Latest PostgreSQL 17 releases compiled with Clang 18
-- Optimized with LTO (Link Time Optimization)
+- Latest PostgreSQL 17 releases
+- 32Kb page blocksize
 - Debian packages (.deb) for easy installation
 - Personal Package Archive (PPA) hosted on GitHub Pages
 - Automatic monthly builds to incorporate latest PostgreSQL minor releases
@@ -17,12 +17,6 @@ This repository contains GitHub Actions workflows for building custom PostgreSQL
 ```bash
 curl -s --compressed "https://kronor-io.github.io/postgresql/KEY.gpg" | gpg --dearmor | tee /etc/apt/trusted.gpg.d/kronor_postgresql.gpg >/dev/null
 curl -s --compressed -o /etc/apt/sources.list.d/kronor_postgresql.list "https://kronor-io.github.io/postgresql/kronor_postgresql.list"
-```
-
-### Add the Repository Key
-
-```bash
-wget -qO- https://kronor-io.github.io/postgresql/KEY.gpg | sudo apt-key add -
 ```
 
 ### Update and Install
