@@ -21,6 +21,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: ppa
+          persist-credentials: false
+          fetch-depth: 1
 
       - name: Set up environment
         run: |
@@ -101,8 +105,7 @@ jobs:
 
       - name: Gather packages
         run: |
-          find . -name "*.deb" -exec cp {} . \;
-          find . -name "*.changes" -exec cp {} . \;
+          find postgresql -name "*.deb" -exec cp {} . \;
   
       - name: Commit files
         run: |
