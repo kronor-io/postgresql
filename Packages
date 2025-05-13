@@ -371,10 +371,10 @@ Maintainer: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.githu
 Installed-Size: 9
 Depends: postgresql-17
 Filename: ./postgresql-17-jit-llvm_500.0.0_all.deb
-Size: 2102
-MD5sum: 14ea6c9c531f40cbd3bc327b3789c948
-SHA1: f75eb6b167182b8dbdf864da9bd51d27c8045180
-SHA256: d36882186d8295221313888ac1a2ea1abb8646d4167bfb928e4224cc571737d5
+Size: 2108
+MD5sum: 80f3b1cb6c21da94726b5823dc905546
+SHA1: 4579db49e9ee7ad7d55313cf31088a85b984d56b
+SHA256: 02d450efae35441d1f8a45bfd2ea3a22e2c189c2d59431f7ced1bded434c19a3
 Section: database
 Priority: optional
 Multi-Arch: foreign
