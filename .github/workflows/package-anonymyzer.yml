@@ -41,6 +41,7 @@ jobs:
       - name: Clone postgresql_anonymizer repository
         run: |
           git clone https://gitlab.com/dalibo/postgresql_anonymizer.git
+          git checkout acd57e6b47c2722f29d627dd6a4a21d1193e8412
 
       - name: Install Cargo Pgrx
         run: |
