@@ -567,6 +567,35 @@ Section: database
 Priority: optional
 Description: Postgres for Search and Analytics
 
+Package: postgresql-17-pg-search
+Version: 0.15.21
+Architecture: arm64
+Maintainer: ParadeDB <support@paradedb.com>
+Depends: postgresql-17
+Filename: ./postgresql-17-pg-search_0.15.21-1PARADEDB-noble_arm64.deb
+Size: 45916708
+MD5sum: 2ea2111b2f0ef76ef57ad8268525e224
+SHA1: 308676453cd53de0f30bc733595d335bff5f75ca
+SHA256: 9a49d3911dfce30e803102a0d9c9a3a459e37abd870a6fd22eb88a83e61bff1e
+Section: database
+Priority: optional
+Description: Postgres for Search and Analytics
+
+Package: postgresql-17-vchord-bm25
+Version: 0.2.1
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Filename: ./vchord_bm25-v0.2.1-pg17-arm64-linux-gnu.deb
+Size: 366124
+MD5sum: 9333513c875100508c613d9ce5635836
+SHA1: c887e4d35279891fca7c82982a97e28e29940393
+SHA256: 600d7813c78f385abef23e8ab93c89d3f188702f7c729f4aa716c927714954a3
+Section: database
+Priority: optional
+Homepage: https://github.com/tensorchord/VectorChord-bm25/
+Description: Native BM25 Ranking Index in PostgreSQL
+License: AGPL-3.0-only or Elastic-2.0
+
 Package: postgresql-client-17
 Source: postgresql-17
 Version: 17.4-3custom
