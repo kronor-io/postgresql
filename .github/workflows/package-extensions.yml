@@ -6,7 +6,7 @@ on:
       pg_search_version:
         description: 'pg_search version'
         required: true
-        default: '0.15.14'
+        default: '0.15.21'
       pg_graphql_version:
         description: 'pg_graphql version'
         required: true
@@ -15,9 +15,10 @@ on:
         description: 'pg_jsonschema version'
         required: true
         default: '0.3.3'
-  schedule:
-    # Check for new extensions monthly
-    - cron: '0 0 15 * *'
+      vchord_bm25_version:
+        description: 'vectorchord bm25 version'
+        required: true
+        default: '0.2.1'
 
 jobs:
   download-extensions:
@@ -53,6 +54,12 @@ jobs:
           PG_JSONSCHEMA_VERSION=${{ github.event.inputs.pg_jsonschema_version || '0.3.3' }}
           curl -L -o pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg17-arm64-linux-gnu.deb \
             https://github.com/supabase/pg_jsonschema/releases/download/v${PG_JSONSCHEMA_VERSION}/pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg17-arm64-linux-gnu.deb
+
+      - name: Download vchord_bm25 package
+        run: |
+          VCHORD_BM25_VERSION=${{ github.event.inputs.vchord_bm25_version || '0.2.1' }}
+          curl -L -o vchord_bm25-v${VCHORD_BM25_VERSION}-pg17-arm64-linux-gnu.deb \
+            https://github.com/vectorchord/vchord/releases/download/v${VCHORD_BM25_VERSION}/vchord_bm25-v${VCHORD_BM25_VERSION}-pg17-arm64-linux-gnu.deb
 
       - name: List downloaded packages
         run: git status
