@@ -59,7 +59,7 @@ jobs:
         run: |
           VCHORD_BM25_VERSION=${{ github.event.inputs.vchord_bm25_version || '0.2.1' }}
           curl -L -o vchord_bm25-v${VCHORD_BM25_VERSION}-pg17-arm64-linux-gnu.deb \
-            https://github.com/vectorchord/vchord/releases/download/v${VCHORD_BM25_VERSION}/vchord_bm25-v${VCHORD_BM25_VERSION}-pg17-arm64-linux-gnu.deb
+            https://github.com/tensorchord/VectorChord-bm25/releases/download/$VCHORD_BM25_VERSION/postgresql-17-vchord-bm25_$VCHORD_BM25_VERSION-1_arm64.deb
 
       - name: List downloaded packages
         run: |
