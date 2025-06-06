@@ -62,13 +62,14 @@ jobs:
             https://github.com/vectorchord/vchord/releases/download/v${VCHORD_BM25_VERSION}/vchord_bm25-v${VCHORD_BM25_VERSION}-pg17-arm64-linux-gnu.deb
 
       - name: List downloaded packages
-        run: git status
+        run: |
+          git add *.deb
+          git status
 
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-
           git commit -a --allow-empty -m "Update extensions [skip ci]"
 
       - name: Push changes
