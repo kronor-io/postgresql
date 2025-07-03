@@ -581,6 +581,50 @@ Section: database
 Priority: optional
 Description: Postgres for Search and Analytics
 
+Package: postgresql-17-pg-search
+Version: 0.16.2
+Architecture: arm64
+Maintainer: ParadeDB <support@paradedb.com>
+Depends: postgresql-17
+Filename: ./postgresql-17-pg-search_0.16.2-1PARADEDB-noble_arm64.deb
+Size: 45967196
+MD5sum: 41f2adea9f77efe18f48e5eadc1c9f4f
+SHA1: 2dfc5b77ff8952a7310f433a508d82c82583da9b
+SHA256: 216f381b95b07c2b9f0e39de4fe263068b6d84d54a0c4d1955921b8bcb31d085
+Section: database
+Priority: optional
+Description: Postgres for Search and Analytics
+
+Package: postgresql-17-pg-tokenizer
+Version: 0.1.0-1
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Filename: ./pg_tokenizer-v0.1.0-pg17-arm64-linux-gnu.deb
+Size: 10279492
+MD5sum: 3e5dde8d9b7648bbfecde8d45dc9384f
+SHA1: 127680b2e4cfb900293b3ac793835fc76ac8cda5
+SHA256: aa5d6845590b0c8343a3db1651b6e4e40ea3d9141045a53ab853fddd50e78f0d
+Section: database
+Priority: optional
+Homepage: https://vectorchord.ai/
+Description: Tokenizer plugin for PostgreSQL
+License: Apache-2.0
+
+Package: postgresql-17-vchord
+Version: 0.4.3-1
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Filename: ./vchord-v0.4.3-pg17-arm64-linux-gnu.deb
+Size: 10712448
+MD5sum: 27e7678426106b99215c4374d4a9546f
+SHA1: 13741964f8a926372ea159fc52c0625c8a46a585
+SHA256: d69167fea8b97fb791e4b6b3d06599fc666680d5c853732e5dc3fafede9fa1a3
+Section: database
+Priority: optional
+Homepage: https://vectorchord.ai/
+Description: Vector database plugin for Postgres, written in Rust, specifically designed for LLM
+License: AGPL-3 or Elastic-2
+
 Package: postgresql-17-vchord-bm25
 Version: 0.2.1
 Architecture: arm64
