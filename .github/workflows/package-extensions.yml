@@ -6,7 +6,7 @@ on:
       pg_search_version:
         description: 'pg_search version'
         required: true
-        default: '0.15.21'
+        default: '0.16.2'
       pg_graphql_version:
         description: 'pg_graphql version'
         required: true
@@ -19,6 +19,14 @@ on:
         description: 'vectorchord bm25 version'
         required: true
         default: '0.2.1'
+      vchord_version:
+        description: 'vectorchord version'
+        required: true
+        default: '0.4.3'
+      pg_tokenizer_version:
+        description: 'pg_tokenizer version'
+        required: true
+        default: '0.1.0'
 
 jobs:
   download-extensions:
@@ -60,6 +68,18 @@ jobs:
           VCHORD_BM25_VERSION=${{ github.event.inputs.vchord_bm25_version || '0.2.1' }}
           curl -L -o vchord_bm25-v${VCHORD_BM25_VERSION}-pg17-arm64-linux-gnu.deb \
             https://github.com/tensorchord/VectorChord-bm25/releases/download/$VCHORD_BM25_VERSION/postgresql-17-vchord-bm25_$VCHORD_BM25_VERSION-1_arm64.deb
+
+      - name: Download vchord package
+        run: |
+          VCHORD_VERSION=${{ github.event.inputs.vchord_version || '0.4.3' }}
+          curl -L -o vchord-v${VCHORD_VERSION}-pg17-arm64-linux-gnu.deb \
+            https://github.com/tensorchord/VectorChord/releases/download/${VCHORD_VERSION}/postgresql-17-vchord_${VCHORD_VERSION}-1_arm64.deb
+
+      - name: Download pg_tokenizer package
+        run: |
+          PG_TOKENIZER_VERSION=${{ github.event.inputs.pg_tokenizer_version || '0.1.0' }}
+          curl -L -o pg_tokenizer-v${PG_TOKENIZER_VERSION}-pg17-arm64-linux-gnu.deb \
+            https://github.com/tensorchord/pg_tokenizer.rs/releases/download/${PG_TOKENIZER_VERSION}/postgresql-17-pg-tokenizer_${PG_TOKENIZER_VERSION}-1_arm64.deb
 
       - name: List downloaded packages
         run: |
