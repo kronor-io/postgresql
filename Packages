@@ -72,10 +72,10 @@ Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
 Installed-Size: 98
 Depends: libc6 (>= 2.17), libecpg6 (>= 9.0~), libpgtypes3
 Filename: ./libecpg-compat3_17.6-4-custom-32k_arm64.deb
-Size: 17500
-MD5sum: b4b2161076c8f13ebaacab1c2fee50a3
-SHA1: 1ca1ba0a0289096721b7152b58e0acee9d1900ae
-SHA256: d35a15d5c2018ac3edd0644a9dfdd0e5ccab495de2068ecd2da23cee1bfd1c66
+Size: 17496
+MD5sum: b7db80b1364561def9fe140304b60e56
+SHA1: 339b894dc7bfa17c15c50207a2d3b98271d2ca00
+SHA256: 0464ff46ab1ebaf8d867e14b2a7e407df7bc8d641a1dd5798b1f1805dff82392
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -169,10 +169,10 @@ Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
 Installed-Size: 1699
 Depends: libecpg-compat3 (= 17.6-4-custom-32k), libecpg6 (= 17.6-4-custom-32k), libpgtypes3 (= 17.6-4-custom-32k), libpq-dev, libc6 (>= 2.38)
 Filename: ./libecpg-dev_17.6-4-custom-32k_arm64.deb
-Size: 323416
-MD5sum: 259b8148766837e9978d63e4e322a2f7
-SHA1: c02a6376f4ae83d519369ec1dd1c5a74b73cf7f3
-SHA256: 56f1bbef6264caaed34f2dc82b8768c05bbe88fc330e8666dd23778eadfcf4f0
+Size: 323544
+MD5sum: f0ec82465fc314ba58f1971d759e6573
+SHA1: cd17c7f57e0e829c9d38c8e96d4f1755719d2be8
+SHA256: 1a1ae436e052913f93a07212beeb768188807b35bd28738e952dbd8e9634fd28
 Section: libdevel
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -260,10 +260,10 @@ Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
 Installed-Size: 277
 Depends: libc6 (>= 2.38), libpgtypes3, libpq5 (>= 9.0~)
 Filename: ./libecpg6_17.6-4-custom-32k_arm64.deb
-Size: 63336
-MD5sum: c5cc3f3501bffa5a5d6360a609dd8cd6
-SHA1: bdf3555dbb4654e4dcd8464683e5f5e47a9f2dac
-SHA256: c7ca93f8bcb3cea9fd51f17ec131148057e65aed277de9f7c6e927e4dc176923
+Size: 63376
+MD5sum: 9675a1e571254a7815e33cb83da93e49
+SHA1: 63f5fa7a42e765d4957064a40e69b96142f13dbd
+SHA256: 0a241f502924c7526bca0b08a42ce4d8d4ca50abbb37b1cec546dc846f83d3ea
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -348,10 +348,10 @@ Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
 Installed-Size: 163
 Depends: libc6 (>= 2.38)
 Filename: ./libpgtypes3_17.6-4-custom-32k_arm64.deb
-Size: 45176
-MD5sum: eb4925489ce729fe5bca68bc49a86604
-SHA1: 78a6bfec7097b34191e85659b662ebd3a5e2bd55
-SHA256: 242e952cf97b557f5ffa66283be456c5de9d80788429d5144301b38d72433050
+Size: 45208
+MD5sum: e77e70f738174ab7953694bee2a143f0
+SHA1: 3d15407721dabe15e136784b37f12bbb1f18f1e5
+SHA256: a9782ff5ffa22a5e1e5f1dacbb7b502e81ba7e6b2da6005dd56bc98fd1af5e24
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -440,10 +440,10 @@ Installed-Size: 613
 Depends: libpq5 (= 17.6-4-custom-32k), libssl-dev
 Suggests: postgresql-doc-17
 Filename: ./libpq-dev_17.6-4-custom-32k_arm64.deb
-Size: 162940
-MD5sum: 4f6f60230264554ae19b52a62b6ba32e
-SHA1: 1ee7caae71d114ae0fd82684de859a78a498fbab
-SHA256: 78d15b0fa1705dfb5867811827d123a777f24442669a2c32e81623da5b092a9a
+Size: 162970
+MD5sum: 6f1859d32e11ea558d386e77951297cf
+SHA1: 70d6ff2d3e677b590d7f6540d972f46611e693a5
+SHA256: 6e362e442da2473e264363192ac519398677e92140ce5c16f8a4fcbf803615b5
 Section: libdevel
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -550,10 +550,10 @@ Installed-Size: 1110
 Depends: libc6 (>= 2.38), libgssapi-krb5-2 (>= 1.17), libldap2 (>= 2.6.2), libssl3t64 (>= 3.0.0)
 Recommends: ca-certificates
 Filename: ./libpq5_17.6-4-custom-32k_arm64.deb
-Size: 255878
-MD5sum: d76e184c56d5d021e4fab7fa22b93007
-SHA1: 54a6b29c1f620f1500905a077cc7cb129607a0f7
-SHA256: 6a080a604e7c44389210709353af2728f490ae522a5be410e0f0151aac0750dc
+Size: 256134
+MD5sum: 044faa02dfa10ec403739b3f40094095
+SHA1: f67f3d8ac90f0101dfb1bf44646d0b254edeffec
+SHA256: cfd60125d170994ec069453fa88f2e2594dda45ff67945224dab09609c5d45ae
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -689,10 +689,10 @@ Recommends: sysstat
 Breaks: dbconfig-common (<< 2.0.22~)
 Provides: postgresql-17-jit-llvm (= 18), postgresql-contrib-17
 Filename: ./postgresql-17_17.6-4-custom-32k_arm64.deb
-Size: 18046156
-MD5sum: b5c328e3f233e909e6e192e034dac977
-SHA1: 84865714a802cf5d0e1bdd2066865c20d601de58
-SHA256: a96ebf4914be2fc84e61e0ec12b68036e900ce7e8a33d9908adb169c926808c2
+Size: 18046544
+MD5sum: 09c0a31679eb4586d5dd32493f08c89c
+SHA1: e0bf8ccbec206607febd43cb4488f40cd2923e82
+SHA256: 0f02cf09f03103f83bb594c1ccc513603e3c328c10b74d60950eb2f2f7306b68
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -915,10 +915,10 @@ Depends: libpq5 (>= 17.6-4-custom), postgresql-client-common (>= 182~), sensible
 Suggests: postgresql-17, postgresql-doc-17
 Provides: postgresql-client
 Filename: ./postgresql-client-17_17.6-4-custom-32k_arm64.deb
-Size: 2136642
-MD5sum: 2dde866c61263c99a2d0b7f0187d6f6d
-SHA1: d1aa639b95423bbb18852bd2d485d121818c2c49
-SHA256: 20d477d215f3fd3840a6ac5f4ed9a58e01605e37a4767c559b1ec71d70a9fea9
+Size: 2136814
+MD5sum: b525414d8cbda8d525e4ef634909306e
+SHA1: 634823a8a0027079d969e559b9e83f0374de0f22
+SHA256: 2f49d16fbe1dd952a9f01fc01f117a05f8f841472562537593e199e32121b027
 Section: database
 Priority: optional
 Multi-Arch: foreign
@@ -1037,10 +1037,10 @@ Architecture: all
 Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
 Installed-Size: 17009
 Filename: ./postgresql-doc-17_17.6-4-custom-32k_all.deb
-Size: 2154302
-MD5sum: c97647f472ef6301fcfd3ad8acd47545
-SHA1: fe7ad979a0f4506afbe7c1861defcfd833ff162f
-SHA256: b5ead4f343da8fa345686f9b7eec95ecd240bb33de9a23ad6d4eea76f0e6830b
+Size: 2154422
+MD5sum: ff913f36d02c70d3217245e64b7ac139
+SHA1: fb77ad4c5d78f5f854c42fc08ec38d7d657ed52f
+SHA256: b939391a82eb63e2d5175f59d85530d7e5a8f697ada5ce1c7fe566acabe3182a
 Section: doc
 Priority: optional
 Multi-Arch: foreign
@@ -1129,10 +1129,10 @@ Installed-Size: 577
 Depends: perl, postgresql-17 (= 17.6-4-custom-32k), libc6 (>= 2.34), libperl5.38t64 (>= 5.38.2)
 Provides: postgresql-plperl
 Filename: ./postgresql-plperl-17_17.6-4-custom-32k_arm64.deb
-Size: 91684
-MD5sum: 494388c14d3cd04297d0db6c6ef31eb9
-SHA1: 4a47e023cde408e0ea729ec9fe35e758251648e3
-SHA256: a6ebf2586aff457754ed3196d9ac6aa7a5e73851cd5a6d93c3637b3b65ff37d5
+Size: 91732
+MD5sum: f274b4f266ef3b2c4dc6342c7c8dc2f6
+SHA1: b65f8a6ab209044eabf015acd7ab29d15245df91
+SHA256: f474aae8bb88f5ee48316cfd7d47d2a8f39fca1800ff9e9c6ebfad8039dae00f
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -1221,10 +1221,10 @@ Installed-Size: 679
 Depends: postgresql-17 (= 17.6-4-custom-32k), libc6 (>= 2.17), libpython3.12t64 (>= 3.12.1)
 Provides: postgresql-plpython3
 Filename: ./postgresql-plpython3-17_17.6-4-custom-32k_arm64.deb
-Size: 117376
-MD5sum: 72b938f22c4777eca2438423bb418ae9
-SHA1: 024659bf64c59ac45b9c7476861f36af02c48a79
-SHA256: 129d1c09ef6b512f8d26cf2508f4367c496d4490a50dc00c8f8a19fc64a5314a
+Size: 117312
+MD5sum: bcb4151365b95d594f1e9e2ecccfbcf2
+SHA1: 85e9f811b074344aaab64854703413e419c5c35f
+SHA256: 469530543215798017f73840d871a92984bfbaba82c745060e50683189c6c0ca
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -1313,10 +1313,10 @@ Installed-Size: 205
 Depends: postgresql-17 (= 17.6-4-custom-32k), libc6 (>= 2.17), libtcl8.6 (>= 8.6.0)
 Provides: postgresql-pltcl
 Filename: ./postgresql-pltcl-17_17.6-4-custom-32k_arm64.deb
-Size: 45110
-MD5sum: 642170357f25b3fe6b57b77fb6438a50
-SHA1: 0961c70e9db83f6317b3ec0cc2cd7965af0472c3
-SHA256: 2baa9d95f8c1c653cf34b2bba15198a7fc34e3d632e9f59b5a576d101d2d3088
+Size: 45128
+MD5sum: 22492410e3090684f77254491352c154
+SHA1: 898184408952aa06ec3dfd3a0eee2469efa93ce5
+SHA256: 9a6941c2f2210ea73b64fb25f190e249551b1b48ca34d2c9712a77f2eee4119d
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -1410,10 +1410,10 @@ Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
 Installed-Size: 8276
 Depends: clang-18, libpq-dev (>= 17~~), llvm-18-dev, postgresql-client-17, postgresql-common (>= 142~), libc6 (>= 2.38)
 Filename: ./postgresql-server-dev-17_17.6-4-custom-32k_arm64.deb
-Size: 1399946
-MD5sum: 2cc446a202cbbd1725c66f8de7ed0d90
-SHA1: 1d5168275e5e3453be55cf5216d08fdd4af3a37d
-SHA256: 86af799ef50b64b86953fda4e2d5165f83bf96380ef77f971bddef373c22fde8
+Size: 1400516
+MD5sum: db6d2b48db20cb0ec32faa4021f4785a
+SHA1: 00c1d31569b6b301e576e182cbf290c8d764aed1
+SHA256: 0726b0939040677b77af50c7b7047bec48df9cee07e16bf636f240b5972f1421
 Section: libdevel
 Priority: optional
 Homepage: http://www.postgresql.org/
