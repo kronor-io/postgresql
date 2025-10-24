@@ -782,6 +782,21 @@ Homepage: https://vectorchord.ai/
 Description: Tokenizer plugin for PostgreSQL
 License: Apache-2.0
 
+Package: postgresql-17-pg-tokenizer
+Version: 0.1.1-1
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Filename: ./pg_tokenizer-v0.1.1-pg17-arm64-linux-gnu.deb
+Size: 10422316
+MD5sum: 45d06bd6d96d922108716586dfcfc53b
+SHA1: f710574c439470fc1e84daa992279b13d6154c22
+SHA256: ab307b0de710678b67582f6cb369fe42b22928d4894ec3cdd7703fc760a9a7d6
+Section: database
+Priority: optional
+Homepage: https://vectorchord.ai/
+Description: Tokenizer plugin for PostgreSQL
+License: Apache-2.0
+
 Package: postgresql-17-vchord
 Version: 0.4.3-1
 Architecture: arm64
@@ -797,6 +812,22 @@ Homepage: https://vectorchord.ai/
 Description: Vector database plugin for Postgres, written in Rust, specifically designed for LLM
 License: AGPL-3 or Elastic-2
 
+Package: postgresql-17-vchord
+Version: 0.5.3-1
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Depends: postgresql-17, libgcc-s1, libc6 (>= 2.35)
+Filename: ./vchord-v0.5.3-pg17-arm64-linux-gnu.deb
+Size: 1768880
+MD5sum: 96d272af322061dcdea85db6abfe507b
+SHA1: 038d630539474b13fceee239e8e0f5131f4b6ff8
+SHA256: 8ddf63b52526cc3cecb3336a379b290e865a9919b9379c55b412ade26ffd2c47
+Section: database
+Priority: optional
+Homepage: https://vectorchord.ai/
+Description: Vector database plugin for Postgres, written in Rust, specifically designed for LLM
+License: AGPL-3.0-only or Elastic-2.0
+
 Package: postgresql-17-vchord-bm25
 Version: 0.2.1
 Architecture: arm64
@@ -806,6 +837,21 @@ Size: 366124
 MD5sum: 9333513c875100508c613d9ce5635836
 SHA1: c887e4d35279891fca7c82982a97e28e29940393
 SHA256: 600d7813c78f385abef23e8ab93c89d3f188702f7c729f4aa716c927714954a3
+Section: database
+Priority: optional
+Homepage: https://github.com/tensorchord/VectorChord-bm25/
+Description: Native BM25 Ranking Index in PostgreSQL
+License: AGPL-3.0-only or Elastic-2.0
+
+Package: postgresql-17-vchord-bm25
+Version: 0.2.2
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Filename: ./vchord_bm25-v0.2.2-pg17-arm64-linux-gnu.deb
+Size: 379852
+MD5sum: 51e9f7713202c0ba779150478b6ac1fb
+SHA1: 405452ee7a4bc6e13dd0a41f0e911398d2e1fedc
+SHA256: 622233654a523039c39602db62335fd918d2abe6665d46cc3c6b81a946cfed84
 Section: database
 Priority: optional
 Homepage: https://github.com/tensorchord/VectorChord-bm25/
