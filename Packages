@@ -687,12 +687,12 @@ Installed-Size: 61710
 Depends: locales | locales-all, postgresql-client-17, postgresql-common (>= 252~), ssl-cert, tzdata, debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.38), libgcc-s1 (>= 3.3.1), libgssapi-krb5-2 (>= 1.14+dfsg), libicu74 (>= 74.1-1~), libldap2 (>= 2.6.2), libllvm18, liblz4-1 (>= 0.0~r130), libpam0g (>= 0.99.7.1), libpq5 (>= 17~~), libselinux1 (>= 3.1~), libssl3t64 (>= 3.0.0), libstdc++6 (>= 5.2), libsystemd0, libuuid1 (>= 2.16), libxml2 (>= 2.7.4), libxslt1.1 (>= 1.1.25), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)
 Recommends: sysstat
 Breaks: dbconfig-common (<< 2.0.22~)
-Provides: postgresql-17-jit-llvm (= 18), postgresql-contrib-17
+Provides: postgresql-17-jit-llvm (= 19), postgresql-contrib-17
 Filename: ./postgresql-17_17.6-4-custom-32k_arm64.deb
-Size: 18046980
-MD5sum: f60f126f783130a2bcd8845d3fa877d1
-SHA1: 34fb9b875a151235202d1c5b9ff7511ff0e1c9e9
-SHA256: 1917391621c4bab60f5efadfee2dea40fc73cf1d2c5e08e0f284fce3308cb376
+Size: 18046566
+MD5sum: 878d1356fed24f48183e0a830c33e56a
+SHA1: 3f084af97fc62c3ec2cba88ec68a408a3a7d7907
+SHA256: ff69f083e38acd4807d524f328a2ab296a44f7d0d5ab7a0eebec6808ee7be9a2
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -707,23 +707,6 @@ Description: The World's Most Advanced Open Source Relational Database
  .
  This package provides the database server for PostgreSQL 17.
 Postgresql-Catversion: 202406281-1700
-
-Package: postgresql-17-jit-llvm
-Version: 17.500.0
-Architecture: all
-Maintainer: GitHub Actions Bot <41898282+github-actions[bot]@users.noreply.github.com>
-Installed-Size: 9
-Depends: postgresql-17
-Filename: ./postgresql-17-jit-llvm_17.500.0_all.deb
-Size: 2096
-MD5sum: 7a11f00637ddc4b4077b7766feffac9b
-SHA1: 8ce42b2499a037a240b69465a4526a3d63714714
-SHA256: 0a5e6230637a3e3a49af6bb41e9957884895f35eb0972ffedbbdca8c7ce2d663
-Section: database
-Priority: optional
-Multi-Arch: foreign
-Description: Dummy package for postgresql-17-jit-llvm
- This is a dummy package that provides postgresql-17-jit-llvm
 
 Package: postgresql-17-jit-llvm
 Version: 500.0.0
