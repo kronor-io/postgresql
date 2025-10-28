@@ -733,9 +733,9 @@ Installed-Size: 9
 Depends: postgresql-17
 Filename: ./postgresql-17-jit-llvm_500.0.0_all.deb
 Size: 2108
-MD5sum: 80f3b1cb6c21da94726b5823dc905546
-SHA1: 4579db49e9ee7ad7d55313cf31088a85b984d56b
-SHA256: 02d450efae35441d1f8a45bfd2ea3a22e2c189c2d59431f7ced1bded434c19a3
+MD5sum: f383c0853656a51cfc778b39822e50da
+SHA1: 3269f2e39439083839d87f40d479b8adf8941fa1
+SHA256: 46d09e1880103372b187eb433e57effbfbc3a54da511fbe37455005403396ab2
 Section: database
 Priority: optional
 Multi-Arch: foreign
