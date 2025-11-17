@@ -859,12 +859,12 @@ Installed-Size: 61790
 Depends: locales | locales-all, postgresql-client-17, postgresql-common (>= 252~), ssl-cert, tzdata, debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.38), libgcc-s1 (>= 3.3.1), libgssapi-krb5-2 (>= 1.14+dfsg), libicu74 (>= 74.1-1~), libldap2 (>= 2.6.2), libllvm18, liblz4-1 (>= 0.0~r130), libpam0g (>= 0.99.7.1), libpq5 (>= 17~~), libselinux1 (>= 3.1~), libssl3t64 (>= 3.0.0), libstdc++6 (>= 5.2), libsystemd0, libuuid1 (>= 2.16), libxml2 (>= 2.7.4), libxslt1.1 (>= 1.1.25), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)
 Recommends: sysstat
 Breaks: dbconfig-common (<< 2.0.22~)
-Provides: postgresql-17-jit-llvm (= 18), postgresql-contrib-17
+Provides: postgresql-17-jit-llvm (= 19), postgresql-contrib-17
 Filename: ./postgresql-17_17.7-4-custom-32k_arm64.deb
-Size: 18079938
-MD5sum: 326c56b634b773202d2457ba29e1806b
-SHA1: 5129b7f2313f7ece3f47d85dd1b80c006fb9454c
-SHA256: 8b1b1486ab7c240845be8c8f16ad577d8c4e890cd769572b03a2c9d259585550
+Size: 18080270
+MD5sum: 8d912ccf8c0abab423e93a178337c6df
+SHA1: 7cd2c70537e5064eb7b8cdb1342cda5c9181be9e
+SHA256: 57df414869ca397f9c408b24b539502b1bc964ad07686604da1856729a544855
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
