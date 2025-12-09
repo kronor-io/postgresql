@@ -7,9 +7,6 @@ on:
         description: 'PostgreSQL version'
         required: true
         default: '17.7'
-  schedule:
-    # Check for new PostgreSQL releases monthly
-    - cron: '0 0 1 * *'
 
 jobs:
   build:
