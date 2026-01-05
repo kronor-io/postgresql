@@ -1,0 +1,99 @@
+name: Build PostgreSQL-18 Anonymizer Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      pgrx_version:
+        description: 'cargo-pgrx version'
+        required: false
+        default: '0.16.1'
+jobs:
+  build-anonymizer:
+    runs-on: ubuntu-24.04-arm
+    
+    steps:
+      - name: Set up environment
+        run: |
+          sudo apt update
+          sudo apt install -y gpg curl pkg-config
+
+          echo 'deb [trusted=yes] https://repo.goreleaser.com/apt/ /' | sudo tee /etc/apt/sources.list.d/goreleaser.list
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+
+          sudo apt update
+          sudo apt install -y build-essential postgresql-18 postgresql-server-dev-18 libpq-dev gnupg git dpkg-dev apt-utils gzip gettext-base nfpm
+          /usr/lib/postgresql/18/bin/initdb --help
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ppa
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Install Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+          source "$HOME/.cargo/env"
+
+      - name: Clone postgresql_anonymizer repository
+        run: |
+          git clone https://gitlab.com/dalibo/postgresql_anonymizer.git
+          cd postgresql_anonymizer
+          git reset --hard 08042ff527655ba00f8db863830215452e817a2d
+
+      - name: Install Cargo Pgrx
+        run: |
+          source "$HOME/.cargo/env"
+          cargo install cargo-pgrx --version ${{ github.event.inputs.pgrx_version || '0.16.1' }} --locked
+          cargo pgrx init --pg18 /usr/lib/postgresql/18/bin/pg_config
+
+      - name: Build postgresql_anonymizer extension
+        run: |
+          cd postgresql_anonymizer
+          make extension
+        env:
+          PG_CONFIG: /usr/lib/postgresql/18/bin/pg_config
+          PGVER: pg18
+          PG_MAJOR_VERSION: 18 
+
+      - name: Build Debian package
+        run: |
+          cd postgresql_anonymizer
+
+          # Update architecture in nfpm.yaml
+          sed -i 's/arch: "amd64"/arch: "arm64"/' nfpm.template.yaml
+
+          make deb PGVER=pg18 PG_MAJOR_VERSION=18
+          # Copy the resulting .deb file to the repository root
+          cp target/release/anon-pg18/*.deb ..
+        env:
+          PG_CONFIG: /usr/lib/postgresql/18/bin/pg_config
+          PGVER: pg18
+          PG_MAJOR_VERSION: 18 
+
+      - name: List downloaded packages
+        run: git status
+
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git commit -a --allow-empty -m "Update anonymyzer [skip ci]"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ppa
+
+  call-ppa-workflow:
+    needs: build-anonymizer
+    uses: ./.github/workflows/ppa-release.yml
+    secrets:
+      PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+      PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+      PPA_EMAIL: ${{ secrets.PPA_EMAIL }}

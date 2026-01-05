@@ -1,0 +1,123 @@
+name: Build PostgreSQL 18 Packages
+
+on:
+  workflow_dispatch:
+    inputs:
+      postgres_version:
+        description: 'PostgreSQL version'
+        required: true
+        default: '18.1'
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: ppa
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Set up environment
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
+                             clang-18 llvm-18 lld-18 \
+                             postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
+                             libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
+                             bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev \
+                             libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev llvm-dev \
+                             lz4 pkgconf systemtap-sdt-dev uuid-dev xsltproc
+          
+          # Install postgresql-common-dev from Plucky (backported to Noble)
+          curl -O http://archive.ubuntu.com/ubuntu/pool/main/p/postgresql-common/postgresql-common-dev_282ubuntu1_all.deb
+          sudo apt-get install -y ./postgresql-common-dev_282ubuntu1_all.deb
+          rm postgresql-common-dev_282ubuntu1_all.deb
+          
+          # Handle tzdata dependency (tzdata-legacy or tzdata < 2023c-8)
+          if apt-cache show tzdata-legacy &>/dev/null; then
+           sudo  apt-get install -y tzdata-legacy
+          else
+            sudo apt-get install -y tzdata
+          fi
+          
+      - name: Get latest PostgreSQL 18 version
+        run: |
+          if [ "${{ github.event.inputs.postgres_version }}" != "" ]; then
+            POSTGRES_VERSION="${{ github.event.inputs.postgres_version }}"
+          else
+            # Get latest PostgreSQL 18 version from the PostgreSQL website
+            POSTGRES_VERSION=$(curl -s https://www.postgresql.org/ftp/source/ | grep -oP 'v18\.\d+' | sort -V | tail -n 1 | sed 's/v//')
+          fi
+          echo "POSTGRES_VERSION=$POSTGRES_VERSION" >> $GITHUB_ENV
+          
+      - name: Clone PostgreSQL Debian packaging
+        run: |
+          git clone https://salsa.debian.org/postgresql/postgresql.git
+          cd postgresql
+          # Ensure we're on a branch that supports PostgreSQL 18
+          git checkout 18
+          
+      - name: Download PostgreSQL source
+        run: |
+          cd postgresql
+          # Download the PostgreSQL source
+          curl -O https://ftp.postgresql.org/pub/source/v${POSTGRES_VERSION}/postgresql-${POSTGRES_VERSION}.tar.bz2
+          # Update version in changelog
+          dch -v ${POSTGRES_VERSION}-4-custom-32k "Custom build of PostgreSQL ${POSTGRES_VERSION} with 32k blocksize for Ubuntu 24.04"
+          
+      - name: Build PostgreSQL packages
+        run: |
+          cd postgresql
+          # Extract the PostgreSQL source
+          tar -xf postgresql-${POSTGRES_VERSION}.tar.bz2
+          # Copy files to create orig tarball
+          cp -r postgresql-${POSTGRES_VERSION}/* .
+          # Remove the extracted directory
+          rm -rf postgresql-${POSTGRES_VERSION}
+          
+          # Create a custom copy of postgresql.mk with our additional block size flags
+          PGCOMMON_MK="/usr/share/postgresql-common/server/postgresql.mk"
+          if [ -f "$PGCOMMON_MK" ]; then
+            # Create a backup of the original file
+            sudo cp "$PGCOMMON_MK" "${PGCOMMON_MK}.bak"
+            
+            # Append our custom flags to CONFIGURE_FLAGS
+            sudo sed -i 's/CONFIGURE_FLAGS += --enable-tap-tests/CONFIGURE_FLAGS += --enable-tap-tests\n  CONFIGURE_FLAGS += --with-blocksize=32\n  CONFIGURE_FLAGS += --with-wal-blocksize=32\n/' "$PGCOMMON_MK"
+            cat "$PGCOMMON_MK"
+            
+            echo "Added custom block size flags to postgresql.mk"
+          else
+            echo "Warning: Could not find postgresql.mk at $PGCOMMON_MK"
+            exit 1
+          fi
+          
+          # Build Debian packages with custom compiler and flags
+          DEB_BUILD_OPTIONS="nocheck" dpkg-buildpackage -us -uc -b
+
+      - name: Gather packages
+        run: |
+          find postgresql -name "*.deb" -exec cp {} . \;
+  
+      - name: Commit files
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add *.deb
+          git commit --allow-empty -m "Update postgres [skip ci]"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ppa
+
+  call-ppa-workflow:
+    needs: build
+    uses: ./.github/workflows/ppa-release.yml
+    secrets:
+      PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+      PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+      PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
