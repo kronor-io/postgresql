@@ -28,7 +28,8 @@ jobs:
                              libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
                              bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev \
                              libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev llvm-dev \
-                             lz4 pkgconf systemtap-sdt-dev uuid-dev xsltproc
+                             lz4 pkgconf systemtap-sdt-dev uuid-dev xsltproc \
+                             libcurl4-openssl-dev libnuma-dev liburing-dev
           
           # Install postgresql-common-dev from Plucky (backported to Noble)
           curl -O http://archive.ubuntu.com/ubuntu/pool/main/p/postgresql-common/postgresql-common-dev_282ubuntu1_all.deb
