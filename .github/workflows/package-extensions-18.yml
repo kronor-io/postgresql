@@ -3,30 +3,30 @@ name: Download PostgreSQL-18 Extension Packages
 on:
   workflow_dispatch:
     inputs:
-      pg_search_version:
-        description: 'pg_search version'
-        required: true
-        default: '0.16.2'
-      pg_graphql_version:
-        description: 'pg_graphql version'
-        required: true
-        default: '1.5.11'
-      pg_jsonschema_version:
-        description: 'pg_jsonschema version'
-        required: true
-        default: '0.3.3'
+      # pg_search_version:
+      #   description: 'pg_search version'
+      #   required: true
+      #   default: '0.16.2'
+      # pg_graphql_version:
+      #   description: 'pg_graphql version'
+      #   required: true
+      #   default: '1.5.11'
+      # pg_jsonschema_version:
+      #   description: 'pg_jsonschema version'
+      #   required: true
+      #   default: '0.3.3'
       vchord_bm25_version:
         description: 'vectorchord bm25 version'
         required: true
-        default: '0.2.1'
+        default: '0.2.2'
       vchord_version:
         description: 'vectorchord version'
         required: true
-        default: '0.4.3'
-      pg_tokenizer_version:
-        description: 'pg_tokenizer version'
-        required: true
-        default: '0.1.0'
+        default: '0.5.3'
+      # pg_tokenizer_version:
+      #   description: 'pg_tokenizer version'
+      #   required: true
+      #   default: '0.1.0'
 
 jobs:
   download-extensions:
@@ -45,41 +45,41 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Download pg_search package
-        run: |
-          PG_SEARCH_VERSION=${{ github.event.inputs.pg_search_version || '0.15.14' }}
-          curl -L -o postgresql-18-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb \
-            https://github.com/paradedb/paradedb/releases/download/v${PG_SEARCH_VERSION}/postgresql-18-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb
+      # - name: Download pg_search package
+      #   run: |
+      #     PG_SEARCH_VERSION=${{ github.event.inputs.pg_search_version || '0.15.14' }}
+      #     curl -L -o postgresql-18-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb \
+      #       https://github.com/paradedb/paradedb/releases/download/v${PG_SEARCH_VERSION}/postgresql-18-pg-search_${PG_SEARCH_VERSION}-1PARADEDB-noble_arm64.deb
 
-      - name: Download pg_graphql package
-        run: |
-          PG_GRAPHQL_VERSION=${{ github.event.inputs.pg_graphql_version || '1.5.11' }}
-          curl -L -o pg_graphql-v${PG_GRAPHQL_VERSION}-pg18-arm64-linux-gnu.deb \
-            https://github.com/supabase/pg_graphql/releases/download/v${PG_GRAPHQL_VERSION}/pg_graphql-v${PG_GRAPHQL_VERSION}-pg18-arm64-linux-gnu.deb
+      # - name: Download pg_graphql package
+      #   run: |
+      #     PG_GRAPHQL_VERSION=${{ github.event.inputs.pg_graphql_version || '1.5.11' }}
+      #     curl -L -o pg_graphql-v${PG_GRAPHQL_VERSION}-pg18-arm64-linux-gnu.deb \
+      #       https://github.com/supabase/pg_graphql/releases/download/v${PG_GRAPHQL_VERSION}/pg_graphql-v${PG_GRAPHQL_VERSION}-pg18-arm64-linux-gnu.deb
 
-      - name: Download pg_jsonschema package
-        run: |
-          PG_JSONSCHEMA_VERSION=${{ github.event.inputs.pg_jsonschema_version || '0.3.3' }}
-          curl -L -o pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg18-arm64-linux-gnu.deb \
-            https://github.com/supabase/pg_jsonschema/releases/download/v${PG_JSONSCHEMA_VERSION}/pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg18-arm64-linux-gnu.deb
+      # - name: Download pg_jsonschema package
+      #   run: |
+      #     PG_JSONSCHEMA_VERSION=${{ github.event.inputs.pg_jsonschema_version || '0.3.3' }}
+      #     curl -L -o pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg18-arm64-linux-gnu.deb \
+      #       https://github.com/supabase/pg_jsonschema/releases/download/v${PG_JSONSCHEMA_VERSION}/pg_jsonschema-v${PG_JSONSCHEMA_VERSION}-pg18-arm64-linux-gnu.deb
 
       - name: Download vchord_bm25 package
         run: |
-          VCHORD_BM25_VERSION=${{ github.event.inputs.vchord_bm25_version || '0.2.1' }}
+          VCHORD_BM25_VERSION=${{ github.event.inputs.vchord_bm25_version || '0.2.2' }}
           curl -L -o vchord_bm25-v${VCHORD_BM25_VERSION}-pg18-arm64-linux-gnu.deb \
             https://github.com/tensorchord/VectorChord-bm25/releases/download/$VCHORD_BM25_VERSION/postgresql-18-vchord-bm25_$VCHORD_BM25_VERSION-1_arm64.deb
 
       - name: Download vchord package
         run: |
-          VCHORD_VERSION=${{ github.event.inputs.vchord_version || '0.4.3' }}
+          VCHORD_VERSION=${{ github.event.inputs.vchord_version || '0.5.3' }}
           curl -L -o vchord-v${VCHORD_VERSION}-pg18-arm64-linux-gnu.deb \
             https://github.com/tensorchord/VectorChord/releases/download/${VCHORD_VERSION}/postgresql-18-vchord_${VCHORD_VERSION}-1_arm64.deb
 
-      - name: Download pg_tokenizer package
-        run: |
-          PG_TOKENIZER_VERSION=${{ github.event.inputs.pg_tokenizer_version || '0.1.0' }}
-          curl -L -o pg_tokenizer-v${PG_TOKENIZER_VERSION}-pg18-arm64-linux-gnu.deb \
-            https://github.com/tensorchord/pg_tokenizer.rs/releases/download/${PG_TOKENIZER_VERSION}/postgresql-18-pg-tokenizer_${PG_TOKENIZER_VERSION}-1_arm64.deb
+      # - name: Download pg_tokenizer package
+      #   run: |
+      #     PG_TOKENIZER_VERSION=${{ github.event.inputs.pg_tokenizer_version || '0.1.0' }}
+      #     curl -L -o pg_tokenizer-v${PG_TOKENIZER_VERSION}-pg18-arm64-linux-gnu.deb \
+      #       https://github.com/tensorchord/pg_tokenizer.rs/releases/download/${PG_TOKENIZER_VERSION}/postgresql-18-pg-tokenizer_${PG_TOKENIZER_VERSION}-1_arm64.deb
 
       - name: List downloaded packages
         run: |
