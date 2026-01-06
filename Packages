@@ -1261,6 +1261,37 @@ Description: LLVM JIT support for PostgreSQL 18
  .
  This package provides LLVM-based query JITing for PostgreSQL 18.
 
+Package: postgresql-18-vchord
+Version: 0.5.3-1
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Depends: postgresql-18, libgcc-s1, libc6 (>= 2.35)
+Filename: ./vchord-v0.5.3-pg18-arm64-linux-gnu.deb
+Size: 1770436
+MD5sum: 27d1fffac0dba7baef29c03b5e77acd3
+SHA1: dfcde41dea9eee5e8269bbdef8770a4320e37a86
+SHA256: 1c88669550578c9b4a196cf7193c8648f6fcacc89155a934f10515f277e95dc9
+Section: database
+Priority: optional
+Homepage: https://vectorchord.ai/
+Description: Vector database plugin for Postgres, written in Rust, specifically designed for LLM
+License: AGPL-3.0-only or Elastic-2.0
+
+Package: postgresql-18-vchord-bm25
+Version: 0.2.2
+Architecture: arm64
+Maintainer: Tensorchord <support@tensorchord.ai>
+Filename: ./vchord_bm25-v0.2.2-pg18-arm64-linux-gnu.deb
+Size: 380120
+MD5sum: fdbb1b3e9ddd68620aadaf28b4c47d13
+SHA1: 8770e45d2d8fa92f69a814d225567804152d87df
+SHA256: 435e5423f3b31a45b347f811c924d3545d454dd09845ea37b55a60e87caf5e76
+Section: database
+Priority: optional
+Homepage: https://github.com/tensorchord/VectorChord-bm25/
+Description: Native BM25 Ranking Index in PostgreSQL
+License: AGPL-3.0-only or Elastic-2.0
+
 Package: postgresql-client-17
 Source: postgresql-17
 Version: 17.4-3custom
