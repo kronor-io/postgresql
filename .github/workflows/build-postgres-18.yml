@@ -106,8 +106,8 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+          for f in *.ddeb; do [ -e "$f" ] || continue; mv -i -- "$f" "${f%.ddeb}.deb"; done
           git add *.deb
-          git add *.ddeb
           git commit --allow-empty -m "Update postgres [skip ci]"
 
       - name: Push changes
