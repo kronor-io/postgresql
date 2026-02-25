@@ -130,6 +130,28 @@ Description: older version of run-time library for ECPG programs
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libecpg-compat3
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 97
+Depends: libc6 (>= 2.17), libecpg6 (>= 9.0~), libpgtypes3
+Filename: ./libecpg-compat3_18.2-4-custom-32k_arm64.deb
+Size: 16400
+MD5sum: 5ed446a7a7a70d472bb34ff80d5d7457
+SHA1: 31b2f91611aeefe886f55837323b06fe9c237cd5
+SHA256: 8f481d4ba14b02cd6064154120c2dee2f90de270e2ad2c2f1bca9b2ab2e8031c
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: older version of run-time library for ECPG programs
+ The libecpg_compat shared library is used by programs built with ecpg.
+ (Embedded PostgreSQL for C).
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libecpg-compat3-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -149,6 +171,26 @@ Priority: optional
 Multi-Arch: same
 Description: debug symbols for libecpg-compat3
 Build-Ids: 801911d8710ef255d02c1ef369f33335551d5b2a
+
+Package: libecpg-compat3-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 36
+Depends: libecpg-compat3 (= 18.2-4-custom-32k)
+Filename: ./libecpg-compat3-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 17752
+MD5sum: 747bab8de740d50c6a9c0175b229387b
+SHA1: 92bae17f49c6894077b619dbc4790358c2080c8c
+SHA256: 8d9d7a551f5dbae25ab088210fed0b81666562daf090f83504755130b5cfdcf4
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libecpg-compat3
+Build-Ids: 4e47bf9c8152654217467cc781200787340b900d
 
 Package: libecpg-dev
 Source: postgresql-17
@@ -300,6 +342,31 @@ Description: development files for ECPG (Embedded PostgreSQL for C)
  Install this package if you want to write C programs with SQL statements
  embedded in them (rather than run by an external process).
 
+Package: libecpg-dev
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1568
+Depends: libecpg-compat3 (= 18.2-4-custom-32k), libecpg6 (= 18.2-4-custom-32k), libpgtypes3 (= 18.2-4-custom-32k), libpq-dev, libc6 (>= 2.38)
+Filename: ./libecpg-dev_18.2-4-custom-32k_arm64.deb
+Size: 281798
+MD5sum: 74f1fc8b8fc9c760585de598f11dc510
+SHA1: 758aaf8ad7016a1d44ec8224fc5c33f14961c91e
+SHA256: 40d2fed496ae38b05334899d5bb239ef493f8870a9b6c878797d706ef64a502e
+Section: libdevel
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: development files for ECPG (Embedded PostgreSQL for C)
+ This package contains the necessary files to build ECPG (Embedded
+ PostgreSQL for C) programs.  It includes the development libraries
+ and the preprocessor program ecpg.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+ .
+ Install this package if you want to write C programs with SQL statements
+ embedded in them (rather than run by an external process).
+
 Package: libecpg-dev-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -318,6 +385,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for libecpg-dev
 Build-Ids: d1af8b76e7225c34af42a1b723420d70a793ed1f
+
+Package: libecpg-dev-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 209
+Depends: libecpg-dev (= 18.2-4-custom-32k)
+Filename: ./libecpg-dev-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 159584
+MD5sum: 41a7000bc7c3984aac3dfb1c042a9f15
+SHA1: 6530f26e38b97826096994bd57b5d7bddf95ad43
+SHA256: 633cd1f8442f31c62845acc6016ce263285ad92d5111ec8e4daa387e56881e72
+Section: debug
+Priority: optional
+Description: debug symbols for libecpg-dev
+Build-Ids: bef2befc2ff32e2aa7fabc4c82709a93e8567faa
 
 Package: libecpg6
 Source: postgresql-17
@@ -451,6 +537,28 @@ Description: run-time library for ECPG programs
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libecpg6
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 276
+Depends: libc6 (>= 2.38), libpgtypes3, libpq5 (>= 9.0~)
+Filename: ./libecpg6_18.2-4-custom-32k_arm64.deb
+Size: 62214
+MD5sum: 6c51e91fb6e8132bfba475f61a708728
+SHA1: 219387a8c32d75e6dc931d6c1111bb9e643f50bd
+SHA256: b2cca01995a4408ffa49816904544dd66e42dea0b62f71baa04b05a7d7cebeaa
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: run-time library for ECPG programs
+ The libecpg shared library is used by programs built with ECPG
+ (Embedded PostgreSQL for C).
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libecpg6-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -470,6 +578,26 @@ Priority: optional
 Multi-Arch: same
 Description: debug symbols for libecpg6
 Build-Ids: 0bdcccc1beaaf960ca8281e6b5319f24349955fd
+
+Package: libecpg6-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 156
+Depends: libecpg6 (= 18.2-4-custom-32k)
+Filename: ./libecpg6-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 121830
+MD5sum: 8a66f70b03a5a8b0dda46430006ba49b
+SHA1: b23d54aba045d64679b289b448f14a7ab28ecf48
+SHA256: 15e115807d422b1d906c3566a046481241d722c9051aefd48a5007c8d700bd9e
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libecpg6
+Build-Ids: 64ee772a350e91a3d41b2742aeddc4613ed4977f
 
 Package: libpgtypes3
 Source: postgresql-17
@@ -603,6 +731,28 @@ Description: shared library libpgtypes for PostgreSQL 18
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libpgtypes3
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 162
+Depends: libc6 (>= 2.38)
+Filename: ./libpgtypes3_18.2-4-custom-32k_arm64.deb
+Size: 44170
+MD5sum: 03aa81c960ecd88e67693bf5c50c3f15
+SHA1: 426d22a31a35efe15f835b8e9e4d8b8d52945d30
+SHA256: f984b0ffd4f6d9ef32b7773fc4b2a7c521d0c35e0302b045abc12f4fc7879d51
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: shared library libpgtypes for PostgreSQL 18
+ The libpgtypes shared library is used by programs built with ecpg.
+ (Embedded PostgreSQL for C).
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libpgtypes3-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -622,6 +772,26 @@ Priority: optional
 Multi-Arch: same
 Description: debug symbols for libpgtypes3
 Build-Ids: 7d55e383d9674a248593e971215b575b8b2ccce6
+
+Package: libpgtypes3-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 117
+Depends: libpgtypes3 (= 18.2-4-custom-32k)
+Filename: ./libpgtypes3-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 89594
+MD5sum: e6ec97455339c000308322ddd54f8f17
+SHA1: 656e98aa9d5ad3ba0befac8814b5643672a87856
+SHA256: 9a87f46112101482338aa3e91eeff3f2808de5c2b583f16a47e126e85ca7e5d8
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libpgtypes3
+Build-Ids: bdbe6581e1f1d918eb81dadadda6d7a777ceb1a2
 
 Package: libpq-dev
 Source: postgresql-17
@@ -761,6 +931,29 @@ Description: header files for libpq5 (PostgreSQL library)
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libpq-dev
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 692
+Depends: libpq5 (= 18.2-4-custom-32k), libssl-dev
+Suggests: postgresql-doc-18
+Filename: ./libpq-dev_18.2-4-custom-32k_arm64.deb
+Size: 181388
+MD5sum: 5d5cda092ca54dc024590224db1dd6fe
+SHA1: 2eb56c2133f187a96c37b72fcbcc8f3a941d139c
+SHA256: 21809159263317f608c3d5c203ef39e484f256cbb816fb33e435309d425310b8
+Section: libdevel
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: header files for libpq5 (PostgreSQL library)
+ Header files and static library for compiling C programs to link
+ with the libpq library in order to communicate with a PostgreSQL
+ database backend.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libpq-oauth
 Source: postgresql-18
 Version: 18.1-4-custom-32k
@@ -774,6 +967,37 @@ Size: 36854
 MD5sum: 1cb7f3ad7c2aeaa8e8ebca55ea67116b
 SHA1: beffe38b15314d65693ce043ada21d6bcb79800d
 SHA256: 62ea6c2f558c226ed58c7bd28208eb1075ca57b702aebfd9d8ee6ef0b13600a5
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: PostgreSQL C client library - OAuth flow
+ libpq-oauth is an optional module for libpq5 implementing the Device
+ Authorization flow for OAuth clients (RFC 8628). It is maintained as
+ its own shared library in order to isolate its dependency on libcurl.
+ (End users who don't want the Curl dependency can simply choose not
+ to install this module.)
+ .
+ If a connection string allows the use of OAuth, and the server asks
+ for it, and a libpq client has not installed its own custom OAuth
+ flow, libpq will attempt to delay-load this module using dlopen() and
+ the following ABI. Failure to load results in a failed connection.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
+Package: libpq-oauth
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 159
+Depends: libpq5 (= 18.2-4-custom-32k), libc6 (>= 2.38), libcurl4t64 (>= 7.16.3)
+Provides: libpq-oauth-18
+Filename: ./libpq-oauth_18.2-4-custom-32k_arm64.deb
+Size: 38872
+MD5sum: bb7ae320019d2b8807cc6cd567f35c11
+SHA1: 134161f52046db175c125f1216810e7436d806f3
+SHA256: 8598d304643d86850523141210fdcc2b507a3967697ef5b4d72aa9ae276ba872
 Section: libs
 Priority: optional
 Multi-Arch: same
@@ -811,6 +1035,26 @@ Priority: optional
 Multi-Arch: same
 Description: debug symbols for libpq-oauth
 Build-Ids: 9b162b2798520af2189a359638e8f469fe05af5a
+
+Package: libpq-oauth-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 129
+Depends: libpq-oauth (= 18.2-4-custom-32k)
+Filename: ./libpq-oauth-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 98000
+MD5sum: 07e9591036008373c059ad4b85a19a71
+SHA1: 34bb5033df733f6e394c262b7f3af7b633bd13f7
+SHA256: f9a219e057c3bfc28b12c59dc822a040db54dc93b50f3a51d97f144e2f9ec0ba
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libpq-oauth
+Build-Ids: 66092afd7e2101b2809c1e992233d162d2da0d79
 
 Package: libpq5
 Source: postgresql-17
@@ -987,6 +1231,36 @@ Description: PostgreSQL C client library
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: libpq5
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1239
+Depends: libc6 (>= 2.38), libgssapi-krb5-2 (>= 1.17), libldap2 (>= 2.6.2), libssl3t64 (>= 3.0.0)
+Recommends: ca-certificates
+Suggests: libpq-oauth
+Filename: ./libpq5_18.2-4-custom-32k_arm64.deb
+Size: 283236
+MD5sum: 4e2985d1b90c88d2c9e4bb1590541e5f
+SHA1: b9a17eafc46f7ffa9cbbf64c5abf63495ef2f31d
+SHA256: 9a0eb6aa7b6b2a4a26d37b728efc205265066b323310430905ca94ba3ce8ad1d
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://www.postgresql.org/
+Description: PostgreSQL C client library
+ libpq is a C library that enables user programs to communicate with
+ the PostgreSQL database server.  The server can be on another machine
+ and accessed through TCP/IP.  This version of libpq is compatible
+ with servers from PostgreSQL 8.2 or later.
+ .
+ This package contains the run-time library, needed by packages using
+ libpq. SSL certificate validation (the sslrootcert=system connection
+ option) requires the ca-certificates package.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: libpq5-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -1006,6 +1280,26 @@ Priority: optional
 Multi-Arch: same
 Description: debug symbols for libpq5
 Build-Ids: 0892b350516109ecc3aae9c2d0436566bb546b53
+
+Package: libpq5-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 453
+Depends: libpq5 (= 18.2-4-custom-32k)
+Filename: ./libpq5-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 367518
+MD5sum: 1fea74500faf143ee219c9011253b6fc
+SHA1: 46811d6aaa19c60b0e4fac4a21bdbaaf37deb0c5
+SHA256: 650c8d3d0ae55f1b30af5b4e5bafdae2879fe2f707ee55cddcbd8acc13a03709
+Section: debug
+Priority: optional
+Multi-Arch: same
+Description: debug symbols for libpq5
+Build-Ids: 76038ecf6fbe5af93473bed4341c5b7584762dc7
 
 Package: pg-graphql
 Version: 1.5.11
@@ -1353,6 +1647,35 @@ Description: The World's Most Advanced Open Source Relational Database
  This package provides the database server for PostgreSQL 18.
 Postgresql-Catversion: 202506291-1800
 
+Package: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 39002
+Depends: locales | locales-all, postgresql-client-18 (= 18.2-4-custom-32k), postgresql-common (>= 275~), ssl-cert, tzdata, debconf (>= 0.5) | debconf-2.0, libc6 (>= 2.38), libgssapi-krb5-2 (>= 1.14+dfsg), libicu74 (>= 74.1-1~), libldap2 (>= 2.6.2), liblz4-1 (>= 0.0~r130), libnuma1 (>= 2.0.11), libpam0g (>= 0.99.7.1), libpq5 (>= 17~~), libselinux1 (>= 3.1~), libssl3t64 (>= 3.0.0), libsystemd0, liburing2 (>= 2.5), libuuid1 (>= 2.16), libxml2 (>= 2.7.4), libxslt1.1 (>= 1.1.25), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)
+Recommends: postgresql-18-jit, sysstat
+Breaks: dbconfig-common (<< 2.0.22~)
+Provides: postgresql-contrib-18
+Filename: ./postgresql-18_18.2-4-custom-32k_arm64.deb
+Size: 8008676
+MD5sum: cf7aa8a353d5613cfa48fbb047ad7c4b
+SHA1: b6c3365a0e002220987e5af5e210b62176e3397d
+SHA256: 16a939343cfe4767ac59c4080258cf286edcaea1b9e9dd42abc79bf84d58c446
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: The World's Most Advanced Open Source Relational Database
+ PostgreSQL, also known as Postgres, is a free and open-source relational
+ database management system (RDBMS) emphasizing extensibility and SQL
+ compliance. It features transactions with Atomicity, Consistency, Isolation,
+ Durability (ACID) properties, automatically updatable views, materialized
+ views, triggers, foreign keys, and stored procedures. It is designed to handle
+ a range of workloads, from single machines to data warehouses or Web services
+ with many concurrent users.
+ .
+ This package provides the database server for PostgreSQL 18.
+Postgresql-Catversion: 202506291-1800
+
 Package: postgresql-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -1373,6 +1696,26 @@ Description: debug symbols for postgresql-18
 Build-Ids: 05c6a04b46662c76a91a8bb68493c9a825b8470a 066659c95a17fc320e283d9a4f4581a9c6e36232 137a0bc2724fb0154a5a28d55c86830ff9963f1c 1a2aa170e10cee4519d126accd53488f16720a0d 1a404acd32cadbb9ebc8989f6f73b8fe36a21e01 1ba3dc41f5b2ceb08c2893113d33835e48034f40 2270f99e4a8bc6ac8c855d7264307d760a89653a 231f6f3e35352547ee99190cfaed24c78eda53d3 250f57f512d9a3be62aac1a5bc57a4ad8f2737ed 268e6c6311ef2974c6794836d1f3d92b437236ca 27e788b93b79643aecc42be1d98fca95cdac8ced 2b433f63eae892fec40e38b9825e89181d3c48ee 30be9485220c8021396ee1fb6d6942b289fe4514 3254b2503520ef73cea5b9e41eb03e23ab943c8d 33dfab52b6d8f2e47c6b228c60b3ae3e7d5c0a1b 37941caf005d842cf14074712a135b740a745b1e 37945aab2216262426745d009700671f5257fdc5 37ac620880009130bd88f14f55cf7390f99e4b98 39fe5b5f7d326dd1797bc8b3a99b01c1cf4c4426 3ef9ee913f13b6a6d8cf0c5f1112628bdb72a039 431026fc841c87646fa84825dc2a16bf44c7fb6c 4618850c5aa69ecae610a59778978077f298108a 468b76316df44d966e32e827ecb2e6cd2daab894 4aa6218eff23027b7c18c0e7c4d96cb2785d166b 4f69d124cdaa7c7d030a1811ac2ce412b568ab7e 502b11a853f8edd18ba20676365f84b6d9323900 50d979511bb7656470efc30e2ccd9a178fb6846f 5186564b36b39774e73f2b7bff2cc0ed19c82b30 553722bb59ec96d92f62d04bdb1b5fb6dae0e1da 5599edbfee41d25a99d41d2a6c66db824136e972 59ae1f334af0be21a417e6cc62135c7f7709b881 5d29d5a24930025af5c7f468d009cb2c0284f678 5d7da3e145ec2259279c4114f9cfd5df1f965313 5e4a2c545bebc65326010487769b0ec184035ca1 5e8634e0730ae167eeaecc5522bf5319c8811252 644896a774fe8ce7677d36cca76d100200b78200 64c968a60f86055026ecce4914f38687d8ab4e47 6c5df18d70043a47049c9b168b9089e6f6ecb5d8 6d1806418560ce5821d68c1a7abb04420b7b6bf1 6e54f55e7f7d572778cf9dbe9c0d2a8c8c2890bc 6edfc30ebbbdbb2ffd98e6939e70774c74ff58cb 74a859cf0408c093d65851458be7bc8b5325863f 771e1999ff0900a7eab8d571be1af86903463a97 79b549924214c25e15dd6745ef1c3b844ce9d884 7d325c24c16593057878d36372498dcb6a82f8bb 7e4fc2744dd2ddbe587a81e3b0db0fe97da5c122 81666c055fc04c8eb090ba72fa5636c2bc386b42 88c0af11ad8c9bb8696f498c7d16e2b974aee0eb 8cd3f621706996d0fcd754a6fd2053f88712ddb1 9574b61ed065e54f5c79c923baa923d416dfd051 97e037bfc3bc2d391ce8b66d50841bac26530be4 98489a135182425947298f7b20f6bc1381afbb57 9883d5cb4a35ea89326035bf5f050d0bd57b266c 98c1210603203b8902ac3f24ecba7a65e0ff69b8 99327b34a743c63d7b064ac819721c5a66a66555 993b55be941f688137aa3928dd9f9ccf92cc1021 9cd5ff6416956dfe0c5985835f87b7ccebf177d0 9da31ffbdf5881cf5c2fe7977eb8a7d70b56a794 9e8895bba44575945253442a8a4c8cdb09dc204c a12c14a548f2b77d8a0d2b1cc79419688eb394a9 a1ab668325e526d9df2208ab49ebab8ecf2cd64d a1d764de79947613b096e3f78cfa527cdf8183f4 a229a74cd9dd93efcf6ffc4a355e35e755104f2c a4835cf3b1eec2cfd45358c5c38e871284197aab ac38add19578cf6cbbd89ce3220659dc75287d6a ae9f0f7de3d320b20de196819fc25f976acc7e69 af403eed45fee865431aa49d9ba3d78ec858eb2d af90bd5095088b26056a2fa82270cbb3faff1545 b00ed5755191b7a0857fb9e2bad202a19d1f4e21 b170c43498faef5bac73a5686e616779a6661255 b5bbd7ebfd12e0864cbbb7bd089eb8600123d099 b7c6e63405009a22ef772569fd1e1d6232454be6 b8ab3b46799950b1f82fe373d7caa05df283e373 b8e1c409e86730af32d59b268c651864f294943a bc3d4a5748cbc685151a4708664fe889af6ac5ae bed013507b5b569708acc574a04212ddfa1f2560 bf346a2a89f239f0a108a0f5cf1563cd62c2e4ca c0523dbf32b5352b58b0cc37da565e05f1f22082 c80113e0dd6de465a52ee11dd0116b16b95d6788 c9d9fabfbe59486371837a43dd76028e67a1bb13 c9e11fb6f4b4b285a4b923a00990abc70fdb9ea3 ca3cf2d8e29a41ec530a7c1b341c301d2ec6b395 cadef4702e7b5a05b940f95f03bdb2c6f118dd34 cf126331ae46b8a3a0e1ee1c9102dffb64735a42 d37b231ca5e7a9f9e89d05b253cb34709abc6c96 d5257aaffe1138b0a889fdebfa412f4687468ee6 d803e64064391bf53d715bb86081566dea5ec8ef d8e69885c2fa2ce9353de41a1e9e9cfaad30aea5 e2e98a2def6a3a1ad11b0d6e993f3ae71bcfe142 e5a64e1b7802c526a4891ae7ccb3d6ff1827a8d2 e601753cade90954b4a1bd04b7c88c07c1c11f6c e80a37d3daa8df251519bc3115e3d6e4b9b36399 eac0dcf149170ba1304165c2e524ea91640a1dca eff47b9b2de0f6e246294cc4253ebf95bfd494b1 f18b540cfd773702e258d1d6fc13099d98551719 f3a66dc9f2c6291b7d6a73a51c69e47af8e3d13a fa81d19cff95fc79d2afede729e83ca61193d70b
 Postgresql-Catversion: 202506291-1800
 
+Package: postgresql-18-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 24951
+Depends: postgresql-18 (= 18.2-4-custom-32k)
+Filename: ./postgresql-18-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 20508188
+MD5sum: 31bec90e0c0bf253c960a67c270cc6d4
+SHA1: 9450cdc8d0b3e4444cefba9ae946b22aa392282a
+SHA256: c706dd93fb1c3e1f22ffa0df05d2d4a827e40367bd6dfc61fe6315b0c4f37f01
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-18
+Build-Ids: 070c2847529df9a2de29370cd4cadd512d0e54d6 0abd3b8e97295bcd7aa4685a32c77021f762646e 1033fe5d16f7bb59b16ad293bf0e6342bab22619 1754c4f0401ffec794ee08cdd6ed3d66df3cc436 18cae0e98873fe87399d32bc2b62c14ad56e650d 18fcd1d4492d8028b3b52678bfab3c60325c8fd6 1c6b8c30425f7a8c407c2689f722039131b43c6b 1cf7f52cc7557e27b6c09a5eeaed462128538304 1d914a1600c6149c632ac14d111b3643c1165c3c 1e3e575c7245bf44aab5b71fcbdc4f1bfabcbbf0 1ef70803ef2a18d7cd78b7fe6a63dabf882f8193 20efb277bbcbc49415a1ce69490a606a3ba613dd 212fb6e45d49fd91a5bc7ec3103cc25a9e328563 2162942b1b3161182b79d5ba259627041295b0d5 28220d614d28916c74e7914e9d81589ceb93d500 2874623a0bc85d170b4cc14345666aebad7f04f2 2bc7afab18bf675d81292131e60d279e988db007 2faf318a11bd8287072332f7728a34ea8d122580 317198a916a7102e09d951fd5dfb4122d99ad440 32b0258e3e9d691691a2a7565caff7a764b987b8 33498d8456f64068b2e7252534ff4f646dfcbd0b 3381338ac4bdc0a79e7e590ded31adbc07e25e20 3520cd34a9bd3fbb416bf29760b9048e8b78896c 3c6cc761f6a8937466d6cdacf0b89d1cfd584375 433d7ed74715c136b20ffb40c389738e9ebd73a0 4353f8ff9bd6519a35c352f9e647b5a3b503ee3e 4b4f1d2f5e1ff3cc4e938dcd174b8258ff0e1175 4dcb00cf2feef26a5e2b78e64fad68a84a8afa06 4ed1e451fdb00d08b5d9ca9838c5782a69fb01ff 59140fb0c2f8a4d9ddd2d7144a12ba6b49aa683b 5d446a1b233fa5856651d547b11d9c3c6473534c 62da2c1849afe7c99e26bdb36eb3934331eae91a 662d1cabd7343c7c2694c0f6304fe59db44612d4 6a00f8a3cf0d0ad27921569fca462cc14e84a77b 6d47ea6f61e7cb85dbaf40001d70f1605f714c84 70b6ca08bf112b32c0086858411eba55168ad1b3 736080aa4375406da720140e4cfba4f6512ad104 7a0d3430eccc404244b7cb994b7090971a563719 84155390838ca925579e705f2da3a56d7f6fad87 84ed32531f0080cce340622491f1689dc6744372 88705542ca2cb1b457baa63250c53fbd53b4adfe 8a752885beca29685ba92cf0feaad595cb5ad241 92a492f7aa4dbef2481a9f4edcf1dec22941944e 93dbd576bcaea611e11bea259b1bf431155722fc 94085dcc93739bc0eda9a0cf27190370a2e70ea2 9633491812a51d78eecda29690f920baf7fb2193 9cea1fe6f738591907575889852651bc66eef564 9d5ee91e53d5b5f90fa99951052366cb9e8bb804 9d7790a4fa65ab3f9234b721ee33f9a2749048ba a11bc005524caab5b7af7a743bb4178fa33201c5 a3978f3f91b7c2d358e271c1a4a12f26ad66cb12 a4723ad0709ea3bf82ca11f7378333aaa0803ab5 a47ddc9f5ea345b9edcb0cd63afcd332d35fd85c a8d813de18c9443bccdd152f4953c31b3573a1bc a948fdaa0fcabf5c67aafd1744d4920102493a36 ab491c8a76b108919ecad891bbb4f3acf4c531af abe5e58332d186b245600bb0c46db5a346902db8 ad2223c5c617975378a8853f9acc6d517d4aa7cb b529fec67ea8b1db5c9160491484ef6d81756746 b5424da61ae2aa6b565e3578e8e15539f53b8d2d b6921c613fad9ce833c04ec1079f83e6b4248e48 b6f69f928a170eba7d249f731aca4f9585223142 b74bbf794ee59fb203c3b8e33ba8f76c9d1603c5 ba9b94da5f10caaaa40a0f8a6ff83e1bcc783c94 bb9b781ec9041e18330f155a2ef929449df19d91 be03097c349ce0a6c138e3688dc8adb6e5442d19 bfd9356ce7a08740866e51e5794a38cf596bf59a c657aceca47835d9daf9a4f1213596fcffcfd863 c6caf0dfbfb0756a56d151cfabfc7fee971d639d c9ba74acebef63e3245d7d6982a8c25ad2b719c8 ca4c4e280a2cc30480f907f742923c0a307ad49b cc6bb61f9e9d238e6fcdb49f2e5d3f703ac56037 cc90ef66da89ce8b01abc2826cb2cb9f8fe6a3cb cd30ac2524de1051bda0b64d24210bd653c73880 cd95337f78cf4864f8891ea4d0e298ce5e6bc63f cf5330ea4607366c1186c0aa66d02863d5c4184e d20869b610ba5c3bed4950950059cb1aecb23b76 d2982b3a8ba2af0b357e1ccb46700ac243dd060e d30731312031401139c558579a8febd9f49d8435 d4e0df0f99d92b58372a9072e7f1775786fc79b7 d5144a90541cc9859f6a36c1ee68e78f432d7ae8 d629237807c7d65f761dc6cd420b1ac55c40ba55 d64ac4f6227dad58fb6a9cbc27ea6f8adfc25f79 d8da75ef53e8b57b63ad610c126a70959ff7e69e dc3b2d087cb52ff5dc6de4cd9eb4db1eaf1a004d de1c9828b1df2e5e1242d1959d7aef0f110e4c1b dfa8c65dc9ba1e7668fb6fd29374c2d44a2747ca e3f0413bbb5e71bb16ab6c50f270c76f2def3cf9 e42f6151a554324c5768688049c6dbd40fd06560 f10fb37e6472eca570532cb77f1f0538bf9b7083 f1bff6f0c2064575457bcb822467a211d8081826 f42f11413aa661b5a4113e2bbde269435e438f99 f5b47b0a06b822e5edc3c86685607ae0f0b989c8 f701da8ff10e8d458d4dab20d70e29108cf47749 f812910cea9f4e793b43dd75daccf8a59880c41d faf039f16ac2f83c65fba4e33dd580db65c039d9 fe8b7a9a09d55e5a4347a553846047778093a860
+Postgresql-Catversion: 202506291-1800
+
 Package: postgresql-18-jit
 Source: postgresql-18
 Version: 18.1-4-custom-32k
@@ -1386,6 +1729,33 @@ Size: 10715384
 MD5sum: 8611236f31ac89d0cffe6f1f6dc93135
 SHA1: 0ed203332774c25365cbc5d51951f90e901a7098
 SHA256: 84778e0aadd2c2943aeb63154dfece2fdfcdc536b7a3ab7286c2c1ddd55e5132
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: LLVM JIT support for PostgreSQL 18
+ PostgreSQL, also known as Postgres, is a free and open-source relational
+ database management system (RDBMS) emphasizing extensibility and SQL
+ compliance. It features transactions with Atomicity, Consistency, Isolation,
+ Durability (ACID) properties, automatically updatable views, materialized
+ views, triggers, foreign keys, and stored procedures. It is designed to handle
+ a range of workloads, from single machines to data warehouses or Web services
+ with many concurrent users.
+ .
+ This package provides LLVM-based query JITing for PostgreSQL 18.
+
+Package: postgresql-18-jit
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 24764
+Depends: postgresql-18 (= 18.2-4-custom-32k), libc6 (>= 2.17), libgcc-s1 (>= 3.3.1), libllvm18, libstdc++6 (>= 5.2)
+Provides: postgresql-18-jit-llvm (= 18)
+Filename: ./postgresql-18-jit_18.2-4-custom-32k_arm64.deb
+Size: 10729786
+MD5sum: 9d57f8d14bd9c229aaa08548939d9920
+SHA1: 7cf7c7564bf9fb140392bb4e1fd5c08a50693460
+SHA256: 9d073180c4d1b90dad7f1fff3ddd9442175739b5e6d42ff74fa58abca44c9e50
 Section: database
 Priority: optional
 Homepage: http://www.postgresql.org/
@@ -1418,6 +1788,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-18-jit
 Build-Ids: 80c969054e467fa969da1ea91abf339d99c937c5
+
+Package: postgresql-18-jit-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1649
+Depends: postgresql-18-jit (= 18.2-4-custom-32k)
+Filename: ./postgresql-18-jit-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 1615720
+MD5sum: 3fff96a7f1afe4aed91c1f474ce5abe4
+SHA1: 4b305cde6123b5bb52ba7d74941949fc96586de4
+SHA256: 117d7edff79a44d338fb8e7a021599384094fc537fb934b90b5abf426dfff141
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-18-jit
+Build-Ids: df553ba108986f2804df9007acf18a01ca7aed02
 
 Package: postgresql-18-vchord
 Version: 0.5.3-1
@@ -1636,6 +2025,37 @@ Description: front-end programs for PostgreSQL 18
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-client-18
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 10840
+Depends: libpq5 (>= 18.2-4-custom), postgresql-client-common (>= 182~), sensible-utils, libc6 (>= 2.38), liblz4-1 (>= 0.0~r127), libreadline8t64 (>= 6.0), libssl3t64 (>= 3.0.0), libzstd1 (>= 1.5.5), zlib1g (>= 1:1.1.4)
+Suggests: postgresql-18, postgresql-doc-18
+Provides: postgresql-client
+Filename: ./postgresql-client-18_18.2-4-custom-32k_arm64.deb
+Size: 2223736
+MD5sum: bd6c562363e9a5897e0109a37a7b3ebc
+SHA1: af119350865b4177ec3cdf2313960af94bd751bd
+SHA256: 9d230fd195aef226333f3c86991be18262463ccdc57b13d1d2c56ab83c2caedb
+Section: database
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://www.postgresql.org/
+Description: front-end programs for PostgreSQL 18
+ This package contains client and administrative programs for
+ PostgreSQL: these are the interactive terminal client psql and
+ programs for creating and removing users and databases.
+ .
+ This is the client package for PostgreSQL 18. If you install
+ PostgreSQL 18 on a standalone machine, you need the server package
+ postgresql-18, too. On a network, you can install this package on
+ many client machines, while the server package may be installed on
+ only one machine.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-client-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -1654,6 +2074,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-client-18
 Build-Ids: 02448660bf9370cb9018f5af473dae6c12c7e0e9 0ac94a395345ea1a3202b43bb64c59e7ec1a9e40 1cc35b721635d104c04a3b49c1f578720d453db5 2d9fef48fd7280713a15ae99ae9dbe2745e3e0c5 3c22f7279046539fd65a6deef839fb577584fbd3 4e245c7307d829b07b2ccdf65e72fb98f91d7c88 610c058c423ad41718c54251cb38073b03e667d8 6e7b7422254e160cfa897e03393bcbf777d87652 7ab8e44c8a84f7bac40a43a116cfb581b8e0564c 7b715118ada00f7eb2c178ff13573d3182afb8d5 7bb9253b37971bf0cfb54490aadab6a530ccd7c3 7cf0a3e0019bc49a0839d76ba3ce743539030db0 7ee8565a1a0a6b6fab4b47fb9edb0b5bb0b66d70 7ff8ccd774fef9223198e174dd82f6d1f65dcfee 8ed21cfc966afefae8b99967a3606a28a9a38b8c 9a30685cdd47a0b557a5b80a3198f0f9b1fc9ea4 accbd00523d4a46c886713043a4945947546dbd1 b00ddc2074dc08f446a0f994bf9fb8645eb0c3f8 ceedbdb0a17521dbf70fd849e20c8a0a3084996c d0b59e69e1046ba860eedc982e24d43d7eb575a7 d937150dd79cda9238820896275d6e4b2523ec2c f470b824035481d097622f92aa8ef891e84836c8
+
+Package: postgresql-client-18-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 3726
+Depends: postgresql-client-18 (= 18.2-4-custom-32k)
+Filename: ./postgresql-client-18-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 2479474
+MD5sum: 5c18d059ad82b9c6fa9c33b46f796635
+SHA1: bd4fe90a6235aabe86cb1e2ed5d2f45162600a39
+SHA256: fb61de34d71ca6a72e6f023d0e9e45f950d27c3414786577d805d6931b735c42
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-client-18
+Build-Ids: 0301dab5597a0f637bbb9595e7b3b138228d06f8 0cf718792466cb0385d2e45ec92b76feced26f88 1776494d4691a035c1a76a866dc125d35081d97b 25c7c556beb731b1082bc2691968b3a53d82d7bb 301824b6bcb10de0c26ef54136e349a9b267508d 38d621172ced3f9ae21e9821a39fd2c2122ebaf5 3a04eabd3e0f4d3f046dcb164f63226e9e6a88c0 4d2173a339e6219b302511120c28faf259fef229 65da1e30038ab7a20c04859f53f6654c2926a166 6d4d93afd98f0d3fafa384a6e76ce278eea972bb 7426ce107bb3dc50f6e74608d3a83ffd96be0808 7f3c3237f314386cb4f90857c347b94c1d649372 b12cbd2e53c8a992d1d635f6463233fb0097f292 c24e74541d5ef3502b53e52fb01b4caf0bc534af cbb1a659a649dea24bff17cb47db7650be542d66 d10987e7ea97f783f37641c5958fd842a191f142 d5038b829c0a69d3cbc70c8006bd7d4d6a92fb06 db21d230ef0ad3b226354643ec28867de8c7fb74 deff5b00b4b1174e3cb4a727734f0a95b89dead5 eac7cba3560e92996b591d1739a162a19c73a6a1 f8a3cb38159049d7e52e7d686a0d63d3afc5bdf7 fcea661f0d51eb47f86e3448942697ffa8e26e77
 
 Package: postgresql-common-dev
 Source: postgresql-common
@@ -1812,6 +2251,27 @@ Description: documentation for the PostgreSQL database management system
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-doc-18
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: all
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 17364
+Filename: ./postgresql-doc-18_18.2-4-custom-32k_all.deb
+Size: 2196960
+MD5sum: 0bd262b714bccbe74ee4e32288fa07d4
+SHA1: 12162c8f565b671633d1988201f5858713cb9461
+SHA256: bea29f355b91b13b132b51d144f497053d6c830f84313e22add149fd8c007b1e
+Section: doc
+Priority: optional
+Multi-Arch: foreign
+Homepage: http://www.postgresql.org/
+Description: documentation for the PostgreSQL database management system
+ This package contains all README files, user manual, and examples for
+ PostgreSQL 18. The manual is in HTML format.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-plperl-17
 Source: postgresql-17
 Version: 17.4-3custom
@@ -1950,6 +2410,29 @@ Description: PL/Perl procedural language for PostgreSQL 18
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-plperl-18
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 540
+Depends: perl, postgresql-18 (= 18.2-4-custom-32k), libc6 (>= 2.34), libperl5.38t64 (>= 5.38.2)
+Provides: postgresql-plperl
+Filename: ./postgresql-plperl-18_18.2-4-custom-32k_arm64.deb
+Size: 73044
+MD5sum: e85bbdb14929a0acf8e52091989e10f2
+SHA1: 675e4be11e989e71391d130926efb309ed5b99aa
+SHA256: bee7b670b5fa3c33e7207ec62e6c5521626986d92f7f4ad84c719ba3dd68e640
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: PL/Perl procedural language for PostgreSQL 18
+ PL/Perl enables an SQL developer to write procedural language functions
+ for PostgreSQL 18 in Perl.  You need this package if you have any
+ PostgreSQL 18 functions that use the languages plperl or plperlu.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-plperl-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -1968,6 +2451,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-plperl-18
 Build-Ids: 0b750181d2a2cf222149118801f223e7543eee3d 4158df02d9cf43571e99e9b5659647bb8be3b81c 6ea62e621f6a0f30c6fcbe0806e125eaa44c584b f7d5990d1f84849a9ee2d5fff1d75d612ad14884
+
+Package: postgresql-plperl-18-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 259
+Depends: postgresql-plperl-18 (= 18.2-4-custom-32k)
+Filename: ./postgresql-plperl-18-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 199668
+MD5sum: 016738b00eff69b5540d6b201ce11934
+SHA1: d2eb95b120c12435f07003c3c45c411edc55a85a
+SHA256: 5c27a72e0bb05efa7c9b291738c785ed79e31c7cbb1b227204e1d27125afca91
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-plperl-18
+Build-Ids: 176eeb1422b8bdbbe5b9695fe321a844140efa80 201699586cdb68bfcb5a80d32ab965463fb2f1a3 4a4f74a34d4e95e6089e69b8ef7d5b63d4cb2591 a951e33d8ed00ade00680d65ae61fc73c4b99fee
 
 Package: postgresql-plpython3-17
 Source: postgresql-17
@@ -2107,6 +2609,29 @@ Description: PL/Python 3 procedural language for PostgreSQL 18
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-plpython3-18
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 637
+Depends: postgresql-18 (= 18.2-4-custom-32k), libc6 (>= 2.17), libpython3.12t64 (>= 3.12.1)
+Provides: postgresql-plpython3
+Filename: ./postgresql-plpython3-18_18.2-4-custom-32k_arm64.deb
+Size: 99352
+MD5sum: 67c6fbacdd852109e7ace72c64fc124e
+SHA1: 859c7b2b068ddecfd3589d591980a3c0ec2416e0
+SHA256: 27c8d7b6c1092e91300db42283ee02427c0869f16ddf1bce77526f2d6bd9c542
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: PL/Python 3 procedural language for PostgreSQL 18
+ PL/Python 3 enables an SQL developer to write procedural language functions
+ for PostgreSQL 18 in Python 3.  You need this package if you have any
+ PostgreSQL 18 functions that use the languages plpython3 or plpython3u.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-plpython3-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -2125,6 +2650,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-plpython3-18
 Build-Ids: 56a1a71947d0ccbdee0d04dd2791935d9754a01a 88adaedf504eae27c998dc236f461a88dee37564 d510c8bcac9705a07b454eb9b1b7f1ba5363f7c9 f2d57fa65eef43131f153a4752d9ae94fc3290fe
+
+Package: postgresql-plpython3-18-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 243
+Depends: postgresql-plpython3-18 (= 18.2-4-custom-32k)
+Filename: ./postgresql-plpython3-18-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 170676
+MD5sum: 028e8368feab230fdff7f2f4ff9bd85c
+SHA1: 467675ffea7e8888c9dbd12b8a27bd3b99cc4fe8
+SHA256: 2aae2a0b17da33245676b20d5a32812a5188e81c4c5b0a349e11976cfff1f625
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-plpython3-18
+Build-Ids: 05a3b0a65f83b390105a501b5dbbc3fd1a6124d0 2a500aec282ee28b749208843467482c05928ba0 2caf3651b30c6685c426fad9fe64525454519d63 908fca7316f79acfb589b775329c8498d1e18c53
 
 Package: postgresql-pltcl-17
 Source: postgresql-17
@@ -2264,6 +2808,29 @@ Description: PL/Tcl procedural language for PostgreSQL 18
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-pltcl-18
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 204
+Depends: postgresql-18 (= 18.2-4-custom-32k), libc6 (>= 2.17), libtcl8.6 (>= 8.6.0)
+Provides: postgresql-pltcl
+Filename: ./postgresql-pltcl-18_18.2-4-custom-32k_arm64.deb
+Size: 44452
+MD5sum: a40c6a4d5cf4189ae1bc09d5975c8349
+SHA1: 6d07c117b43f07e9aa42535680fc3b04b1a8d941
+SHA256: f4dec4c20a0ac47a358ad50010f7153f2ebf8483263cc12255c61a5d1ab9bca5
+Section: database
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: PL/Tcl procedural language for PostgreSQL 18
+ PL/Tcl enables an SQL developer to write procedural language functions
+ for PostgreSQL 18 in Tcl.  You need this package if you have any
+ PostgreSQL 18 functions that use the languages pltcl or pltclu.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-pltcl-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -2282,6 +2849,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-pltcl-18
 Build-Ids: 5b719778c0303548c7187dd242b354691044f981
+
+Package: postgresql-pltcl-18-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 110
+Depends: postgresql-pltcl-18 (= 18.2-4-custom-32k)
+Filename: ./postgresql-pltcl-18-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 88582
+MD5sum: 064919ddb8302c6e25c6402df2c715da
+SHA1: 15b3f4ba1a3bd8645ead0a03920177133016d85a
+SHA256: 9cfa1fddcb1d22b54ee124a017de30d4c0eec8044205b336df7b8e88a7b96088
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-pltcl-18
+Build-Ids: b6f04813a5de63a4a621242b3ad053d8fcff1777
 
 Package: postgresql-server-dev-17
 Source: postgresql-17
@@ -2433,6 +3019,31 @@ Description: development files for PostgreSQL 18 server-side programming
  .
  PostgreSQL is an object-relational SQL database management system.
 
+Package: postgresql-server-dev-18
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8723
+Depends: clang-18, libpq-dev (>= 18~~), llvm-18-dev, postgresql-client-18 (= 18.2-4-custom-32k), postgresql-common (>= 142~), libc6 (>= 2.38)
+Filename: ./postgresql-server-dev-18_18.2-4-custom-32k_arm64.deb
+Size: 1465664
+MD5sum: 335b429f89fd2e94471ec96b924a0caf
+SHA1: 8c3beb242937b84be6b7d84cd77a33729e7fa7a8
+SHA256: 61abfa5b4074f9319998655b5cbb09c7bf5d09154ba74693444a7a6563ad190a
+Section: libdevel
+Priority: optional
+Homepage: http://www.postgresql.org/
+Description: development files for PostgreSQL 18 server-side programming
+ Header files for compiling SPI code to link into PostgreSQL's backend; for
+ example, for C functions to be called from SQL.
+ .
+ This package also contains the Makefiles necessary for building add-on
+ modules of PostgreSQL, which would otherwise have to be built in the
+ PostgreSQL source-code tree.
+ .
+ PostgreSQL is an object-relational SQL database management system.
+
 Package: postgresql-server-dev-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -2451,6 +3062,25 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-server-dev-18
 Build-Ids: 4e568206078a25fc87f0905166f77c82e9644ba9
+
+Package: postgresql-server-dev-18-dbgsym
+Package-Type: ddeb
+Source: postgresql-18
+Version: 18.2-4-custom-32k
+Auto-Built-Package: debug-symbols
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 82
+Depends: postgresql-server-dev-18 (= 18.2-4-custom-32k)
+Filename: ./postgresql-server-dev-18-dbgsym_18.2-4-custom-32k_arm64.deb
+Size: 55520
+MD5sum: e2871d4a745063293c98beeadf68a4f8
+SHA1: e1d8998e5ef8fbe8f26ddd074cb4cba56a885d45
+SHA256: 90600c316e5a3a273892858ae124b219f12a9c96e96cf3bf5b06842bab2dfcb2
+Section: debug
+Priority: optional
+Description: debug symbols for postgresql-server-dev-18
+Build-Ids: 39d3f87ec7b6c2a5c6d6e499d60153ec23ce90d5
 
 Package: postgresql_anonymizer_17
 Version: 2.1.0
