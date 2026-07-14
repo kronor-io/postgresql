@@ -2032,6 +2032,26 @@ Multi-Arch: same
 Description: debug symbols for libpq5
 Build-Ids: 066ccd8d0acb166cb0da496b4a4fec935d21fd9a
 
+Package: pg-auto-failover-cli
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1015
+Depends: openssl, libc6 (>= 2.38), libncurses6 (>= 6), libpq5 (>= 9.1~), libtinfo6 (>= 6)
+Recommends: postgresql-auto-failover
+Filename: ./pg-auto-failover-cli_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 453704
+MD5sum: 6ab113c27963098a95030f312b4a5d54
+SHA1: e6cae9b56e5e81a5a8bf0ce82951d53ae50b59a3
+SHA256: c52863daeefe87d3dc0c44bc5e4879c50cac1194977d7ecdfe6c3af3734ee0b4
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Command line interface and service to manage pg auto failover Clusters
+ This CLI is used to manage pg_auto_failover installations to provide High
+ Availability to Postgres.
+
 Package: pg-graphql
 Version: 1.5.11
 Architecture: arm64
@@ -2053,6 +2073,1601 @@ MD5sum: e90d1c2adfe870037645f8278b44341e
 SHA1: c4c1325a8c819dd0fa6325a8ad0fa2bad91f7210
 SHA256: 1a0327cbd406970acb824a514933a34367ab8014b3d968170f7fab015e349910
 Description: A PostgreSQL extension
+
+Package: postgresql-10-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 102
+Depends: postgresql-10, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Filename: ./postgresql-10-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 35088
+MD5sum: bf4d0de4b2a46c63b789a32b2b502803
+SHA1: 29784566658b9d66649732a0ad57b6b74a846d7c
+SHA256: 97cd21854ba36e4f0873312f593967db62c1ca97f386affddf4668db536d255e
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-10-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 125
+Depends: postgresql-10, libc6 (>= 2.38)
+Filename: ./postgresql-10-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 37672
+MD5sum: 1e2fee579c56ad81cd2b9ceb84165224
+SHA1: 5515803f4deb721bc1966df356041b2abdfb135d
+SHA256: 4edf7f3f30253ef5156766d2ffe6282778fefb8f4762cf43d10f55f53dcb606b
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-10-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 113
+Depends: postgresql-10, libc6 (>= 2.38)
+Filename: ./postgresql-10-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 26260
+MD5sum: 6c4aa9f6e2cef92d36a3df8d9110eebb
+SHA1: 60376b05242fa4a52511759f837f2e75174338ca
+SHA256: a3dd6f272a0903c4fe0b1d9a62e0d3fdd806fe8362bf16decfbaf31a2c82f564
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-10-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 173
+Depends: postgresql-10, libc6 (>= 2.17)
+Filename: ./postgresql-10-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 45428
+MD5sum: 1c403b19ffd492ddfb6d9b82de9686a6
+SHA1: 64abdce6c7e24f552ae148f560b7b0dc1cf7055b
+SHA256: 15f83e447ab25c79d9abd6e61a79130fde7bcf65d3f6af76521a3921701fcbb7
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-10-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 566
+Depends: postgresql-contrib-10, postgresql-10, libc6 (>= 2.38)
+Filename: ./postgresql-10-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 34558
+MD5sum: e8a06d3c3a330b28f0475ae2d97aea91
+SHA1: 5c3d0d39d6bd02658aac10050cce1a74bb0a1a3d
+SHA256: bab7583b2730bc420aab98ebaf721099f53e0b0dd297922099911137de921e33
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-10-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 260
+Depends: postgresql-10, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Filename: ./postgresql-10-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 73230
+MD5sum: 1cc7c4465c9f165e6c870247c9e4bd29
+SHA1: 70f49dd9db187abe075605a62d4c2acd028e7008
+SHA256: 2928f5f3dab3b2bd6986d1f8c4a77e040b7955d53ff6be64d964ae9523cb320b
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 10.
+
+Package: postgresql-10-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 148
+Depends: postgresql-10, libc6 (>= 2.38)
+Filename: ./postgresql-10-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 25786
+MD5sum: cfd3784fc2bcddfe7473c1b3d904c3c4
+SHA1: 14aeee2ae3d988e24801f9ef1651f56a2c6b6a5c
+SHA256: 22f37c86cd88fbf7c9e73600ad85ff5242a59a09b3b8ca9198465c360db9859b
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-11-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1049
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-11, libc6 (>= 2.38), libpq5 (>= 8.4~)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-11-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 383620
+MD5sum: 8691535474d192bce7465a49ef08f00e
+SHA1: eb4a68b8e1a92444d43b7754f096d170d6b4c96b
+SHA256: 10bf175a23881c5716807c3fd1cc2f5428212a224b93c10d12814080b78def85
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-11-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 233
+Depends: postgresql-11, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 105648
+MD5sum: e5ecfa11c68a142c58067914c7a90a76
+SHA1: 78ba5e734eea11231bcea9edd984a658c1706c33
+SHA256: b82da0d0593d7f866170013ed5ab3fd841d7b4e2972419bac58482eaf6f1a245
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-11-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 217
+Depends: postgresql-11, libc6 (>= 2.38)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 87574
+MD5sum: 93674911061d6f142f2b4a931c2a38df
+SHA1: 0e7c0f09aef78f470352a15bc28262dfd07e1850
+SHA256: 80035e2be24e4987c9826a691603f259095c8ee56a62f4db0229243206ce6a53
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-11-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 197
+Depends: postgresql-11, libc6 (>= 2.38)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 74398
+MD5sum: 1f138c7b53e5ca1af33d07d535e3ff4a
+SHA1: a248c5f1f91c992ba10ce4970ac4b3cfa4f67c32
+SHA256: 513830c0d9326738df8791ff64969b47e89dc164d3af6ae9568871828c6723ed
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-11-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 344
+Depends: postgresql-11, libc6 (>= 2.17)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 139438
+MD5sum: 5693a102ab0a92f67f0222ed64df5064
+SHA1: 5d58ed5f1a4a9627be306c5b9f3c33a3cc81ca11
+SHA256: 803b1dd9bfb604046a5065c42f84b8cd83876cee6930cd51226c52ea458be6b5
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-11-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 591
+Depends: postgresql-contrib-11, postgresql-11, libc6 (>= 2.38)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 49904
+MD5sum: 1f88353ac063f3e0edd4426351aa551b
+SHA1: 86b5180bf5f98eb55db866b441ca5d12f0327cf1
+SHA256: 40b24fd39058b5294c5f5ba4438fb1325038b85cf146043cb7ec0201fb4dea37
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-11-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 308
+Depends: postgresql-11, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 101184
+MD5sum: a148fdc85e1e68cd0c7121696af7f6a3
+SHA1: 0f34dac2955d30f0637fca1a07b446435c59c94d
+SHA256: d108d9b071c3264fd6f109dfee32ae0077d44d14564fb6cd2922473dd15993e5
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 11.
+
+Package: postgresql-11-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 178
+Depends: postgresql-11, libc6 (>= 2.38)
+Breaks: postgresql-11-jit-llvm (<< 15)
+Filename: ./postgresql-11-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 41092
+MD5sum: 352a6028aee8f698849e52277a64fa48
+SHA1: 30d95af870769dd2b0a6d988eefc36daea0e8b12
+SHA256: 88dee97d695991393af0ccafe79ce37c56568c449965c191cb59926cea67c7c7
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-12-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1039
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-12, libc6 (>= 2.38), libpq5 (>= 8.4~)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-12-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 377678
+MD5sum: 0cd071251c11a56f2beecf754ccab9c3
+SHA1: 2b1fe57f61bde324b628619d74b0b3a87a058000
+SHA256: 23d448300e9ab627856b2b0948dd7a8b65810738ab639b5e19073776892269e2
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-12-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 218
+Depends: postgresql-12, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 94568
+MD5sum: df464e316e9187289b5dbbef335da4c9
+SHA1: aae4007d538c5ded4b460bbcda7e47e3c626ded1
+SHA256: a07b752ed4c80ed61955a06025f48bb816a0d23c057a569231fda9cc389013a7
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-12-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 212
+Depends: postgresql-12, libc6 (>= 2.38)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 82272
+MD5sum: 0dd0621039087cb16cf12fbd7109bc13
+SHA1: 0f8912826fc705f4a11600d95097b4e6181d589d
+SHA256: 072e3b147222e0bea6768f88c2ec0a550d74ffd0edff6da3827095e4a6b20ff4
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-12-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 183
+Depends: postgresql-12, libc6 (>= 2.38)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 61882
+MD5sum: e29d4d33b0a3a55475d54c322332c6c8
+SHA1: 8884e7d960d776699f21e617cef5efc1a76f9936
+SHA256: 17ba06656da856564a9625953ddf7f74503fffab7a80bd9d65c55587f1596532
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-12-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 338
+Depends: postgresql-12, libc6 (>= 2.17)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 130772
+MD5sum: 5b82b20dc15ddde791d75c79431db810
+SHA1: 6b117f21ea7cb5b47470db24163d961a7ec5c572
+SHA256: 7748aaeb8ee8667a6e88c24c4a8a90432e54dcd1c3f4a820fdb4ebd9155656fa
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-12-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 589
+Depends: postgresql-contrib-12, postgresql-12, libc6 (>= 2.38)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 47968
+MD5sum: b85c5fc54ce616ddfa76744b43134f70
+SHA1: da608a9512841788cba5d877f2df20cffd79e9e2
+SHA256: 50ba788a19a4c607923622b15ab70ad228f34e35ed88f344f91cbfaf74765ac7
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-12-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 305
+Depends: postgresql-12, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 102990
+MD5sum: e68b642ff5d41e7c590d2b8790f03b8d
+SHA1: 68add3c2449ed9062fa8cccc38f16cda7d9ce2f0
+SHA256: eac62a4c0a4cebe2f75a49b13f8baf2b4d53e8b3844f893b326b7f1526680231
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 12.
+
+Package: postgresql-12-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 177
+Depends: postgresql-12, libc6 (>= 2.38)
+Breaks: postgresql-12-jit-llvm (<< 19)
+Filename: ./postgresql-12-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40438
+MD5sum: 36a953eb2da44252490894559e78d2c9
+SHA1: c56ec69e25d176c0bb69dae4aa449697327537b2
+SHA256: 8e861961c64143b69942ff201480cc631376be4e7112adb3faf55ed45cc5063b
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-13-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1055
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-13, libc6 (>= 2.38), libpq5 (>= 8.4~)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-13-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 384888
+MD5sum: 54c8d7085c72ff6e6940ac63838577a1
+SHA1: 6fe30851c5f11f4a7b1d3ffd8377b3a8c494df59
+SHA256: 6269b27fccbcacd086b8ce17fece7b0847debfb7df05d43bccac03806f0dff2f
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-13-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 220
+Depends: postgresql-13, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 94870
+MD5sum: 2b5c5ee4f5418710c503ad014a426084
+SHA1: c0419a0aef0322bd5ec5f39e8145725328a95ef4
+SHA256: 66e7b3c51b008da20cbfa769f5f54d26e4fa19e7ef3fe4cad2b6ac04efd06a84
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-13-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 211
+Depends: postgresql-13, libc6 (>= 2.38)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 82104
+MD5sum: 98516ab7aaea73d7f066f3b9044f0c1e
+SHA1: 5b755de4054f6512570b401e43cbc5d5a0b46ebb
+SHA256: 9b0ddac71985578ec2612a8e9126847544e1e3deb03a5b36eba18fc404485390
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-13-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 183
+Depends: postgresql-13, libc6 (>= 2.38)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 62708
+MD5sum: c4b5e5d755bab339cfdacb78d11a0987
+SHA1: 6780235b1a07840aa66707f1fb3344c997e7f5bf
+SHA256: 80fde6124d37346c8a4bad3fa6d404efa19bc81e3084e9cd56a02ca7328894ed
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-13-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 339
+Depends: postgresql-13, libc6 (>= 2.17)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 131886
+MD5sum: 75609ce72a0e7f4b090a290419577c42
+SHA1: 537450ad3df858fea7afe2da74bd85e81aeaa7cb
+SHA256: 96cce8a70c3452658feaac0896b05ffcc26ff312ff12ac076d2e9b2a5dd7008a
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-13-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 589
+Depends: postgresql-contrib-13, postgresql-13, libc6 (>= 2.38)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 48018
+MD5sum: 03be90e91e34c38874556297196c850f
+SHA1: d354dde0f3a2abe95e335f57cbd7c577cb8a90e0
+SHA256: 5a54e7c7021c51c4b3b1a3dfff7f823d7e73a8edd8aa1fb4ef72f47802e8b1dc
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-13-pgvector
+Source: pgvector
+Version: 0.8.5-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 682
+Depends: postgresql-13, libc6 (>= 2.38)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-pgvector_0.8.5-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 249774
+MD5sum: f15fbb2b154cd2ca8816ce3fdb494c09
+SHA1: 82003a3fe71bd0e65e1d989aa582401f46db30c7
+SHA256: 4aa3cac79a05f866f21f92de5250737714656ec09ac0bf085f0e5619a61a400d
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-13-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 306
+Depends: postgresql-13, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 104392
+MD5sum: 89e39b94c494c7ef74c834a65941394a
+SHA1: beff65815505391a9dc38db947fabdf4c0b04388
+SHA256: 3eadd86d8216b8ab510ec04ae38ce42aa1c1241f7ab072afca37d9a0f4b3579c
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 13.
+
+Package: postgresql-13-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 177
+Depends: postgresql-13, libc6 (>= 2.38)
+Breaks: postgresql-13-jit-llvm (<< 19)
+Filename: ./postgresql-13-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40726
+MD5sum: 9c9d8fd903d4c5a26ad8ea7291609eec
+SHA1: b6a4fb41003ff03d1c817a369f194777d7d69628
+SHA256: 3971aba358d9d69404ccf8d12e6afd653b1eaf8685add9738a77288e9159ea8d
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-14-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1068
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-14, libc6 (>= 2.38), libpq5 (>= 8.4~)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-14-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 388604
+MD5sum: a924afdb94de1954ced9e1f2d554390b
+SHA1: 17d89d8025738b6c5c075a9d2b9e80da6fdb93b8
+SHA256: 08c00109bfbebfca9b974faa8bb1b6b6a2a410d46e7c6cc7970ce92f0ddb2fff
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-14-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 220
+Depends: postgresql-14, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 94914
+MD5sum: 0d68f6c2b5a1e33b6aa7f89fc7a3c54d
+SHA1: 97c57331ffbe480f633ce98972a45a793e4aee15
+SHA256: 8c3cc2e818e20d43c7c7a2f6b90c139723b5b37771f5e96c8a668f3b1cc73533
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-14-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 212
+Depends: postgresql-14, libc6 (>= 2.38)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 82728
+MD5sum: 8a7dcc892f1a4ee5123328a0aa665581
+SHA1: e9c93a8000d477ff5ff63363a200f85c2b0f421f
+SHA256: cc864b30f28dd25d56ce1426d0d34c780bb6a57f598f5f3b9825ffc102cb4358
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-14-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 186
+Depends: postgresql-14, libc6 (>= 2.38)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 63340
+MD5sum: 50e4abed5cd6854d4b6448d2ed49ce45
+SHA1: 3e633873848c14431f11e4428c833ab988770731
+SHA256: df7e86ad80a5c658c5fb5ca7d82e2c82d21e940b7378ef22a53ff1fd0db4c0d4
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-14-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 340
+Depends: postgresql-14, libc6 (>= 2.17)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 132118
+MD5sum: 9f867439277115c779d0dc0561bc1f05
+SHA1: ddee1aabc2854a1e81d6dfb17c225c688679050f
+SHA256: 1fe2407e16ef61ab6d9ae348e1de0a48ab1c29dbb38b68fe8d2f585b34fe8f76
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-14-partman
+Source: pg-partman
+Version: 5.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8016
+Depends: python3, python3-psycopg2, postgresql-14, libc6 (>= 2.17)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-partman_5.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 239164
+MD5sum: 2ce75260a443771800d81cfbf0d71437
+SHA1: f93a9e34961312b2bd09d1c128aaca8603db9346
+SHA256: 524593a0028523e5bf80a12b91a845d2070e747905f60100e2d0eb282526e5b5
+Section: database
+Priority: optional
+Homepage: https://github.com/pgpartman/pg_partman
+Description: PostgreSQL Partition Manager
+ pg_partman is a PostgreSQL extension to create and manage both time-based and
+ serial-based table partition sets. Sub-partitioning is also supported. Child
+ table & trigger function creation is all managed by the extension itself.
+ Tables with existing data can also have their data partitioned in easily
+ managed smaller batches. Optional retention policy can automatically drop
+ partitions no longer needed. A background worker (BGW) process is included to
+ automatically run partition maintenance without the need of an external
+ scheduler (cron, etc) in most cases.
+
+Package: postgresql-14-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 589
+Depends: postgresql-contrib-14, postgresql-14, libc6 (>= 2.38)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 48140
+MD5sum: 0cd2910855689b689f44f92ee67338d8
+SHA1: 66dcf379730156999fb7452ac1f7c2dc3a360cfa
+SHA256: 4d32dd4794427a312a44addc1c16315303890f8a3356357fecd9da8f47134397
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-14-pgvector
+Source: pgvector
+Version: 0.8.5-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 688
+Depends: postgresql-14, libc6 (>= 2.38)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-pgvector_0.8.5-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 250998
+MD5sum: f81414179225324039d9e6e61d3946f8
+SHA1: e72770ad3a1f0465d6d4a95eda089639b287050e
+SHA256: 3e26ab61e493dadedeb076a69520fa4cde5f27ba4ce3a7d10c6adb2dc3d806ce
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-14-plpgsql-check
+Source: plpgsql-check
+Version: 2.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 749
+Depends: postgresql-14, libc6 (>= 2.17)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-plpgsql-check_2.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 322214
+MD5sum: 0a4252162b8f755e579d2ecac2e2cb51
+SHA1: 1aa661af9c2773c2fa9b9dcfe58f6fda805e8292
+SHA256: 4ab5222e31523e87e79ce029e0d39cfecd83676372f3fa82e958513b8ed2bb46
+Section: database
+Priority: optional
+Homepage: https://github.com/okbob/plpgsql_check
+Description: plpgsql_check extension for PostgreSQL
+ plpgsql_check is the next generation of plpgsql_lint for PL/pgsql source code.
+ The SQL statements inside PL/pgSQL functions are checked for semantic errors.
+ .
+ Features:
+  * check fields of referenced database objects and types inside embedded SQL
+  * using correct types of function parameters
+  * unused variables and function argumens, unmodified OUT argumens
+  * partially detection of dead code (due RETURN command)
+  * detection of missing RETURN command in function
+  * try to identify unwanted hidden casts, that can be performance issue like
+    unused indexes
+  * possibility to collect relations and functions used by function
+  * possibility to check EXECUTE stmt against SQL injection vulnerability
+
+Package: postgresql-14-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 306
+Depends: postgresql-14, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 106966
+MD5sum: 59c05737bd5c2d8cb6456855efeb5faa
+SHA1: 95e91672cee9c4bc20736c4e6fda8f130d56c678
+SHA256: d2f0b60629f1b2af5ac799b1468af66b7a1ac0ec024d0c98e289150fc9714821
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 14.
+
+Package: postgresql-14-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 178
+Depends: postgresql-14, libc6 (>= 2.38)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40622
+MD5sum: 20b160c58411bc66845d2e51689bd7a6
+SHA1: 9a9bc3087a5dac212107beb67d1944ee559291cd
+SHA256: 7aeed90b2e77d98f541cb743f8051fa65cfa77a484f67c0adae93a7242405f81
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-14-squeeze
+Source: pg-squeeze
+Version: 1.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 333
+Depends: postgresql-14, libc6 (>= 2.38)
+Breaks: postgresql-14-jit-llvm (<< 19)
+Filename: ./postgresql-14-squeeze_1.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 122084
+MD5sum: 74cbe52cb7b794d233a51158ff0181fe
+SHA1: 6a14adc57ca22ce33714789e0290138da0627c18
+SHA256: 7c1db53c61fa22205a7e9f4be7c4aca058de37080555feab6f86884122da0d33
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
+
+Package: postgresql-15-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1082
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-15, libc6 (>= 2.38), libpq5 (>= 8.4~)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-15-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 395306
+MD5sum: 0991fc025fceca0658f675b1e4651a3b
+SHA1: 0da5aeb3542a81db129508f6fe19b4cf84ce4b58
+SHA256: 7a89b976aec1c38ce16800417b4724a7e5361ce4c858996d186cc704bccefbcb
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-15-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 220
+Depends: postgresql-15, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 94748
+MD5sum: e31203989042e38df8673784cb14f344
+SHA1: 6614b7cdee4f0fc94312a76f50d5c431516799d0
+SHA256: 925980226105d6a482b656cfa605f3d00133433320921ea6aa768f9282693eab
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-15-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 212
+Depends: postgresql-15, libc6 (>= 2.38)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 82810
+MD5sum: e2bc26fcb61a5cea0e509aa0bd426f9d
+SHA1: 499ecefe73b94e854ecb2cfb2fd21dc9784b9a0b
+SHA256: 5c5ef161d3cdc7516f2b16d4bc9a885314a7c6f46252ff158ee919e303b0b162
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-15-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 186
+Depends: postgresql-15, libc6 (>= 2.38)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 63434
+MD5sum: f3cc4a5808ce4bd8c3c2dc0f13827b6d
+SHA1: cd77a4257860edeb3622b6fe4134618a4eea24cf
+SHA256: 78af525b366e49b05272747d6de7eda479841212a12b1b952888d89a13cc1f01
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-15-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 340
+Depends: postgresql-15, libc6 (>= 2.17)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 132158
+MD5sum: 76ca7dddadf8e00f18b948fb41e87bb1
+SHA1: 4e293b859828a3ff650dfa72420af8ac9861b63f
+SHA256: 694a5b47e7631624552b0756b87f4810ee0ee87b1db15a0cf590a742d1f485f7
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-15-partman
+Source: pg-partman
+Version: 5.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8016
+Depends: python3, python3-psycopg2, postgresql-15, libc6 (>= 2.17)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-partman_5.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 239258
+MD5sum: 0bbd1b4795c565a589c5872224f46bfa
+SHA1: 04da9995088d3c7959e225e5621d41f2d5b80793
+SHA256: 203f9d4ea200dda775ed69aadb2097bfe4d50461e5d305ba5913c1f4d3a2b631
+Section: database
+Priority: optional
+Homepage: https://github.com/pgpartman/pg_partman
+Description: PostgreSQL Partition Manager
+ pg_partman is a PostgreSQL extension to create and manage both time-based and
+ serial-based table partition sets. Sub-partitioning is also supported. Child
+ table & trigger function creation is all managed by the extension itself.
+ Tables with existing data can also have their data partitioned in easily
+ managed smaller batches. Optional retention policy can automatically drop
+ partitions no longer needed. A background worker (BGW) process is included to
+ automatically run partition maintenance without the need of an external
+ scheduler (cron, etc) in most cases.
+
+Package: postgresql-15-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 589
+Depends: postgresql-contrib-15, postgresql-15, libc6 (>= 2.38)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 48242
+MD5sum: 6a7bdcd5fe5cae788577e6f7b750be97
+SHA1: 8ec1e1f69ceb48f96c6c5f8753a212ed88321154
+SHA256: dba3c55ea552f429cd11478934d7e03e968d5d99a494b37b91ae7422c786791d
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-15-pgvector
+Source: pgvector
+Version: 0.8.5-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 688
+Depends: postgresql-15, libc6 (>= 2.38)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-pgvector_0.8.5-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 251172
+MD5sum: fbdc99d85c75583e950b80b628b42cb8
+SHA1: 416d1bcca8a37900f5d35156579292db2db0e5f3
+SHA256: b7c2e8040cbcdb34557b7ff6a07789236b0fe5c0d3062f4826cc070eaa0c8068
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-15-plpgsql-check
+Source: plpgsql-check
+Version: 2.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 749
+Depends: postgresql-15, libc6 (>= 2.17)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-plpgsql-check_2.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 322126
+MD5sum: 04d525e303c682b007f3daff3b462a3d
+SHA1: a60022e89206ee8c03b3679472520b33b6376a5e
+SHA256: f6e6239c66b9c0eaec3f36520cf3264cb3ef9718756995c17756185f37c183ce
+Section: database
+Priority: optional
+Homepage: https://github.com/okbob/plpgsql_check
+Description: plpgsql_check extension for PostgreSQL
+ plpgsql_check is the next generation of plpgsql_lint for PL/pgsql source code.
+ The SQL statements inside PL/pgSQL functions are checked for semantic errors.
+ .
+ Features:
+  * check fields of referenced database objects and types inside embedded SQL
+  * using correct types of function parameters
+  * unused variables and function argumens, unmodified OUT argumens
+  * partially detection of dead code (due RETURN command)
+  * detection of missing RETURN command in function
+  * try to identify unwanted hidden casts, that can be performance issue like
+    unused indexes
+  * possibility to collect relations and functions used by function
+  * possibility to check EXECUTE stmt against SQL injection vulnerability
+
+Package: postgresql-15-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 306
+Depends: postgresql-15, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 107540
+MD5sum: 3dee3914971557af4c10c533f4a0c12f
+SHA1: 000145d795f67a98401f81faa39b7e467ea36871
+SHA256: 6ecaa80bc659f7cbceeab4801e73e117fbb33e6a708085f58e7223f5dd83b25a
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 15.
+
+Package: postgresql-15-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 178
+Depends: postgresql-15, libc6 (>= 2.38)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40592
+MD5sum: 70ea8f40283aab5401bd12e2d4474c73
+SHA1: 8de35ab8d9919c0e2423f546ed5aa881be9bc079
+SHA256: 83be26c8655e39f84def521ad48f9e9706292fe21df09db3eb91ca389b11aec6
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-15-squeeze
+Source: pg-squeeze
+Version: 1.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 335
+Depends: postgresql-15, libc6 (>= 2.38)
+Breaks: postgresql-15-jit-llvm (<< 19)
+Filename: ./postgresql-15-squeeze_1.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 121892
+MD5sum: 505a6ff6758460bacbbb24f32c70f72a
+SHA1: 5bc45e0950c35d33e7693640a8d04e89ea5ec552
+SHA256: 670ed844d92bab610afef30df1f5ae25754d87e9de935dff42468604e478aa1b
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
+
+Package: postgresql-16-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1088
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-16, libc6 (>= 2.38), libpq5
+Breaks: postgresql-16-jit-llvm (<< 19)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-16-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 394482
+MD5sum: 5fe63bcdd3a8828b715480d9ebe0228f
+SHA1: b490b4f602088a944ce24dfc55f0e077b82905a7
+SHA256: 096cfb0676d7d928d538ed66f7b309aa9df66d5185216f71bc82ad6d6da5177e
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-16-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 218
+Depends: postgresql-16, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 92596
+MD5sum: ea39acc20e618c22a380a0f34939e162
+SHA1: a9fd7c6f71df46c7d8178cfe727b26f8c2eefbc7
+SHA256: 312410f53290a5e1f9bb05bb5558b47fbd5ba7fd764367ad320a01036605cff2
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-16-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 211
+Depends: postgresql-16, libc6 (>= 2.38)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 81230
+MD5sum: b29f64043440434266fb43f822a3c8bb
+SHA1: c5726124f8d63e95351f3a70f9cbd0451d668432
+SHA256: 25946b521b982f51098bb452094e5e397c9de7fdb13658d918ddb32fdf4f87d0
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-16-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 186
+Depends: postgresql-16, libc6 (>= 2.38)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 62712
+MD5sum: 8d5fb27ca540e04744c5263ca5332d2a
+SHA1: e81b345f911a48a86baacca83c2d4404c759ba47
+SHA256: 4a5f2e85cba265f388ca145363498e423222d8c6f8097175d68a618fd88fc2d7
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-16-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 340
+Depends: postgresql-16, libc6 (>= 2.17)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 130090
+MD5sum: cd50adce5ce63998e25e6c36dc906fe7
+SHA1: 2a51c349f7ceda5f458d4655a380e027d06e264d
+SHA256: a426743f4a5875e0ed959aff51d44dc718878083b5f8fea2000103f84f724cc3
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-16-partman
+Source: pg-partman
+Version: 5.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8016
+Depends: python3, python3-psycopg2, postgresql-16, libc6 (>= 2.17)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-partman_5.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 239266
+MD5sum: df45794d6c4a67517aca3aa259dbecd2
+SHA1: f9a27593d51b7787b8fdb8b18c294acebcfb4cee
+SHA256: 36251ab4bdb7da6ceef55635857abd98ceb186cde88fd4e2ad39b5f7bd8ca1c1
+Section: database
+Priority: optional
+Homepage: https://github.com/pgpartman/pg_partman
+Description: PostgreSQL Partition Manager
+ pg_partman is a PostgreSQL extension to create and manage both time-based and
+ serial-based table partition sets. Sub-partitioning is also supported. Child
+ table & trigger function creation is all managed by the extension itself.
+ Tables with existing data can also have their data partitioned in easily
+ managed smaller batches. Optional retention policy can automatically drop
+ partitions no longer needed. A background worker (BGW) process is included to
+ automatically run partition maintenance without the need of an external
+ scheduler (cron, etc) in most cases.
+
+Package: postgresql-16-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 589
+Depends: postgresql-contrib-16, postgresql-16, libc6 (>= 2.38)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 48236
+MD5sum: ecddf7d2815f5357bd057f68789075b9
+SHA1: 32436b13518fe83c4e86df17493bd7b7f6bf9378
+SHA256: 18ecfb34f1acb6667d133638672acba103a3b2b227e0a5e4173d6989338213b0
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-16-pgvector
+Source: pgvector
+Version: 0.8.5-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 688
+Depends: postgresql-16, libc6 (>= 2.38)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-pgvector_0.8.5-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 247230
+MD5sum: c6cd0a0294e2453ac0b67ca8670148c6
+SHA1: 49a9e1914b34cd0fc52bce8b844c732f7e20cdaf
+SHA256: f9a4a32ad613cf29d5f3ee3a3c0108d116fff533883c031a922ea1d1bd095bfe
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-16-plpgsql-check
+Source: plpgsql-check
+Version: 2.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 685
+Depends: postgresql-16, libc6 (>= 2.17)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-plpgsql-check_2.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 318060
+MD5sum: aa4df4baead7ab63502bc5a40b468ca9
+SHA1: 9115fd7e74f2438861faf938811448bdc4998905
+SHA256: 8aa103440f13bf6a3dfdd98bc00a13012f7dde1e727c2ad584bdaa42c24df67a
+Section: database
+Priority: optional
+Homepage: https://github.com/okbob/plpgsql_check
+Description: plpgsql_check extension for PostgreSQL
+ plpgsql_check is the next generation of plpgsql_lint for PL/pgsql source code.
+ The SQL statements inside PL/pgSQL functions are checked for semantic errors.
+ .
+ Features:
+  * check fields of referenced database objects and types inside embedded SQL
+  * using correct types of function parameters
+  * unused variables and function argumens, unmodified OUT argumens
+  * partially detection of dead code (due RETURN command)
+  * detection of missing RETURN command in function
+  * try to identify unwanted hidden casts, that can be performance issue like
+    unused indexes
+  * possibility to collect relations and functions used by function
+  * possibility to check EXECUTE stmt against SQL injection vulnerability
+
+Package: postgresql-16-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 306
+Depends: postgresql-16, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 107140
+MD5sum: 10f1219c0ef16a6483d9e91eb3c8b5bd
+SHA1: c31e05f56bf39fd48438df268cc73d186836c369
+SHA256: 5a81a714cbc9e924287d90cb7b43e5cfcf081c4886e25d43de9ddb62cc102169
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 16.
+
+Package: postgresql-16-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 178
+Depends: postgresql-16, libc6 (>= 2.38)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40550
+MD5sum: e9d8eee0b493e14e721250daf5a67aac
+SHA1: c112e6fbed420b5db941606f84e0c220419e83f7
+SHA256: 1b857de2ee3a186ecd03e9662a01843048627130355e6198cc96cada398191b5
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-16-squeeze
+Source: pg-squeeze
+Version: 1.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 335
+Depends: postgresql-16, libc6 (>= 2.38)
+Breaks: postgresql-16-jit-llvm (<< 19)
+Filename: ./postgresql-16-squeeze_1.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 121834
+MD5sum: d96df2a6c7647a643d824a61791ef991
+SHA1: 4397e4baa0e93dcc3cb978d7f36e05f3b5a61418
+SHA256: c3c11641b86bbf77cb88f928fe82b6efba5b18c82d46472ca4b50e6d561c071b
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
 
 Package: postgresql-17
 Version: 17.10-4-custom-32k
@@ -2228,6 +3843,170 @@ Description: The World's Most Advanced Open Source Relational Database
  This package provides the database server for PostgreSQL 17.
 Postgresql-Catversion: 202406281-1700
 
+Package: postgresql-17-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1102
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-17, libc6 (>= 2.38), libpq5
+Breaks: postgresql-17-jit-llvm (<< 19)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-17-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 401348
+MD5sum: 04d6c01d4f2993da5358eb203c00f481
+SHA1: 2629334e48cc9ddef9440b732561cf6d3c45eb46
+SHA256: eb236ce43405fabb280f4ad2156521828b44ded454123302655dc9c3693e92e9
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-17-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 218
+Depends: postgresql-17, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 92612
+MD5sum: e660865cc16878531aed73053ba0625c
+SHA1: eab23ae977d2e4d8dcf972c40c9f3d07f08d0f7e
+SHA256: c9dbd5b9ceada9a88394da4a5465fef2062fa596b6df4b8effff167144c35a97
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
+Package: postgresql-17-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 211
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 81234
+MD5sum: fd181d316ca0c07f1e9947c97b8e0799
+SHA1: 72f329540fa1aac8738ab3fd15c0c76dba537d5a
+SHA256: 9e5e8f1b0469d9442083456382b43366945b20404dd80ca9a77c22db0102df86
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-17-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 186
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 62706
+MD5sum: 28a23e08effafa7bcedcac8020d3fd1f
+SHA1: d68968b5dd424ada7d7b17389d508540fe155c54
+SHA256: 2e63672a993d9095fc878a589489d54ba345524cee117bd6b7a906c4ff43889c
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
+
+Package: postgresql-17-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 340
+Depends: postgresql-17, libc6 (>= 2.17)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 130428
+MD5sum: d16f475881492c7b33c07d64bc264451
+SHA1: 4a07dc92667ff69fd18f5c0a8be6b2a962479baf
+SHA256: a37b857633cbcaa3bf135703295645d75b9efe95925b598f2a1f72fcf7a7cf47
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-17-partman
+Source: pg-partman
+Version: 5.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8016
+Depends: python3, python3-psycopg2, postgresql-17, libc6 (>= 2.17)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-partman_5.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 239250
+MD5sum: cf59944c11127d0fb3246e14849cf525
+SHA1: fc34de0366c796540803d8a39128621f649b1b62
+SHA256: e5cdb4afa5c60b6da874d31a2c20561991b287b0ac8dcba9a35e26a695e0f57b
+Section: database
+Priority: optional
+Homepage: https://github.com/pgpartman/pg_partman
+Description: PostgreSQL Partition Manager
+ pg_partman is a PostgreSQL extension to create and manage both time-based and
+ serial-based table partition sets. Sub-partitioning is also supported. Child
+ table & trigger function creation is all managed by the extension itself.
+ Tables with existing data can also have their data partitioned in easily
+ managed smaller batches. Optional retention policy can automatically drop
+ partitions no longer needed. A background worker (BGW) process is included to
+ automatically run partition maintenance without the need of an external
+ scheduler (cron, etc) in most cases.
+
+Package: postgresql-17-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 589
+Depends: postgresql-contrib-17, postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 48234
+MD5sum: d14955e49bfcc97f0fd7edaa92559cdd
+SHA1: 4b910c5458ea7910396b62b8003da50607d07138
+SHA256: 781d64e8b77c8e5af0a5e121cd7c9f55ba73efe547d8b913d7b22f80e93c46f7
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
 Package: postgresql-17-pg-search
 Version: 0.15.14
 Architecture: arm64
@@ -2299,6 +4078,155 @@ Priority: optional
 Homepage: https://vectorchord.ai/
 Description: Tokenizer plugin for PostgreSQL
 License: Apache-2.0
+
+Package: postgresql-17-pgaudit
+Source: pgaudit-17
+Version: 17.1-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 137
+Depends: postgresql-17, libc6 (>= 2.17)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-pgaudit_17.1-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 49286
+MD5sum: e6f19e6613c0d597f49f631b54a8ccdf
+SHA1: 6273c92d6eca4d6d1686ee45aad7a9eb7d76b59f
+SHA256: 3b055fdadd529684950782043d5330ad899d2891e6e9d28210f6be03e94f01d3
+Section: database
+Priority: optional
+Homepage: http://pgaudit.org/
+Description: PostgreSQL Audit Extension
+ The pgAudit extension provides detailed session and/or object audit logging
+ via the standard PostgreSQL logging facility.
+ .
+ The goal of pgAudit is to provide PostgreSQL users with capability to produce
+ audit logs often required to comply with government, financial, or ISO
+ certifications.
+ .
+ An audit is an official inspection of an individual's or organization's
+ accounts, typically by an independent body. The information gathered by
+ pgAudit is properly called an audit trail or audit log.
+
+Package: postgresql-17-pgvector
+Source: pgvector
+Version: 0.8.5-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 689
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-pgvector_0.8.5-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 247832
+MD5sum: fa5619bb6ad6dbd631919e21c4a97d07
+SHA1: ba6da51210a3b990c1112639a3c5cc4b72654484
+SHA256: 22a62d1e66a27f620a5c3c5df41f16281e3538a82baf6bf805e1909de399f76d
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-17-plpgsql-check
+Source: plpgsql-check
+Version: 2.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 749
+Depends: postgresql-17, libc6 (>= 2.17)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-plpgsql-check_2.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 318026
+MD5sum: d05827b98ee5d1957f1495960af143d0
+SHA1: e5f3c02bfbd1ea99c1b9a0203e18f506848da3b1
+SHA256: 92b8297ea24a0ef04322c13c0312eedee379c361c5e3a7cf895cb2515db9f5fd
+Section: database
+Priority: optional
+Homepage: https://github.com/okbob/plpgsql_check
+Description: plpgsql_check extension for PostgreSQL
+ plpgsql_check is the next generation of plpgsql_lint for PL/pgsql source code.
+ The SQL statements inside PL/pgSQL functions are checked for semantic errors.
+ .
+ Features:
+  * check fields of referenced database objects and types inside embedded SQL
+  * using correct types of function parameters
+  * unused variables and function argumens, unmodified OUT argumens
+  * partially detection of dead code (due RETURN command)
+  * detection of missing RETURN command in function
+  * try to identify unwanted hidden casts, that can be performance issue like
+    unused indexes
+  * possibility to collect relations and functions used by function
+  * possibility to check EXECUTE stmt against SQL injection vulnerability
+
+Package: postgresql-17-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 306
+Depends: postgresql-17, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 106868
+MD5sum: 1f2a8bc27015defc2a615173c7c95092
+SHA1: 75584800d76bdb901198b0513a92237acf587194
+SHA256: c60c63293a8e8a597414450c110d47032bf7ff6a50d3a31f11d3b4c249ec1c26
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 17.
+
+Package: postgresql-17-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 178
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40542
+MD5sum: a758dc5634c6672cbee5ab31b41f647a
+SHA1: 7ef57efba662bcf8a01d54d0b98c475bd51bf0b3
+SHA256: abf4f32e21606738a7a9311d8892bce04893d8faa2116483db34f8106a6f6888
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-17-squeeze
+Source: pg-squeeze
+Version: 1.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 335
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-squeeze_1.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 121522
+MD5sum: 8fb0404f044783f553a11cd9a35f6d91
+SHA1: e834264161101054ad864cf9d781f6df00c39ea3
+SHA256: d985edf4cfd43c6ee9fdff36a54ffa9aa1c3a69f206b68782188bcda50b73447
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
 
 Package: postgresql-17-vchord
 Version: 0.4.3-1
@@ -2477,6 +4405,52 @@ Description: The World's Most Advanced Open Source Relational Database
  This package provides the database server for PostgreSQL 18.
 Postgresql-Catversion: 202506291-1800
 
+Package: postgresql-18-auto-failover
+Source: pg-auto-failover
+Version: 2.2-4.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 1166
+Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-18, libc6 (>= 2.38), libpq5
+Breaks: postgresql-18-jit-llvm (<< 18)
+Provides: postgresql-auto-failover
+Filename: ./postgresql-18-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
+Size: 413222
+MD5sum: f698e5717fa8077a8905ae19d3a7d263
+SHA1: 93988523bdf408b966a367def375d2b5981f9a2b
+SHA256: 4dd61bad3ad33ff0ee8db1df4946a3c939407598ab2d24e3b9951bdc1abdcbe3
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_auto_failover
+Description: Postgres high availability support
+ This extension implements a set of functions to provide High Availability to
+ Postgres.
+
+Package: postgresql-18-cron
+Source: pg-cron
+Version: 1.6.7-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 220
+Depends: postgresql-18, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-cron_1.6.7-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 93764
+MD5sum: e7ebe19030cb1080ce6785bdc4b9f420
+SHA1: 3e41c282b6b36421d35114a227926b5cf31b047e
+SHA256: e8c43cab370893739782e1fa82cb9450b71395ce8b5a0d2599dbb5646a18a336
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
 Package: postgresql-18-dbgsym
 Package-Type: ddeb
 Source: postgresql-18
@@ -2556,6 +4530,52 @@ Priority: optional
 Description: debug symbols for postgresql-18
 Build-Ids: 01bfc26eaa560cc825e046cf09911a9fa5039227 046d126aa3fa53e64db5c03d4c663e2eb0fa88c0 0537920cacaeff7ded81c3258c31f29a2197a759 076ec4459b7d6924983ee8c3db6a3e74eaacc39a 07b030e2688c21f988756b430a8c5ad8aa8f506e 08a47e04cc385af63b14dacc57516cb38bb75cba 0bfc2adf264e4efb2b753704c82160c1ca3b0435 0d4258b588ab492b7d0e25eca2900a07ac4413b4 0e22a05f14c6e641a2de586bee3c929af4d71bad 1851aac9ab3db4d83202e906c33b31600c09325d 19f2d8b5f653f061ba4a0a4a30ccc019bff27116 2036f3af43a1d443d64cb4ff69d8927089a3a08c 23ebafc1fc36e3cf1c61e79334f1cb4b22f320a9 287af4d2aecd2ea82359c4cc298f83224be54794 2ab68d5aff6dba89cbbdaa26bc850f2bc976d414 2acb3bbadc54352f7e7e40e4e71f735d77b2ab9f 2b06c4e21c7d45d36d2851b80425f1aa0d54dc0b 2c255bf9913ff64981ed9b9f46a366dcdc0b086e 2f179821da4635994dcc053498885cc18203ed2e 2f5a9a41ae69bb955ec952d0c46112d3a6bda504 302f1c6f696be533f18374397dd862e1eb892a31 30691a776f06c7085263b81ac811c3a55db23e95 34aa7cad9f93e405dad64607880ce572873e57c7 35528c541d418be77d355ae1c5ccb2a6c9dda955 35688ce6b26842719413e0d2ff50032689c82bc5 3bf70560120a39916830e514c4c30b2f1cc1709c 3e1f91ee40195b1f92fbd738022532693f9f2a12 3e7d90000746e0b30315f83c5745c772204c0587 410ef8b1db20e86db4140c5e44c9a11c50408fc1 43f4b7784a58a8c479ab0d680d2d1dbc0e274a5f 441734622e4cad9de1b429aeac1b4da344799802 46d0946ecd5115f9e46ca2a6b9bec40b5032d5c9 4975c7e3e58af04608fb02f1f5a13adf9d07ff60 497d93df5295eff5ca2e5bcc7c7af394f8039665 4c834661b0f6319737f902950f1394e3f22b2eac 4ca5fb61928568abec56428d97fa8ba5d292c364 4cba32992a8390d22577ab06e9f3d6f9d6431a7f 4de440ab92599ad01190baa0d1f8108243dfa338 51a93d40f3c8ab3f21f14a0fbd7247e746c7ddf4 528072a6f4abf7910ff9abfad304de1aad53546f 5785fa0939e27f89f5959e5fd8fcaee37eda6e6a 58556e225c10144b85d93b9635eed29ea81fd4b3 5cfd5784c3f592e2677c97cbaf4bf705140f82f6 5d6075a064a078de2ad1235e5f5a4781fd9de455 640a9c7bb59951e408a106662a900947ec3f047c 65d2690957e88a9c9769145c062f6c23f809e99e 66c4b2accc849adeeb16f90ea5923f42becdc428 69cfa0fce5efe502fafe92779f5b3123ec784263 6dd74e1b062b861a05e03716dfda05a227dae28e 6e167c5b5b29be0200ef08bb6b339d87bf5ee987 6e2e3a6559e8300ee455501eefcf828daa13acc0 72d44fe1d359a62b0171dc36d78c0ec490d8a0a9 7706c7403c48ddee9c1ddfef5eed1e73b45103de 7803828690fb23811a8cf336faa5e3c215f878a7 7951be18ee042632b68722fd6ca6cdb65e88aab6 7cac755f06bac8e36c096b39b7d98b1fcb71a954 7dd8dd0bbe1a8bca96aacc0a99b74a31551467e3 7e2e368d400e1852c73b7b2273f0b1e7e70abad7 810ac5ed077ba19352cba0c2d81939f1e9855c9a 81cf5b3e2dd92328f465006af81084b652b30a3e 8d513cb8053644d5a6d7ce95dc091bec8aa7e8c7 8dee94b026a667aa2666bd695b952bf67b652b9a 9405760fd0c676720c076f95c52398cd1932c80d 940754be790a8f0b3ef1a8a017023367f9ff0227 94a2f37eee27294a9abbf8078985d4b60a4a118f 994b2f5eadcda8657a3cb54d8d2cf75e35a12b78 9afee35e24948b47993568babe938be9a633a8a8 a0035627ae8644195be2a93b83fa9710572fff4d a3b406c9f839a631fc4baddaf1bf8dd6452a2d3e a49516b5a4a526d6f890339bd2ce601165a9032f aa1fed80d27076fdc5f2206162f5527110bada52 ae1923453fa4c656550ffab635bfbdbc4aa5a24f b346b0d25e13c8d0e98fe772b55131b8a3e7b470 b5fc32ce019ce307feee0be80485a7d00fe74096 b9616d528f7218893f651cd663b01150827185b6 beea8a973a3cf7e3aef35060dcb03d303e9a8a10 bfa3caea3763d800be958979fe04ffcf27c6de44 c10a0a7964eb73be7d494da3d1ba4f535aab7f24 c31f51a84ea5552dd1cc23e28200c75944f6e4b5 c614c7bf3b98d5fb916b2e7e531a1db5c7643399 c7a21f5494bac6756ae1fd3b585d2096b48b31f1 ce7033f65d91e842c96551ad2a49d259d03fc4a0 cfd16b727fed3c7b3544468e5a86a86f380f61cc d2fd0c80e0e7e6425006f390e446a7970ca94023 d60e74739d474e4713cdfa759e0d359a25eff88d d9371ea0cd6393266a45693a1eb11925a3da0cb2 db275859360aa52f7e1ac05d79cf1ec9fe7b7f12 dd79f5e45030ece22afb2714c60348e1a2fb4bd9 de7554c8b474079fed38c4a124a266815ce6a0e2 df482f0e07bc8abccff7703ef57eb8e33e9a5c62 e5ca3310c2c4cf8e713479e4225f84aad5f977fe edee61e411226b3f21b6d013a2ad1c8661404edf f844f951c9c4c42e9de0ebaea667730d0500e1a9 f894adbc7d08460fb0407af21cdb4d1c4de255f2 fbb054a8cb3325a45518b3d73ecdcb01fe117c84 fdd635cd171ac17a8cebe00a5764889e752726d8 ff05b1ff6ec6632a3ac0b7a86bb93a7a6c42204c
 Postgresql-Catversion: 202506291-1800
+
+Package: postgresql-18-hll
+Source: postgresql-hll
+Version: 2.21-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 212
+Depends: postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 81832
+MD5sum: 6abd01cdf8c693e73c1555332eb5f44c
+SHA1: fad951a18e243b5feec365ef88642796c718a816
+SHA256: c8571bcaebba94bce965f6cf2501839b2ff982d7fc62a93a47e39927d7907fe0
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/postgresql-hll
+Description: HyperLogLog extension for PostgreSQL
+ This PostgreSQL module introduces a new data type `hll` which is a HyperLogLog
+ data structure. HyperLogLog is a fixed-size, set-like structure used for
+ distinct value counting with tunable precision. For example, in 1280 bytes
+ `hll` can estimate the count of tens of billions of distinct values with only
+ a few percent error.
+
+Package: postgresql-18-hypopg
+Source: hypopg
+Version: 1.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 188
+Depends: postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 64784
+MD5sum: 0a293ee3e7334a6dba6483da73df28fe
+SHA1: 1850d7a391d47e24f8b3a099493757442402bb71
+SHA256: 7fa0e9fe84401c44fc5d416a9ac2683e84ced0c526b9904d6d86b32e42b25f8a
+Section: database
+Priority: optional
+Homepage: https://hypopg.readthedocs.io/
+Description: PostgreSQL extension adding support for hypothetical indexes.
+ An hypothetical, or virtual, index is an index that doesn't really exists, and
+ thus doesn't cost CPU, disk or any resource to create.  They're useful to know
+ if specific indexes can increase performance for problematic queries, since
+ you can know if PostgreSQL will use these indexes or not without having to
+ spend resources to create them.
 
 Package: postgresql-18-jit
 Source: postgresql-18
@@ -2740,6 +4760,199 @@ Section: debug
 Priority: optional
 Description: debug symbols for postgresql-18-jit
 Build-Ids: ef1d878ea559c2bca76933421d8db334cc300c92
+
+Package: postgresql-18-jsquery
+Source: jsquery
+Version: 1.2-3.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 341
+Depends: postgresql-18, libc6 (>= 2.17)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
+Size: 132178
+MD5sum: eeddbc3e8d0ea3e49b2c582510c01ea3
+SHA1: a11b54636592292c64f15bda4338d363f6f3dbdb
+SHA256: 03b931b72505c75ceb71844fff8e9511fb13b1fe7db10d334614adb69b764b4a
+Section: database
+Priority: optional
+Homepage: https://github.com/postgrespro/jsquery
+Description: PostgreSQL JSON query language with GIN indexing support
+ JsQuery provides additional functionality for the PostgreSQL jsonb datatype,
+ such as a simple and effective way to search in nested objects and arrays, and
+ more comparison operators with index support. It does this by implementing a
+ specialized search syntax, the @@ operator, and the jsquery type for search
+ strings.
+
+Package: postgresql-18-partman
+Source: pg-partman
+Version: 5.4.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8016
+Depends: python3, python3-psycopg2, postgresql-18, libc6 (>= 2.17)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-partman_5.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 239566
+MD5sum: ef59c8857b9c03910b418cdf079125a3
+SHA1: b31b1ee08b1adcaac257f8f0c98a80a7645ac20c
+SHA256: d6c10c92394de9b01709357987570740fc99adc7b164f7cbb9e7dca0932ca591
+Section: database
+Priority: optional
+Homepage: https://github.com/pgpartman/pg_partman
+Description: PostgreSQL Partition Manager
+ pg_partman is a PostgreSQL extension to create and manage both time-based and
+ serial-based table partition sets. Sub-partitioning is also supported. Child
+ table & trigger function creation is all managed by the extension itself.
+ Tables with existing data can also have their data partitioned in easily
+ managed smaller batches. Optional retention policy can automatically drop
+ partitions no longer needed. A background worker (BGW) process is included to
+ automatically run partition maintenance without the need of an external
+ scheduler (cron, etc) in most cases.
+
+Package: postgresql-18-periods
+Source: postgresql-periods
+Version: 1.2.3-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 590
+Depends: postgresql-contrib-18, postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 48612
+MD5sum: 4e3f4bb5ec28c4de70d330b22ff1e202
+SHA1: c163c429adc918f60f728be888fa102516b5583c
+SHA256: e8cd66c5090cc363214049de6467697a2a0b3a79c8f7314f6e206bc18594e2bc
+Section: database
+Priority: optional
+Homepage: https://github.com/xocolatl/periods
+Description: PERIODs and SYSTEM VERSIONING for PostgreSQL
+ This extension attempts to recreate the behavior defined in SQL:2016
+ (originally SQL:2011) around periods and tables with SYSTEM VERSIONING. The
+ idea is to figure out all the rules that PostgreSQL would like to adopt (there
+ are some details missing in the standard) and to allow earlier versions of
+ PostgreSQL to simulate the behavior once the feature is finally integrated.
+
+Package: postgresql-18-pgvector
+Source: pgvector
+Version: 0.8.5-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 695
+Depends: postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-pgvector_0.8.5-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 253114
+MD5sum: 9720f690ba90b68eb65e836638d27b9c
+SHA1: 30f1a2e778fbee69cf15c35d3ab0b717c3d44b7d
+SHA256: bfd5096658d8b4adb255c191de103e172e6556f3924cee98e8f89f7916190158
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-18-plpgsql-check
+Source: plpgsql-check
+Version: 2.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 697
+Depends: postgresql-18, libc6 (>= 2.17)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-plpgsql-check_2.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 328912
+MD5sum: 86f1cd5aa63173593a867802f7b406c1
+SHA1: fa224e0e683438cb2ee4dffea7678e2f97a95885
+SHA256: 79b3af00a30f7997c8862d1cd84aaacb6af6e2386455ce588d35a59b0dec33d8
+Section: database
+Priority: optional
+Homepage: https://github.com/okbob/plpgsql_check
+Description: plpgsql_check extension for PostgreSQL
+ plpgsql_check is the next generation of plpgsql_lint for PL/pgsql source code.
+ The SQL statements inside PL/pgSQL functions are checked for semantic errors.
+ .
+ Features:
+  * check fields of referenced database objects and types inside embedded SQL
+  * using correct types of function parameters
+  * unused variables and function argumens, unmodified OUT argumens
+  * partially detection of dead code (due RETURN command)
+  * detection of missing RETURN command in function
+  * try to identify unwanted hidden casts, that can be performance issue like
+    unused indexes
+  * possibility to collect relations and functions used by function
+  * possibility to check EXECUTE stmt against SQL injection vulnerability
+
+Package: postgresql-18-repack
+Source: pg-repack
+Version: 1.5.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 307
+Depends: postgresql-18, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 106680
+MD5sum: 2f13a9452472203d8c34e70281dc260b
+SHA1: 086bb3d38cb8bd7a1b30ef590187a3c6a6f00764
+SHA256: 6b27916bd731e48200fb9cedd1a9791fab7b9eee43a77a020f284a86bd240fe0
+Section: database
+Priority: optional
+Homepage: https://github.com/reorg/pg_repack
+Description: reorganize tables in PostgreSQL databases with minimal locks
+ pg_repack is a PostgreSQL extension which lets you remove bloat from tables
+ and indexes, and optionally restore the physical order of clustered indexes.
+ Unlike CLUSTER and VACUUM FULL it works online, without holding an exclusive
+ lock on the processed tables during processing. pg_repack is efficient to
+ boot, with performance comparable to using CLUSTER directly.
+ .
+ This package contains the pg_repack program and the server extension for
+ PostgreSQL 18.
+
+Package: postgresql-18-semver
+Source: postgresql-semver
+Version: 0.41.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 178
+Depends: postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 40924
+MD5sum: 85baaa85e2f8efbb23d643f74d59b53e
+SHA1: e3004cd09c7e1ccc91817c14cedd1a91c42c8028
+SHA256: 64a7a4422399422e065b864d70fc89e5b866df46fd17f1533e78c1e44336f230
+Section: database
+Priority: optional
+Homepage: https://pgxn.org/dist/semver/doc/semver.html
+Description: Semantic version number type for PostgreSQL
+ This library contains a single PostgreSQL extension for a data type
+ called 'semver'. It implements the version number format described
+ in the Semantic Versioning 2.0.0 Specification. [1]
+ .
+ [1] https://semver.org/spec/v2.0.0.html
+
+Package: postgresql-18-squeeze
+Source: pg-squeeze
+Version: 1.9.3-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 337
+Depends: postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 18)
+Filename: ./postgresql-18-squeeze_1.9.3-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 124284
+MD5sum: 05a31e5122e038c478fce6fae1ef09f0
+SHA1: b8b91a02692a8c159404b931fd9c0ff03cbe31ab
+SHA256: 8e89b5ad01ce2369808ce149ddcef35e1be3960232071f267c25f5d525d77bce
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
 
 Package: postgresql-18-vchord
 Version: 0.5.3-1
