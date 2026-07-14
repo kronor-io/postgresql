@@ -19,25 +19,39 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
-      - name: Set up environment
+      - name: Determine target LLVM major (match PGDG)
         run: |
           # PGDG's noble extensions (pgaudit, pgvector, pg_cron, pg_partman, ...)
-          # carry "Breaks: postgresql-17-jit-llvm (<< 19)": they require the
-          # server's JIT to be built with LLVM >= 19. Noble ships LLVM 18 at
-          # most, so pull LLVM 19 from apt.llvm.org (the same version PGDG builds
-          # against). Building against LLVM 18 makes postgresql-17 provide
-          # postgresql-17-jit-llvm (= 18), which trips that Breaks and forces
-          # apt to drop every extension on a server upgrade.
-          curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc >/dev/null
-          echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-19 main" | sudo tee /etc/apt/sources.list.d/llvm-19.list
+          # carry "Breaks: postgresql-17-jit-llvm (<< N)": they require the
+          # server's JIT to be built with LLVM >= N. That N is exactly the LLVM
+          # major PGDG's own postgresql-17 advertises via
+          # "Provides: postgresql-17-jit-llvm (= N)". Read it straight from the
+          # PGDG index so this build tracks PGDG automatically (18 -> 19 -> 20 ...)
+          # instead of hardcoding a version that silently rots and drops every
+          # extension on the next server upgrade.
+          arch=$(dpkg --print-architecture)
+          url="https://apt.postgresql.org/pub/repos/apt/dists/noble-pgdg/main/binary-${arch}/Packages.gz"
+          llvm=$(curl -fsSL "$url" | gunzip | grep -oP 'postgresql-17-jit-llvm \(= \K[0-9]+' | sort -n | tail -1)
+          : "${llvm:=19}"   # fallback if PGDG is unreachable
+          echo "Target LLVM major (from PGDG): $llvm"
+          echo "LLVM_VERSION=$llvm" >> "$GITHUB_ENV"
 
-          # llvm-19-dev provides /usr/bin/llvm-config-19 and satisfies the
-          # patched "llvm-19-dev" build-dep (see the clone step). debian/rules
+      - name: Set up environment
+        run: |
+          # Noble ships LLVM 18 at most, so pull the PGDG-matched LLVM from
+          # apt.llvm.org. Building against an older LLVM makes postgresql-17
+          # provide a lower postgresql-17-jit-llvm, which trips the extensions'
+          # Breaks and forces apt to drop them all on a server upgrade.
+          curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc >/dev/null
+          echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-${LLVM_VERSION} main" | sudo tee /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
+
+          # llvm-${LLVM_VERSION}-dev provides /usr/bin/llvm-config-${LLVM_VERSION}
+          # and satisfies the patched build-dep (see the clone step). debian/rules
           # reads the LLVM major straight from debian/control, so that patch --
-          # not these packages alone -- is what stamps the JIT provides as 19.
+          # not these packages alone -- is what stamps the JIT provides.
           sudo apt-get update
           sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
-                             clang-19 llvm-19 lld-19 llvm-19-dev \
+                             clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
                              postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
                              libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
                              bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev \
@@ -73,14 +87,15 @@ jobs:
           # Ensure we're on a branch that supports PostgreSQL 17
           git checkout 17
 
-          # Pin the JIT to LLVM 19. debian/rules derives LLVM_VERSION from the
-          # "llvm-N-dev" build-dep in debian/control (falling back to the highest
-          # installed llvm-config otherwise), and stamps it into
-          # "Provides: postgresql-17-jit-llvm (= N)". Noble's packaging ships an
-          # unversioned "llvm-dev" (-> 18); pin it to 19 so the server satisfies
-          # the PGDG extensions' "Breaks: postgresql-17-jit-llvm (<< 19)".
-          sed -i 's/llvm-dev/llvm-19-dev/g' debian/control
-          grep -n 'llvm-19-dev' debian/control
+          # Pin the JIT to the PGDG-matched LLVM major. debian/rules derives
+          # LLVM_VERSION from the "llvm-N-dev" build-dep in debian/control
+          # (falling back to the highest installed llvm-config otherwise) and
+          # stamps it into "Provides: postgresql-17-jit-llvm (= N)". Noble's
+          # packaging ships an unversioned "llvm-dev" (-> 18); pin it to
+          # ${LLVM_VERSION} so the server satisfies the PGDG extensions'
+          # "Breaks: postgresql-17-jit-llvm (<< N)".
+          sed -i "s/llvm-dev/llvm-${LLVM_VERSION}-dev/g" debian/control
+          grep -n "llvm-${LLVM_VERSION}-dev" debian/control
 
       - name: Download PostgreSQL source
         run: |
