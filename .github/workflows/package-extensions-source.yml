@@ -1,0 +1,184 @@
+name: Rebuild PGDG Extensions from Source (custom 32k)
+
+# Rebuilds the PGDG extensions our fleet uses FROM SOURCE against the custom
+# 32k-blocksize postgresql-server-dev-17, instead of installing PGDG's stock
+# 8k-blocksize binaries. Two problems this solves:
+#   * BLCKSZ mismatch: PG_MODULE_MAGIC does not check BLCKSZ, so a stock 8k .so
+#     loads silently into our 32k server. Building against our server-dev bakes
+#     BLCKSZ=32768 into the extension.
+#   * LLVM/JIT ABI: built here against the same LLVM as the server, so the
+#     generated "Breaks: postgresql-17-jit-llvm (<< N)" stays consistent.
+#
+# Each rebuilt package gets a "+custom32k" version suffix so it sorts above the
+# PGDG original and wins on our hosts (where the kronor PPA outranks PGDG).
+
+on:
+  workflow_dispatch:
+    inputs:
+      extensions:
+        description: 'Space-separated postgresql-17-<ext> names to (re)build'
+        required: false
+        default: >-
+          postgresql-17-pgaudit postgresql-17-pgvector postgresql-17-cron
+          postgresql-17-partman postgresql-17-hll postgresql-17-hypopg
+          postgresql-17-jsquery postgresql-17-periods postgresql-17-plpgsql-check
+          postgresql-17-repack postgresql-17-semver postgresql-17-squeeze
+          postgresql-17-auto-failover
+
+jobs:
+  # Fan the input string out into a JSON matrix so each extension builds in its
+  # own isolated job (one failure does not sink the rest).
+  matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      list: ${{ steps.set.outputs.list }}
+    steps:
+      - id: set
+        run: |
+          exts="${{ github.event.inputs.extensions }}"
+          json=$(printf '%s\n' $exts | jq -R . | jq -s -c .)
+          echo "list=$json" >> "$GITHUB_OUTPUT"
+          echo "Building: $json"
+
+  build:
+    needs: matrix
+    runs-on: ubuntu-24.04-arm
+    strategy:
+      fail-fast: false
+      matrix:
+        ext: ${{ fromJSON(needs.matrix.outputs.list) }}
+    steps:
+      - name: Configure apt repositories (kronor PPA + PGDG src + apt.llvm.org)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl ca-certificates gnupg jq dpkg-dev devscripts equivs
+
+          # kronor custom PPA (the custom 32k server-dev lives here)
+          curl -s --compressed "https://kronor-io.github.io/postgresql/KEY.gpg" \
+            | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/kronor_postgresql.gpg >/dev/null
+          curl -s --compressed -o /etc/apt/sources.list.d/kronor_postgresql.list \
+            "https://kronor-io.github.io/postgresql/kronor_postgresql.list"
+
+          # PGDG, with sources enabled so we can `apt-get source` / `build-dep`
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
+            | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgdg.gpg
+          echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main"     | sudo tee /etc/apt/sources.list.d/pgdg.list
+          echo "deb-src http://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee -a /etc/apt/sources.list.d/pgdg.list
+
+          # Force any *custom-32k package to win over the PGDG equivalent so the
+          # build compiles against OUR server-dev, not PGDG's stock 8k one.
+          printf 'Package: *\nPin: version *custom-32k\nPin-Priority: 1001\n' \
+            | sudo tee /etc/apt/preferences.d/kronor-custom
+
+      - name: Determine target LLVM major (match PGDG)
+        run: |
+          arch=$(dpkg --print-architecture)
+          url="https://apt.postgresql.org/pub/repos/apt/dists/noble-pgdg/main/binary-${arch}/Packages.gz"
+          llvm=$(curl -fsSL "$url" | gunzip | grep -oP 'postgresql-17-jit-llvm \(= \K[0-9]+' | sort -n | tail -1)
+          : "${llvm:=19}"
+          echo "LLVM_VERSION=$llvm" >> "$GITHUB_ENV"
+          echo "Target LLVM major: $llvm"
+
+      - name: Install toolchain + custom 32k server-dev
+        run: |
+          curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key \
+            | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc >/dev/null
+          echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-${LLVM_VERSION} main" \
+            | sudo tee /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
+
+          sudo apt-get update
+          sudo apt-get install -y build-essential debhelper dh-exec fakeroot \
+            clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
+            postgresql-server-dev-17
+
+          # Confirm pgxs points at the 32k build (guards against the pin failing
+          # and PGDG's stock server-dev sneaking in).
+          echo "--- pg_config for 17 ---"
+          /usr/lib/postgresql/17/bin/pg_config --configure | tr ' ' '\n' | grep -i blocksize
+          /usr/lib/postgresql/17/bin/pg_config --version
+
+      - name: Build ${{ matrix.ext }} against the 32k server
+        run: |
+          set -euo pipefail
+          ext="${{ matrix.ext }}"
+          work="$RUNNER_TEMP/src"
+          mkdir -p "$work" && cd "$work"
+
+          apt-get source "$ext"
+          sudo apt-get build-dep -y "$ext"
+
+          srcdir=$(find "$work" -maxdepth 1 -mindepth 1 -type d | head -1)
+          cd "$srcdir"
+
+          # Match the extension's LLVM to the server's (best effort; not all
+          # extensions carry an llvm build-dep).
+          if grep -q 'llvm-dev' debian/control; then
+            sed -i "s/llvm-dev/llvm-${LLVM_VERSION}-dev/g" debian/control
+          fi
+
+          # Mark this as a custom 32k rebuild so it sorts above the PGDG original.
+          export DEBEMAIL="41898282+github-actions[bot]@users.noreply.github.com"
+          export DEBFULLNAME="github-actions[bot]"
+          dch --local "+custom32k" \
+            "Rebuilt against custom 32k-blocksize postgresql-server-dev-17"
+
+          DEB_BUILD_OPTIONS="nocheck" dpkg-buildpackage -us -uc -b
+
+          mkdir -p "$GITHUB_WORKSPACE/out"
+          cp "$work"/*.deb "$GITHUB_WORKSPACE/out/"
+          echo "--- built ---"
+          ls -1 "$GITHUB_WORKSPACE/out/"
+
+      - name: Upload built packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-${{ matrix.ext }}
+          path: out/*.deb
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PPA branch
+        uses: actions/checkout@v3
+        with:
+          ref: ppa
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Download all built packages
+        uses: actions/download-artifact@v4
+        with:
+          path: incoming
+          pattern: deb-*
+          merge-multiple: true
+
+      - name: Stage packages into the PPA
+        run: |
+          if ! ls incoming/*.deb >/dev/null 2>&1; then
+            echo "No packages were built; nothing to publish." >&2
+            exit 1
+          fi
+          cp incoming/*.deb .
+          rm -rf incoming
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add *.deb
+          git status
+          git commit --allow-empty -m "Rebuild PGDG extensions against custom 32k server [skip ci]"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ppa
+
+  call-ppa-workflow:
+    needs: publish
+    uses: ./.github/workflows/ppa-release.yml
+    secrets:
+      PPA_PRIVATE_KEY: ${{ secrets.PPA_PRIVATE_KEY }}
+      PPA_PASSWORD: ${{ secrets.PPA_PASSWORD }}
+      PPA_EMAIL: ${{ secrets.PPA_EMAIL }}
