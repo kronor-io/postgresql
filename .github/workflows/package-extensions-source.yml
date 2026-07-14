@@ -56,8 +56,8 @@ jobs:
           # kronor custom PPA (the custom 32k server-dev lives here)
           curl -s --compressed "https://kronor-io.github.io/postgresql/KEY.gpg" \
             | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/kronor_postgresql.gpg >/dev/null
-          curl -s --compressed -o /etc/apt/sources.list.d/kronor_postgresql.list \
-            "https://kronor-io.github.io/postgresql/kronor_postgresql.list"
+          curl -s --compressed "https://kronor-io.github.io/postgresql/kronor_postgresql.list" \
+            | sudo tee /etc/apt/sources.list.d/kronor_postgresql.list >/dev/null
 
           # PGDG, with sources enabled so we can `apt-get source` / `build-dep`
           curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc \
