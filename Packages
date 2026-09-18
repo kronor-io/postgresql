@@ -2478,10 +2478,10 @@ Installed-Size: 1015
 Depends: openssl, libc6 (>= 2.38), libncurses6 (>= 6), libpq5 (>= 9.1~), libtinfo6 (>= 6)
 Recommends: postgresql-auto-failover
 Filename: ./pg-auto-failover-cli_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
-Size: 453704
-MD5sum: 6ab113c27963098a95030f312b4a5d54
-SHA1: e6cae9b56e5e81a5a8bf0ce82951d53ae50b59a3
-SHA256: c52863daeefe87d3dc0c44bc5e4879c50cac1194977d7ecdfe6c3af3734ee0b4
+Size: 452706
+MD5sum: 0a4e5f177159e25dbffb0a2b67cf9c3d
+SHA1: 1d7e5f83bbbc8fa0ddd5081791ddfadcced787fc
+SHA256: 2fbd86d5783bad26c6f7498e58dcf4da7f764d112114dfcb7665c59191c82e31
 Section: database
 Priority: optional
 Homepage: https://github.com/citusdata/pg_auto_failover
@@ -4319,10 +4319,10 @@ Depends: pg-auto-failover-cli (>= 2.2-4.pgdg24.04+1+custom32k1), postgresql-17, 
 Breaks: postgresql-17-jit-llvm (<< 19)
 Provides: postgresql-auto-failover
 Filename: ./postgresql-17-auto-failover_2.2-4.pgdg24.04+1+custom32k1_arm64.deb
-Size: 401348
-MD5sum: 04d6c01d4f2993da5358eb203c00f481
-SHA1: 2629334e48cc9ddef9440b732561cf6d3c45eb46
-SHA256: eb236ce43405fabb280f4ad2156521828b44ded454123302655dc9c3693e92e9
+Size: 401390
+MD5sum: 5c7f2e61a7ec933de3d3a36a68cd9048
+SHA1: c1effdaa5e486f3659e7e10fad541c08851a489e
+SHA256: fa1c58455a2960d70d1ca39101f6296aab2a6f6a5548edae95469e996e6e602e
 Section: database
 Priority: optional
 Homepage: https://github.com/citusdata/pg_auto_failover
@@ -4355,6 +4355,31 @@ Description: Run periodic jobs in PostgreSQL
  the first one finishes, then the second run is queued and started as soon as
  the first run completes.
 
+Package: postgresql-17-cron
+Source: pg-cron
+Version: 1.6.8-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 220
+Depends: postgresql-17, libc6 (>= 2.38), libpq5 (>= 9.0~)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-cron_1.6.8-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 94368
+MD5sum: 8c93aa9f1a9054c95902d0923e8f35af
+SHA1: 7957182ae87e3259910d880e6abe58fdaf798fae
+SHA256: 862b44e5543536d2ced62fe3efa8a5d4c58fb29f6418724c73315ddef5e55e95
+Section: database
+Priority: optional
+Homepage: https://github.com/citusdata/pg_cron
+Description: Run periodic jobs in PostgreSQL
+ pg_cron is a simple cron-based job scheduler for PostgreSQL (9.5 or higher)
+ that runs inside the database as an extension. It uses the same syntax as
+ regular cron, but it allows you to schedule PostgreSQL commands directly from
+ the database. pg_cron can run multiple jobs in parallel, but it runs at most
+ one instance of a job at a time. If a second run is supposed to start before
+ the first one finishes, then the second run is queued and started as soon as
+ the first run completes.
+
 Package: postgresql-17-hll
 Source: postgresql-hll
 Version: 2.21-1.pgdg24.04+1+custom32k1
@@ -4364,10 +4389,10 @@ Installed-Size: 211
 Depends: postgresql-17, libc6 (>= 2.38)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-hll_2.21-1.pgdg24.04+1+custom32k1_arm64.deb
-Size: 81234
-MD5sum: fd181d316ca0c07f1e9947c97b8e0799
-SHA1: 72f329540fa1aac8738ab3fd15c0c76dba537d5a
-SHA256: 9e5e8f1b0469d9442083456382b43366945b20404dd80ca9a77c22db0102df86
+Size: 81236
+MD5sum: 85c2cf0f5cc88d0dd08677afd6031682
+SHA1: 0af51c78a45df4a00347017e150eaa07a69f187a
+SHA256: bc4644ed6ce1981d525ec2d2af9ad2cc8db0a23a0206968ac0957f40ae53e545
 Section: database
 Priority: optional
 Homepage: https://github.com/citusdata/postgresql-hll
@@ -4387,10 +4412,10 @@ Installed-Size: 186
 Depends: postgresql-17, libc6 (>= 2.38)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-hypopg_1.4.3-1.pgdg24.04+1+custom32k1_arm64.deb
-Size: 62706
-MD5sum: 28a23e08effafa7bcedcac8020d3fd1f
-SHA1: d68968b5dd424ada7d7b17389d508540fe155c54
-SHA256: 2e63672a993d9095fc878a589489d54ba345524cee117bd6b7a906c4ff43889c
+Size: 62770
+MD5sum: f158e3c579c45e6e93e7acf53889c0b3
+SHA1: 0afde4297b2a7c0161e8bc68c360da6b9975122e
+SHA256: 781be85c246504647128d9efb2dbd000d587f8f4bb7a35bbc57a7bf9c02f05f5
 Section: database
 Priority: optional
 Homepage: https://hypopg.readthedocs.io/
@@ -4410,10 +4435,10 @@ Installed-Size: 340
 Depends: postgresql-17, libc6 (>= 2.17)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-jsquery_1.2-3.pgdg24.04+1+custom32k1_arm64.deb
-Size: 130428
-MD5sum: d16f475881492c7b33c07d64bc264451
-SHA1: 4a07dc92667ff69fd18f5c0a8be6b2a962479baf
-SHA256: a37b857633cbcaa3bf135703295645d75b9efe95925b598f2a1f72fcf7a7cf47
+Size: 130422
+MD5sum: aa60753f89ca48222b58155f0e9900ae
+SHA1: a85b0a9d808b1e8b66c53a756047e7c8c9804fe3
+SHA256: 9025f4bc484ed28ddd4fa5a1f418f0b2cb14cca26c6c09e0188baadb7c528308
 Section: database
 Priority: optional
 Homepage: https://github.com/postgrespro/jsquery
@@ -4450,6 +4475,32 @@ Description: PostgreSQL Partition Manager
  automatically run partition maintenance without the need of an external
  scheduler (cron, etc) in most cases.
 
+Package: postgresql-17-partman
+Source: pg-partman
+Version: 5.5.0-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 8256
+Depends: python3, python3-psycopg2, postgresql-17, libc6 (>= 2.17)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-partman_5.5.0-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 242790
+MD5sum: 5a09446a9f38c32a30af11bc5fb01a08
+SHA1: 366f1bb7ecc5d2f7f349b59068da48f55befefe3
+SHA256: fd697a5410dbb4a6b2f9c8784d666b7b9381e1f4e6dbbd6aa80759a760ba3206
+Section: database
+Priority: optional
+Homepage: https://github.com/pgpartman/pg_partman
+Description: PostgreSQL Partition Manager
+ pg_partman is a PostgreSQL extension to create and manage both time-based and
+ serial-based table partition sets. Sub-partitioning is also supported. Child
+ table & trigger function creation is all managed by the extension itself.
+ Tables with existing data can also have their data partitioned in easily
+ managed smaller batches. Optional retention policy can automatically drop
+ partitions no longer needed. A background worker (BGW) process is included to
+ automatically run partition maintenance without the need of an external
+ scheduler (cron, etc) in most cases.
+
 Package: postgresql-17-periods
 Source: postgresql-periods
 Version: 1.2.3-2.pgdg24.04+1+custom32k1
@@ -4459,10 +4510,10 @@ Installed-Size: 589
 Depends: postgresql-contrib-17, postgresql-17, libc6 (>= 2.38)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-periods_1.2.3-2.pgdg24.04+1+custom32k1_arm64.deb
-Size: 48234
-MD5sum: d14955e49bfcc97f0fd7edaa92559cdd
-SHA1: 4b910c5458ea7910396b62b8003da50607d07138
-SHA256: 781d64e8b77c8e5af0a5e121cd7c9f55ba73efe547d8b913d7b22f80e93c46f7
+Size: 48218
+MD5sum: 6ce878566953af189d2d7fe0d50465ad
+SHA1: 37f114c737870e2fbc85d9e0c15b97aa6d4ac1fa
+SHA256: ebac9e295583b5425a25feb7b7b8d458894a0e1ef1b0da9fd33b7b493b2e9f88
 Section: database
 Priority: optional
 Homepage: https://github.com/xocolatl/periods
@@ -4554,10 +4605,10 @@ Installed-Size: 137
 Depends: postgresql-17, libc6 (>= 2.17)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-pgaudit_17.1-2.pgdg24.04+1+custom32k1_arm64.deb
-Size: 49286
-MD5sum: e6f19e6613c0d597f49f631b54a8ccdf
-SHA1: 6273c92d6eca4d6d1686ee45aad7a9eb7d76b59f
-SHA256: 3b055fdadd529684950782043d5330ad899d2891e6e9d28210f6be03e94f01d3
+Size: 49278
+MD5sum: 44fdbd54c234f11c5c1e4e65762a2861
+SHA1: 05d08fbabf8caa0a5be27688944b90a1c4cefeb9
+SHA256: 4afa62caa9911916309f037d569b2c8668dea4a75ec69207fadd69c1780033ee
 Section: database
 Priority: optional
 Homepage: http://pgaudit.org/
@@ -4592,6 +4643,57 @@ Homepage: https://github.com/pgvector/pgvector
 Description: Open-source vector similarity search for Postgres
  Supports exact and approximate nearest neighbor search for L2 distance, inner
  product, and cosine distance.
+
+Package: postgresql-17-pgvector
+Source: pgvector
+Version: 0.8.6-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 693
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-pgvector_0.8.6-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 250402
+MD5sum: c02073c8cb99b1fdff383336c937a596
+SHA1: d8279c41b454d287bb299278b0ba252bbd6fb645
+SHA256: e89555bcea08d06cf56114bca45ee7b956dfd811efe01b8178a4a5bd448ab32a
+Section: database
+Priority: optional
+Homepage: https://github.com/pgvector/pgvector
+Description: Open-source vector similarity search for Postgres
+ Supports exact and approximate nearest neighbor search for L2 distance, inner
+ product, and cosine distance.
+
+Package: postgresql-17-plpgsql-check
+Source: plpgsql-check
+Version: 2.10.10-1.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 779
+Depends: postgresql-17, libc6 (>= 2.17)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-plpgsql-check_2.10.10-1.pgdg24.04+1+custom32k1_arm64.deb
+Size: 337914
+MD5sum: afdffbb636841a0dc49899b4b16b2a0c
+SHA1: a03918587aede6677131e231a9b4d83398fe71b5
+SHA256: 0183eb0fe03d33c1b2d26e4c7cdf549b0ce28c341119d7c6509c889b94475205
+Section: database
+Priority: optional
+Homepage: https://github.com/okbob/plpgsql_check
+Description: plpgsql_check extension for PostgreSQL
+ plpgsql_check is the next generation of plpgsql_lint for PL/pgsql source code.
+ The SQL statements inside PL/pgSQL functions are checked for semantic errors.
+ .
+ Features:
+  * check fields of referenced database objects and types inside embedded SQL
+  * using correct types of function parameters
+  * unused variables and function argumens, unmodified OUT argumens
+  * partially detection of dead code (due RETURN command)
+  * detection of missing RETURN command in function
+  * try to identify unwanted hidden casts, that can be performance issue like
+    unused indexes
+  * possibility to collect relations and functions used by function
+  * possibility to check EXECUTE stmt against SQL injection vulnerability
 
 Package: postgresql-17-plpgsql-check
 Source: plpgsql-check
@@ -4633,10 +4735,10 @@ Installed-Size: 306
 Depends: postgresql-17, libc6 (>= 2.38), libpq5 (>= 9.0~)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-repack_1.5.3-1.pgdg24.04+1+custom32k1_arm64.deb
-Size: 106868
-MD5sum: 1f2a8bc27015defc2a615173c7c95092
-SHA1: 75584800d76bdb901198b0513a92237acf587194
-SHA256: c60c63293a8e8a597414450c110d47032bf7ff6a50d3a31f11d3b4c249ec1c26
+Size: 106870
+MD5sum: 4bf5193658b31641d6065e33d104d087
+SHA1: dc306c500d5accf4b92cd93f8b3962cc7671f774
+SHA256: 46b7852d82a41768edaa26564c15ea1d852bc3e47136194c60460ce280fd491d
 Section: database
 Priority: optional
 Homepage: https://github.com/reorg/pg_repack
@@ -4655,14 +4757,14 @@ Source: postgresql-semver
 Version: 0.41.0-1.pgdg24.04+1+custom32k1
 Architecture: arm64
 Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
-Installed-Size: 178
+Installed-Size: 179
 Depends: postgresql-17, libc6 (>= 2.38)
 Breaks: postgresql-17-jit-llvm (<< 19)
 Filename: ./postgresql-17-semver_0.41.0-1.pgdg24.04+1+custom32k1_arm64.deb
-Size: 40542
-MD5sum: a758dc5634c6672cbee5ab31b41f647a
-SHA1: 7ef57efba662bcf8a01d54d0b98c475bd51bf0b3
-SHA256: abf4f32e21606738a7a9311d8892bce04893d8faa2116483db34f8106a6f6888
+Size: 40756
+MD5sum: af02f03055689578ca09584b56c14be7
+SHA1: e48e2ebffc1b0cb10df99babc92c1243a7756faf
+SHA256: 1511f157bcb67568c56f192c086cef1149ffc007fdc22fa809c16fa6d606d1d1
 Section: database
 Priority: optional
 Homepage: https://pgxn.org/dist/semver/doc/semver.html
@@ -4686,6 +4788,27 @@ Size: 121522
 MD5sum: 8fb0404f044783f553a11cd9a35f6d91
 SHA1: e834264161101054ad864cf9d781f6df00c39ea3
 SHA256: d985edf4cfd43c6ee9fdff36a54ffa9aa1c3a69f206b68782188bcda50b73447
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
+
+Package: postgresql-17-squeeze
+Source: pg-squeeze
+Version: 1.9.4-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 335
+Depends: postgresql-17, libc6 (>= 2.38)
+Breaks: postgresql-17-jit-llvm (<< 19)
+Filename: ./postgresql-17-squeeze_1.9.4-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 121466
+MD5sum: 80db32b6ddefe49b3bb9ca93ce06197f
+SHA1: 8f8124480c14cd87f300bdeb90a9dd8ed313a8e7
+SHA256: 8c3a24d2cc0e67d89cb5977dcb904e4b6bca51ddae68afdc671c5c06baa27a2e
 Section: database
 Priority: optional
 Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
