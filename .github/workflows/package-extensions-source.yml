@@ -116,13 +116,18 @@ jobs:
           # resolve the source package's build-deps except that one.
           srcdir=$(find "$work" -maxdepth 1 -mindepth 1 -type d | head -1)
           cd "$srcdir"
-          sed -i -E 's/postgresql-server-dev-all( *\([^)]*\))?/postgresql-server-dev-'"${PG_MAJOR}"'/g' debian/control
-          sudo mk-build-deps -i -r -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-install-recommends' debian/control
-
           # Build for the requested major only. pg_buildext intersects
-          # debian/pgversions with postgresql-common's supported versions.
+          # debian/pgversions with postgresql-common's supported versions, and
+          # `checkcontrol` regenerates debian/control from debian/control.in,
+          # so patch control.in and regenerate rather than editing control.
           echo "${PG_MAJOR}" > debian/pgversions
           export PG_SUPPORTED_VERSIONS="${PG_MAJOR}"
+          for f in debian/control.in debian/control; do
+            [ -f "$f" ] && sed -i -E 's/postgresql-server-dev-all( *\([^)]*\))?/postgresql-server-dev-'"${PG_MAJOR}"'/g' "$f"
+          done
+          pg_buildext updatecontrol
+          grep -nE 'postgresql-server-dev|^Package:' debian/control
+          sudo mk-build-deps -i -r -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-install-recommends' debian/control
 
           # Match the extension's LLVM to the server's (best effort; not all
           # extensions carry an llvm build-dep).
