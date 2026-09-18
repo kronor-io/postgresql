@@ -155,28 +155,35 @@ jobs:
             exit 1
           fi
 
-          # 2) Dry-run an install that mixes the freshly built debs with the live
-          #    PGDG repo, the way our hosts are configured (kronor pinned above
-          #    PGDG). This catches any dependency the packages cannot satisfy on
-          #    a stock Noble host before anything is published.
+          # 2) Dry-run an install that mirrors how our hosts are configured
+          #    (kronor PPA pinned at 600 by origin, PGDG at 500), with the
+          #    freshly built debs standing in for the PPA's server packages.
+          #    Everything we ship for this major -- server, client, PLs,
+          #    server-dev, libpq, ecpg, jit, plus every extension we rebuilt
+          #    into the PPA -- must be co-installable with PGDG's remaining
+          #    extensions. This is what catches a new upstream
+          #    "Breaks: postgresql-18-<ext> (<< x)" before publishing.
           repo="$RUNNER_TEMP/localrepo"
           mkdir -p "$repo"
           find . -maxdepth 2 -name "*_${ver}_*.deb" -exec cp -f {} "$repo/" \;
           (cd "$repo" && dpkg-scanpackages --multiversion . > Packages)
           echo "deb [trusted=yes] file:$repo ./" | sudo tee /etc/apt/sources.list.d/localrepo.list
+          curl -s --compressed "https://kronor-io.github.io/postgresql/KEY.gpg" | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/kronor_postgresql.gpg >/dev/null
+          curl -s --compressed "https://kronor-io.github.io/postgresql/kronor_postgresql.list" | sudo tee /etc/apt/sources.list.d/kronor_postgresql.list
           curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgdg.gpg
           echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
-          printf 'Package: *\nPin: version *custom-32k\nPin-Priority: 1001\n' | sudo tee /etc/apt/preferences.d/kronor-custom
+          printf 'Package: *\nPin: version %s\nPin-Priority: 1001\n\nPackage: *\nPin: origin kronor-io.github.io\nPin-Priority: 600\n\nPackage: *\nPin: release o=apt.postgresql.org\nPin-Priority: 500\n' "$ver" \
+            | sudo tee /etc/apt/preferences.d/kronor-custom
           # Do not let the build-only apt.llvm.org repo mask a runtime dependency
           # hosts cannot satisfy from Noble + PGDG.
           sudo rm -f /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
           sudo apt-get update
 
-          # Every binary package this build produced (server, client, PLs,
-          # server-dev, libpq, ecpg, jit...) must be co-installable at the same
-          # version, together with PGDG's extensions for this major.
           ours=$(for d in "$repo"/*.deb; do dpkg-deb -f "$d" Package; done | grep -v -- '-dbgsym$' | sort -u | tr '\n' ' ')
-          pkgs="$ours postgresql-18-pgaudit postgresql-18-pgvector postgresql-18-cron postgresql-18-partman postgresql-18-repack"
+          ppa_exts=$(curl -fsSL https://kronor-io.github.io/postgresql/Packages \
+            | grep -oP '^Package: \Kpostgresql-18-[a-z0-9-]+' | grep -vE -- '-(dbgsym|jit)$' | sort -u | tr '\n' ' ')
+          pgdg_exts="postgresql-18-pgaudit postgresql-18-postgis-3 postgresql-18-pg-hint-plan postgresql-18-pg-ivm"
+          pkgs="$ours $ppa_exts $pgdg_exts"
           echo "Simulating: apt-get install $pkgs"
           sudo apt-get -s install $pkgs
 
