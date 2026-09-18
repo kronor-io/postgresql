@@ -49,16 +49,16 @@ jobs:
           # and satisfies the patched build-dep (see the clone step). debian/rules
           # reads the LLVM major straight from debian/control, so that patch --
           # not these packages alone -- is what stamps the JIT provides.
-          # GitHub's ubuntu-24.04 images ship PGDG's apt source preconfigured.
-          # Its newer postgresql-common conflicts with Noble's
-          # postgresql-server-dev-all (Depends: postgresql-common (= 257...)),
-          # so build against stock Noble only. The verification step re-adds
-          # PGDG explicitly for the install simulation.
+          # GitHub's ubuntu-24.04 images ship PGDG's postgresql-common
+          # preinstalled and may carry its apt source. The only postgresql
+          # build-dep we need is postgresql-common-dev (installed below), so do
+          # not pull Noble's postgresql-server-dev-all, which pins an older
+          # postgresql-common. The verification step re-adds PGDG explicitly.
           sudo rm -f /etc/apt/sources.list.d/pgdg*.list /etc/apt/sources.list.d/pgdg*.sources
           sudo apt-get update
           sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
                              clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
-                             postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
+                             libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
                              libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
                              bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev \
                              libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev \
@@ -178,7 +178,11 @@ jobs:
           sudo rm -f /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
           sudo apt-get update
 
-          pkgs="postgresql-17 postgresql-17-pgaudit postgresql-17-pgvector postgresql-17-cron postgresql-17-partman postgresql-17-repack"
+          # Every binary package this build produced (server, client, PLs,
+          # server-dev, libpq, ecpg, jit...) must be co-installable at the same
+          # version, together with PGDG's extensions for this major.
+          ours=$(for d in "$repo"/*.deb; do dpkg-deb -f "$d" Package; done | grep -v -- '-dbgsym$' | sort -u | tr '\n' ' ')
+          pkgs="$ours postgresql-17-pgaudit postgresql-17-pgvector postgresql-17-cron postgresql-17-partman postgresql-17-repack"
           echo "Simulating: apt-get install $pkgs"
           sudo apt-get -s install $pkgs
 
