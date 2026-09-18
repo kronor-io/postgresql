@@ -5515,6 +5515,27 @@ Description: PostgreSQL extension for automatic bloat cleanup
  optionally sorts tuples according to particular index, as if the CLUSTER
  command was executed concurrently with regular reads/writes.
 
+Package: postgresql-18-squeeze
+Source: pg-squeeze
+Version: 1.9.4-2.pgdg24.04+1+custom32k1
+Architecture: arm64
+Maintainer: Debian PostgreSQL Maintainers <team+postgresql@tracker.debian.org>
+Installed-Size: 335
+Depends: postgresql-18, libc6 (>= 2.38)
+Breaks: postgresql-18-jit-llvm (<< 19)
+Filename: ./postgresql-18-squeeze_1.9.4-2.pgdg24.04+1+custom32k1_arm64.deb
+Size: 121354
+MD5sum: e75a071593292f69203a7169eb27a540
+SHA1: d13e967ccb54b876030c4f6752df56415c770f93
+SHA256: 359d0b7bacadc7a0f29b782b4989d5344153eb819322ff6e25cb84cb5ac4f75d
+Section: database
+Priority: optional
+Homepage: https://www.cybertec-postgresql.com/products/pg_squeeze/
+Description: PostgreSQL extension for automatic bloat cleanup
+ The pg_squeeze PostgreSQL extension removes unused space from a table and
+ optionally sorts tuples according to particular index, as if the CLUSTER
+ command was executed concurrently with regular reads/writes.
+
 Package: postgresql-18-vchord
 Version: 0.5.3-1
 Architecture: arm64
