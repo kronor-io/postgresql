@@ -96,7 +96,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential debhelper dh-exec fakeroot \
             clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
-            postgresql-server-dev-${PG_MAJOR}
+            postgresql-server-dev-${PG_MAJOR} postgresql-common-dev
 
           # Confirm pgxs points at the 32k build (guards against the pin failing
           # and PGDG's stock server-dev sneaking in).
