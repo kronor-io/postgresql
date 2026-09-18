@@ -44,6 +44,12 @@ jobs:
 
           # llvm-${LLVM_VERSION}-dev provides /usr/bin/llvm-config-${LLVM_VERSION}
           # and satisfies the patched build-dep (see the clone step).
+          # GitHub's ubuntu-24.04 images ship PGDG's apt source preconfigured.
+          # Its newer postgresql-common conflicts with Noble's
+          # postgresql-server-dev-all (Depends: postgresql-common (= 257...)),
+          # so build against stock Noble only. The verification step re-adds
+          # PGDG explicitly for the install simulation.
+          sudo rm -f /etc/apt/sources.list.d/pgdg*.list /etc/apt/sources.list.d/pgdg*.sources
           sudo apt-get update
           sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
                              clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
