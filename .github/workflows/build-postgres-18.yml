@@ -6,7 +6,7 @@ on:
       postgres_version:
         description: 'PostgreSQL version'
         required: true
-        default: '18.1'
+        default: '18.6'
 
 jobs:
   build:
@@ -19,15 +19,38 @@ jobs:
           persist-credentials: false
           fetch-depth: 1
 
+      - name: Determine target LLVM major (match PGDG)
+        run: |
+          # PGDG's noble pg18 extensions (pgaudit, pgvector, pg_cron, pg_partman,
+          # ...) carry "Breaks: postgresql-18-jit-llvm (<< N)". On PG 18 that
+          # virtual package is provided by postgresql-18-jit, via
+          # "Provides: postgresql-18-jit-llvm (= N)". Read N straight from the
+          # PGDG index so this build tracks PGDG automatically (19 -> 20 ...).
+          arch=$(dpkg --print-architecture)
+          url="https://apt.postgresql.org/pub/repos/apt/dists/noble-pgdg/main/binary-${arch}/Packages.gz"
+          llvm=$(curl -fsSL "$url" | gunzip | grep -oP 'postgresql-18-jit-llvm \(= \K[0-9]+' | sort -n | tail -1)
+          : "${llvm:=19}"   # fallback if PGDG is unreachable
+          echo "Target LLVM major (from PGDG): $llvm"
+          echo "LLVM_VERSION=$llvm" >> "$GITHUB_ENV"
+
       - name: Set up environment
         run: |
+          # Noble ships LLVM 18 at most, so pull the PGDG-matched LLVM from
+          # apt.llvm.org. Building against an older LLVM makes postgresql-18-jit
+          # provide a lower postgresql-18-jit-llvm, which trips the extensions'
+          # Breaks and makes them uninstallable next to our server.
+          curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | sudo tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc >/dev/null
+          echo "deb http://apt.llvm.org/noble/ llvm-toolchain-noble-${LLVM_VERSION} main" | sudo tee /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
+
+          # llvm-${LLVM_VERSION}-dev provides /usr/bin/llvm-config-${LLVM_VERSION}
+          # and satisfies the patched build-dep (see the clone step).
           sudo apt-get update
           sudo apt-get install -y build-essential devscripts debhelper git-buildpackage curl gnupg reprepro dpkg-dev lintian \
-                             clang-18 llvm-18 lld-18 \
+                             clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
                              postgresql-server-dev-all libreadline-dev zlib1g-dev libssl-dev libpam0g-dev libxml2-dev \
                              libkrb5-dev libldap2-dev libperl-dev python3-dev tcl-dev libecpg-dev gettext \
                              bison clang dh-exec docbook-xml docbook-xsl flex gdb liblz4-dev \
-                             libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev llvm-dev \
+                             libselinux1-dev libsystemd-dev libxml2-utils libxslt1-dev libzstd-dev \
                              lz4 pkgconf systemtap-sdt-dev uuid-dev xsltproc \
                              libcurl4-openssl-dev libnuma-dev liburing-dev
           
@@ -59,7 +82,15 @@ jobs:
           cd postgresql
           # Ensure we're on a branch that supports PostgreSQL 18
           git checkout 18
-          
+
+          # Pin the JIT to the PGDG-matched LLVM major. postgresql-common's
+          # postgresql.mk derives LLVM_VERSION from the "llvm-N-dev" build-dep
+          # in debian/control and stamps it into postgresql-18-jit's
+          # "Provides: postgresql-18-jit-llvm (= N)". The stock packaging has an
+          # unversioned "llvm-dev" (-> Noble's 18); pin it to ${LLVM_VERSION}.
+          sed -i "s/llvm-dev/llvm-${LLVM_VERSION}-dev/g" debian/control
+          grep -n "llvm-${LLVM_VERSION}-dev" debian/control
+
       - name: Download PostgreSQL source
         run: |
           cd postgresql
@@ -101,6 +132,53 @@ jobs:
         run: |
           find postgresql -name "*.deb" -exec cp {} . \;
   
+      - name: Verify JIT provides and simulate install alongside PGDG
+        run: |
+          set -euo pipefail
+          arch=$(dpkg --print-architecture)
+          ver="${POSTGRES_VERSION}-4-custom-32k"
+
+          # 1) The package carrying the JIT must advertise exactly the LLVM
+          #    major PGDG's extensions expect, or "Breaks: postgresql-18-jit-llvm (<< N)"
+          #    makes every PGDG extension uninstallable next to our server.
+          jit_deb=$(find . -maxdepth 2 -name "postgresql-18-jit_${ver}_${arch}.deb" | head -1)
+          provides=$(dpkg-deb -f "$jit_deb" Provides)
+          echo "postgresql-18-jit Provides: $provides"
+          if ! grep -q "postgresql-18-jit-llvm (= ${LLVM_VERSION})" <<<"$provides"; then
+            echo "::error::postgresql-18-jit does not provide postgresql-18-jit-llvm (= ${LLVM_VERSION}); PGDG extensions would be uninstallable"
+            exit 1
+          fi
+
+          # 2) Dry-run an install that mixes the freshly built debs with the live
+          #    PGDG repo, the way our hosts are configured (kronor pinned above
+          #    PGDG). This catches any dependency the packages cannot satisfy on
+          #    a stock Noble host before anything is published.
+          repo="$RUNNER_TEMP/localrepo"
+          mkdir -p "$repo"
+          find . -maxdepth 2 -name "*_${ver}_*.deb" -exec cp -f {} "$repo/" \;
+          (cd "$repo" && dpkg-scanpackages --multiversion . > Packages)
+          echo "deb [trusted=yes] file:$repo ./" | sudo tee /etc/apt/sources.list.d/localrepo.list
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgdg.gpg
+          echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          printf 'Package: *\nPin: version *custom-32k\nPin-Priority: 1001\n' | sudo tee /etc/apt/preferences.d/kronor-custom
+          # Do not let the build-only apt.llvm.org repo mask a runtime dependency
+          # hosts cannot satisfy from Noble + PGDG.
+          sudo rm -f /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
+          sudo apt-get update
+
+          pkgs="postgresql-18 postgresql-18-jit postgresql-18-pgaudit postgresql-18-pgvector postgresql-18-cron postgresql-18-partman postgresql-18-repack"
+          echo "Simulating: apt-get install $pkgs"
+          sudo apt-get -s install $pkgs
+
+          # The simulated install must pick OUR server, not PGDG's 8k one.
+          cand=$(apt-cache policy postgresql-18 | awk '/Candidate:/ {print $2}')
+          echo "postgresql-18 candidate: $cand"
+          if [ "$cand" != "$ver" ]; then
+            echo "::error::apt would install postgresql-18 $cand instead of our $ver"
+            exit 1
+          fi
+          sudo rm -f /etc/apt/sources.list.d/localrepo.list /etc/apt/sources.list.d/pgdg.list /etc/apt/preferences.d/kronor-custom
+
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"

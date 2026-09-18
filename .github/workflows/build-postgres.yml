@@ -6,7 +6,7 @@ on:
       postgres_version:
         description: 'PostgreSQL version'
         required: true
-        default: '17.7'
+        default: '17.11'
 
 jobs:
   build:
@@ -138,6 +138,53 @@ jobs:
         run: |
           find postgresql -name "*.deb" -exec cp {} . \;
   
+      - name: Verify JIT provides and simulate install alongside PGDG
+        run: |
+          set -euo pipefail
+          arch=$(dpkg --print-architecture)
+          ver="${POSTGRES_VERSION}-4-custom-32k"
+
+          # 1) The package carrying the JIT must advertise exactly the LLVM
+          #    major PGDG's extensions expect, or "Breaks: postgresql-17-jit-llvm (<< N)"
+          #    makes every PGDG extension uninstallable next to our server.
+          jit_deb=$(find . -maxdepth 2 -name "postgresql-17_${ver}_${arch}.deb" | head -1)
+          provides=$(dpkg-deb -f "$jit_deb" Provides)
+          echo "postgresql-17 Provides: $provides"
+          if ! grep -q "postgresql-17-jit-llvm (= ${LLVM_VERSION})" <<<"$provides"; then
+            echo "::error::postgresql-17 does not provide postgresql-17-jit-llvm (= ${LLVM_VERSION}); PGDG extensions would be uninstallable"
+            exit 1
+          fi
+
+          # 2) Dry-run an install that mixes the freshly built debs with the live
+          #    PGDG repo, the way our hosts are configured (kronor pinned above
+          #    PGDG). This catches any dependency the packages cannot satisfy on
+          #    a stock Noble host before anything is published.
+          repo="$RUNNER_TEMP/localrepo"
+          mkdir -p "$repo"
+          find . -maxdepth 2 -name "*_${ver}_*.deb" -exec cp -f {} "$repo/" \;
+          (cd "$repo" && dpkg-scanpackages --multiversion . > Packages)
+          echo "deb [trusted=yes] file:$repo ./" | sudo tee /etc/apt/sources.list.d/localrepo.list
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/pgdg.gpg
+          echo "deb http://apt.postgresql.org/pub/repos/apt noble-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          printf 'Package: *\nPin: version *custom-32k\nPin-Priority: 1001\n' | sudo tee /etc/apt/preferences.d/kronor-custom
+          # Do not let the build-only apt.llvm.org repo mask a runtime dependency
+          # hosts cannot satisfy from Noble + PGDG.
+          sudo rm -f /etc/apt/sources.list.d/llvm-${LLVM_VERSION}.list
+          sudo apt-get update
+
+          pkgs="postgresql-17 postgresql-17-pgaudit postgresql-17-pgvector postgresql-17-cron postgresql-17-partman postgresql-17-repack"
+          echo "Simulating: apt-get install $pkgs"
+          sudo apt-get -s install $pkgs
+
+          # The simulated install must pick OUR server, not PGDG's 8k one.
+          cand=$(apt-cache policy postgresql-17 | awk '/Candidate:/ {print $2}')
+          echo "postgresql-17 candidate: $cand"
+          if [ "$cand" != "$ver" ]; then
+            echo "::error::apt would install postgresql-17 $cand instead of our $ver"
+            exit 1
+          fi
+          sudo rm -f /etc/apt/sources.list.d/localrepo.list /etc/apt/sources.list.d/pgdg.list /etc/apt/preferences.d/kronor-custom
+
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
