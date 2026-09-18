@@ -1,13 +1,16 @@
 name: Rebuild PGDG Extensions from Source (custom 32k)
 
 # Rebuilds the PGDG extensions our fleet uses FROM SOURCE against the custom
-# 32k-blocksize postgresql-server-dev-17, instead of installing PGDG's stock
-# 8k-blocksize binaries. Two problems this solves:
+# 32k-blocksize postgresql-server-dev-<pg_major>, instead of installing PGDG's
+# stock 8k-blocksize binaries. Two problems this solves:
 #   * BLCKSZ mismatch: PG_MODULE_MAGIC does not check BLCKSZ, so a stock 8k .so
 #     loads silently into our 32k server. Building against our server-dev bakes
 #     BLCKSZ=32768 into the extension.
 #   * LLVM/JIT ABI: built here against the same LLVM as the server, so the
-#     generated "Breaks: postgresql-17-jit-llvm (<< N)" stays consistent.
+#     generated "Breaks: postgresql-NN-jit-llvm (<< N)" stays consistent.
+#
+# Only the requested major is built (debian/pgversions is pinned to it), so a
+# pg17 run no longer emits packages for every major PGDG still supports.
 #
 # Each rebuilt package gets a "+custom32k" version suffix so it sorts above the
 # PGDG original and wins on our hosts (where the kronor PPA outranks PGDG).
@@ -15,15 +18,16 @@ name: Rebuild PGDG Extensions from Source (custom 32k)
 on:
   workflow_dispatch:
     inputs:
+      pg_major:
+        description: 'PostgreSQL major version to build against (17 or 18)'
+        required: true
+        default: '17'
       extensions:
-        description: 'Space-separated postgresql-17-<ext> names to (re)build'
+        description: 'Space-separated extension names (the <ext> in postgresql-NN-<ext>) to (re)build'
         required: false
         default: >-
-          postgresql-17-pgaudit postgresql-17-pgvector postgresql-17-cron
-          postgresql-17-partman postgresql-17-hll postgresql-17-hypopg
-          postgresql-17-jsquery postgresql-17-periods postgresql-17-plpgsql-check
-          postgresql-17-repack postgresql-17-semver postgresql-17-squeeze
-          postgresql-17-auto-failover
+          pgaudit pgvector cron partman hll hypopg jsquery periods
+          plpgsql-check repack semver squeeze auto-failover
 
 jobs:
   # Fan the input string out into a JSON matrix so each extension builds in its
@@ -35,14 +39,17 @@ jobs:
     steps:
       - id: set
         run: |
+          major="${{ github.event.inputs.pg_major }}"
           exts="${{ github.event.inputs.extensions }}"
-          json=$(printf '%s\n' $exts | jq -R . | jq -s -c .)
+          json=$(for e in $exts; do echo "postgresql-${major}-${e#postgresql-${major}-}"; done | jq -R . | jq -s -c .)
           echo "list=$json" >> "$GITHUB_OUTPUT"
           echo "Building: $json"
 
   build:
     needs: matrix
     runs-on: ubuntu-24.04-arm
+    env:
+      PG_MAJOR: ${{ github.event.inputs.pg_major }}
     strategy:
       fail-fast: false
       matrix:
@@ -74,7 +81,7 @@ jobs:
         run: |
           arch=$(dpkg --print-architecture)
           url="https://apt.postgresql.org/pub/repos/apt/dists/noble-pgdg/main/binary-${arch}/Packages.gz"
-          llvm=$(curl -fsSL "$url" | gunzip | grep -oP 'postgresql-17-jit-llvm \(= \K[0-9]+' | sort -n | tail -1)
+          llvm=$(curl -fsSL "$url" | gunzip | grep -oP "postgresql-${PG_MAJOR}-jit-llvm \(= \K[0-9]+" | sort -n | tail -1)
           : "${llvm:=19}"
           echo "LLVM_VERSION=$llvm" >> "$GITHUB_ENV"
           echo "Target LLVM major: $llvm"
@@ -89,13 +96,13 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential debhelper dh-exec fakeroot \
             clang-${LLVM_VERSION} llvm-${LLVM_VERSION} lld-${LLVM_VERSION} llvm-${LLVM_VERSION}-dev \
-            postgresql-server-dev-17
+            postgresql-server-dev-${PG_MAJOR}
 
           # Confirm pgxs points at the 32k build (guards against the pin failing
           # and PGDG's stock server-dev sneaking in).
-          echo "--- pg_config for 17 ---"
-          /usr/lib/postgresql/17/bin/pg_config --configure | tr ' ' '\n' | grep -i blocksize
-          /usr/lib/postgresql/17/bin/pg_config --version
+          echo "--- pg_config for ${PG_MAJOR} ---"
+          /usr/lib/postgresql/${PG_MAJOR}/bin/pg_config --configure | tr ' ' '\n' | grep -i blocksize
+          /usr/lib/postgresql/${PG_MAJOR}/bin/pg_config --version
 
       - name: Build ${{ matrix.ext }} against the 32k server
         run: |
@@ -105,10 +112,17 @@ jobs:
           mkdir -p "$work" && cd "$work"
 
           apt-get source "$ext"
-          sudo apt-get build-dep -y "$ext"
-
+          # build-dep would pull postgresql-server-dev-all (every PGDG major);
+          # resolve the source package's build-deps except that one.
           srcdir=$(find "$work" -maxdepth 1 -mindepth 1 -type d | head -1)
           cd "$srcdir"
+          sed -i -E 's/postgresql-server-dev-all( *\([^)]*\))?/postgresql-server-dev-'"${PG_MAJOR}"'/g' debian/control
+          sudo mk-build-deps -i -r -t 'apt-get -y -o Debug::pkgProblemResolver=yes --no-install-recommends' debian/control
+
+          # Build for the requested major only. pg_buildext intersects
+          # debian/pgversions with postgresql-common's supported versions.
+          echo "${PG_MAJOR}" > debian/pgversions
+          export PG_SUPPORTED_VERSIONS="${PG_MAJOR}"
 
           # Match the extension's LLVM to the server's (best effort; not all
           # extensions carry an llvm build-dep).
@@ -120,12 +134,20 @@ jobs:
           export DEBEMAIL="41898282+github-actions[bot]@users.noreply.github.com"
           export DEBFULLNAME="github-actions[bot]"
           dch --local "+custom32k" \
-            "Rebuilt against custom 32k-blocksize postgresql-server-dev-17"
+            "Rebuilt against custom 32k-blocksize postgresql-server-dev-${PG_MAJOR}"
 
           DEB_BUILD_OPTIONS="nocheck" dpkg-buildpackage -us -uc -b
 
           mkdir -p "$GITHUB_WORKSPACE/out"
-          cp "$work"/*.deb "$GITHUB_WORKSPACE/out/"
+          # Keep this major's packages (and any un-versioned ones, e.g. CLI tools).
+          for d in "$work"/*.deb; do
+            b=$(basename "$d")
+            case "$b" in
+              postgresql-${PG_MAJOR}-*) cp "$d" "$GITHUB_WORKSPACE/out/" ;;
+              postgresql-[0-9]*-*) echo "skipping other-major package $b" ;;
+              *) cp "$d" "$GITHUB_WORKSPACE/out/" ;;
+            esac
+          done
           echo "--- built ---"
           ls -1 "$GITHUB_WORKSPACE/out/"
 
